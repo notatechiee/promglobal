@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Detail | Prominex Global</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+        
+        html, body { 
+            margin: 0; padding: 0; min-height: 100vh; width: 100vw; 
+            font-family: 'Inter', sans-serif; 
+            background: #f1f5f9; 
+            color: #1e293b; 
+            overflow-x: hidden; 
+        }
+
+        /* --- AMBIENT LAYER --- */
+        .ambient-glow {
+            position: fixed; top: 0; right: -5%;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(241, 245, 249, 0) 70%);
+            z-index: -1; filter: blur(80px);
+        }
+
+        /* --- TOP PILL NAVIGATION --- */
+        .nav-link {
+            position: fixed; top: 25px;
+            color: #475569; font-size: 10px; font-weight: 900; 
+            text-transform: uppercase; letter-spacing: 0.2em;
+            text-decoration: none; z-index: 1000;
+            padding: 12px 20px; border-radius: 50px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; align-items: center;
+        }
+
+        .nav-back { left: 20px; }
+        .nav-home { right: 20px; }
+
+        .nav-link:hover { 
+            color: #fff; background: #2563eb; 
+            border-color: #2563eb; transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.25);
+        }
+
+        /* --- GLASS CARD --- */
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.94); 
+            backdrop-filter: blur(25px); 
+            border: 1px solid #ffffff; 
+            border-radius: 40px;
+            padding: 70px 80px; 
+            margin-top: 90px; /* Space for the top buttons */
+            box-shadow: 0 40px 100px rgba(15, 23, 42, 0.06);
+        }
+
+        .label-blue { color: #2563eb; font-weight: 900; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.4em; margin-bottom: 0.6rem; display: block; }
+        .spec-row { border-top: 1px solid rgba(0,0,0,0.06); padding-top: 2rem; transition: 0.3s; }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+
+    <a href="industries.html" class="nav-link nav-back"><i class="fas fa-chevron-left mr-2"></i> All Industries</a>
+    <a href="index.html" class="nav-link nav-home">Home <i class="fas fa-home ml-2"></i></a>
+
+    <div id="content-area" class="max-w-7xl mx-auto px-8 pb-12"></div>
+
+    <script>
+        const data = {
+            foodservice: {
+                title: "Foodservice & <br>Packaging",
+                overview: "Operational management of high-velocity consumable portfolios. We specialize in large-scale procurement and SKU consolidation.",
+                segments: "Fiber-Based (Molded pulp), Polymer-Based (PP/PET), Flexible Barriers",
+                specs: "Thermal Range: -40°C to 120°C | Rim Integrity: Double-wall",
+                materials: "Virgin/PCR Fiber, RPET, Biopolymers (PLA)",
+                compliance: "BRCGS Global, SQF Level 3, ISO 9001:2015, HACCP",
+                note: "Single-point accountability integrating production buffers with real-time transit milestones."
+            },
+            patientcare: { 
+                title: "Patient Care & <br>Sterile Supply", 
+                overview: "Class I and II medical consumables management.", 
+                segments: "Nitrile Barriers, Surgical Textiles, Aseptic Systems", 
+                specs: "AAMI PB70 Level 1–4 | Sterilization: EtO, Gamma", 
+                materials: "Synthetic Elastomers, SMS Non-wovens", 
+                compliance: "FDA 510(k), ISO 13485:2016", 
+                note: "Predictable execution through audited multi-site redundancy." 
+            },
+            precision: { 
+                title: "Precision <br>Components", 
+                overview: "High-tolerance engineered parts sourcing.", 
+                segments: "5-axis CNC, Die-casting, Injection Molding", 
+                specs: "Precision: ±0.002mm | Finish: Ra 0.4 mirror", 
+                materials: "Aluminum 7000, 316 Stainless, Titanium, PEEK", 
+                compliance: "IATF 16949, AS9100, RoHS 3", 
+                note: "On-site Quality Engineers provide verified data packets." 
+            },
+            chemicals: { 
+                title: "Specialty <br>Chemicals", 
+                overview: "Strategic sourcing of industrial chemical formulations.", 
+                segments: "Additives, Intermediates, Surfactants, Biocides", 
+                specs: "Purity: PPB/PPM analysis | Moisture: Max 50ppm", 
+                materials: "Inorganic Catalysts, Esters, Organometallics", 
+                compliance: "GHS-SDS, IMDG/IATA DG, ISO 14001", 
+                note: "Management of entire regulatory chain with CoA documentation." 
+            }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const cat = params.get('cat') || 'foodservice';
+        const item = data[cat];
+
+        document.getElementById('content-area').innerHTML = `
+            <div class="glass-card">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                    <div>
+                        <h1 class="text-6xl font-black uppercase mb-8 tracking-tighter text-slate-900 leading-none">${item.title}</h1>
+                        <p class="text-xl text-slate-500 leading-relaxed font-light mb-10">${item.overview}</p>
+                        
+                        <div class="bg-blue-50 border border-blue-100 p-8 rounded-[30px] shadow-sm">
+                            <p class="text-[9px] font-black uppercase tracking-[0.4em] mb-4 text-blue-600">Prominex Framework</p>
+                            <p class="text-xl italic font-medium leading-relaxed text-slate-800">"${item.note}"</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-10">
+                        <div class="spec-row">
+                            <span class="label-blue">Product Segments</span>
+                            <p class="text-xl font-bold tracking-tight text-slate-900">${item.segments}</p>
+                        </div>
+                        <div class="spec-row">
+                            <span class="label-blue">Technical Specs</span>
+                            <p class="text-lg text-slate-600 font-medium">${item.specs}</p>
+                        </div>
+                        <div class="spec-row">
+                            <span class="label-blue">Materials</span>
+                            <p class="text-lg text-slate-600">${item.materials}</p>
+                        </div>
+                        <div class="spec-row">
+                            <span class="label-blue">Compliance</span>
+                            <p class="text-2xl font-black text-blue-600 tracking-tight">${item.compliance}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <div class="bg-slate-900 p-12 rounded-[40px] text-center shadow-2xl relative overflow-hidden">
+                    <h2 class="text-3xl font-black uppercase mb-4 tracking-tighter text-white">Initialize Consultation</h2>
+                    <p class="text-slate-400 mb-8 max-w-lg mx-auto font-light">Secure your global supply chain with audited execution frameworks.</p>
+                    <a href="contact.html" class="inline-block bg-blue-600 text-white px-14 py-5 rounded-full font-black uppercase text-xs tracking-[0.3em] hover:bg-white hover:text-blue-600 transition-all transform hover:scale-105">
+                        Request a Quote
+                    </a>
+                </div>
+            </div>
+        `;
+    </script>
+</body>
+</html>

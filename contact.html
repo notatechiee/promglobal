@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Prominex Global</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+        
+        html, body { 
+            height: 100vh; width: 100vw; margin: 0; padding: 0;
+            overflow: hidden; background-color: #ffffff; 
+            font-family: 'Inter', sans-serif; 
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .bg-overlay {
+            position: fixed; inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80');
+            background-size: cover; background-position: center;
+            filter: grayscale(1) brightness(1.1) opacity(0.06);
+            z-index: -1;
+        }
+
+        .nav-back {
+            position: absolute; top: 40px; left: 40px;
+            color: #1e293b; font-size: 11px; 
+            font-weight: 900; text-transform: uppercase; letter-spacing: 0.5em;
+            text-decoration: none; border-bottom: 2px solid rgba(30, 41, 59, 0.1);
+            z-index: 1000;
+            transition: all 0.4s ease;
+            padding-bottom: 4px;
+        }
+        .nav-back:hover { border-bottom-color: #3b82f6; color: #3b82f6; transform: translateX(5px); }
+
+        .main-heading { display: flex; flex-direction: column; line-height: 1.05; }
+        .line-one { display: flex; align-items: center; white-space: nowrap; }
+
+        .word-wrapper {
+            display: inline-flex; height: 1.1em; overflow: hidden;
+            position: relative; min-width: 400px; margin-left: 20px; 
+        }
+
+        #dynamic-word {
+            display: block; position: absolute; left: 0; width: 100%;
+            transition: all 0.15s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+        .word-exit { transform: translateY(-100%); opacity: 0; }
+        .word-enter { transform: translateY(100%); opacity: 0; }
+
+        /* --- DARK GLOSSY GLASS PANEL --- */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.92); 
+            backdrop-filter: blur(25px) saturate(150%);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px; padding: 4rem;
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 20;
+        }
+
+        .input-field {
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 12px; padding: 16px; width: 100%;
+            color: #ffffff; outline: none; font-size: 13px;
+            transition: all 0.3s ease;
+        }
+        .input-field:focus { background: rgba(255, 255, 255, 0.1); border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
+        .input-field::placeholder { color: rgba(255, 255, 255, 0.4); }
+
+        .label-text {
+            font-size: 10px; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 0.25em; color: #3b82f6; margin-bottom: 8px; display: block;
+        }
+
+        .submit-btn {
+            background: #3b82f6; color: white; padding: 22px; 
+            border-radius: 14px; font-weight: 900; text-transform: uppercase; 
+            letter-spacing: 0.4em; font-size: 11px; width: 100%;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            cursor: pointer;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .submit-btn:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4); }
+        
+        /* Success State */
+        .submit-btn.btn-success { background: #10b981 !important; pointer-events: none; }
+
+        .info-card { display: flex; align-items: center; gap: 20px; }
+        .info-icon { color: #3b82f6; font-size: 24px; min-width: 30px; text-align: center; }
+        .info-label { font-size: 10px; font-weight: 900; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 2px; }
+        .info-value { font-size: 15px; font-weight: 800; color: #1e293b; line-height: 1.2; }
+
+        .footer-text { color: #94a3b8; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5em; text-align: center; margin-top: 35px; }
+        
+        select.input-field option { background: #0f172a; color: #fff; }
+    </style>
+</head>
+<body>
+
+    <div class="bg-overlay"></div>
+    <a href="index.html?menu=open" class="nav-back">← Network Hub</a>
+
+    <div class="max-w-[1440px] w-full grid grid-cols-1 lg:grid-cols-12 gap-24 px-16 items-center">
+        
+        <div class="lg:col-span-5 pr-6">
+            <h1 class="main-heading text-5xl md:text-7xl font-black uppercase mb-12 text-slate-900 tracking-tighter">
+                <span class="line-one">
+                    Let's <span class="word-wrapper text-blue-600"><span id="dynamic-word">Secure</span></span>
+                </span>
+                <span class="line-two">Your Logistics.</span>
+            </h1>
+
+            <div class="grid grid-cols-1 gap-y-10 border-t border-slate-100 pt-12">
+                <div class="grid grid-cols-2 gap-10">
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt info-icon"></i>
+                        <div>
+                            <div class="info-label">Global HQ</div>
+                            <div class="info-value">Mumbai • Dubai</div>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-envelope info-icon"></i>
+                        <div>
+                            <div class="info-label">Direct Line</div>
+                            <div class="info-value">info@prominex.global</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-10">
+                    <div class="info-card">
+                        <i class="fas fa-phone-alt info-icon"></i>
+                        <div>
+                            <div class="info-label">Access</div>
+                            <div class="info-value">+91 [Number]</div>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-clock info-icon"></i>
+                        <div>
+                            <div class="info-label">Availability</div>
+                            <div class="info-value">24/7 Operations</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-7">
+            <div class="glass-panel">
+                <form id="contactForm" class="space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="label-text">Personnel Identifier</label>
+                            <input type="text" placeholder="Full Name" class="input-field" required>
+                        </div>
+                        <div>
+                            <label class="label-text">Digital Gateway</label>
+                            <input type="email" placeholder="email@company.com" class="input-field" required>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="label-text">Industrial Vertical</label>
+                            <select class="input-field">
+                                <option>Manufacturing</option>
+                                <option>Supply Chain Sync</option>
+                                <option>Strategic Sourcing</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="label-text">Protocol Urgency</label>
+                            <select class="input-field">
+                                <option>Standard Action</option>
+                                <option>Priority Deployment</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="label-text">Strategic Brief</label>
+                        <textarea rows="3" placeholder="Define project parameters..." class="input-field resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="submit-btn">
+                        <span id="btnText">Execute Transmission</span> <i id="btnIcon" class="fas fa-bolt ml-3"></i>
+                    </button>
+                </form>
+            </div>
+            
+            <div class="footer-text">
+                Prominex Global © 2026 | Supply Chain Reimagined
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dynamic Word Logic
+        const words = ["Secure", "Optimize", "Scale", "Direct", "Evolve"];
+        let i = 0;
+        const wordElement = document.getElementById("dynamic-word");
+        setInterval(() => {
+            wordElement.classList.add("word-exit");
+            setTimeout(() => {
+                i = (i + 1) % words.length;
+                wordElement.innerText = words[i];
+                wordElement.classList.remove("word-exit");
+                wordElement.classList.add("word-enter");
+                setTimeout(() => wordElement.classList.remove("word-enter"), 20); 
+            }, 150); 
+        }, 1300); 
+
+        // Success Animation Logic
+        const form = document.getElementById('contactForm');
+        const btn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnIcon = document.getElementById('btnIcon');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Step 1: Loading State
+            btnText.innerText = "Transmitting...";
+            btnIcon.className = "fas fa-sync fa-spin ml-3";
+            
+            // Simulate Network Delay
+            setTimeout(() => {
+                // Step 2: Success State
+                btn.classList.add('btn-success');
+                btnText.innerText = "Protocol Secure";
+                btnIcon.className = "fas fa-check-circle ml-3";
+                
+                // Optional: Reset form and button after a few seconds
+                setTimeout(() => {
+                    btn.classList.remove('btn-success');
+                    btnText.innerText = "Execute Transmission";
+                    btnIcon.className = "fas fa-bolt ml-3";
+                    form.reset();
+                }, 4000);
+            }, 1800);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: #000;
+    font-family: 'Inter', sans-serif;
+}
+
+/* THE PERFECTED GLOSS & LEGIBILITY */
+.mirror-gloss {
+    display: inline-block;
+    color: #ffffff;
+    /* High-contrast gradient: 30% white to 100% white to 30% white */
+    background: linear-gradient(
+        110deg, 
+        rgba(255,255,255,0.3) 20%, 
+        rgba(255,255,255,1) 50%, 
+        rgba(255,255,255,0.3) 80%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s ease-in-out infinite;
+    line-height: 1.1;
+    /* Subtle drop shadow to define letter edges against the image */
+    filter: drop-shadow(0 4px 15px rgba(0,0,0,0.4));
+}
+
+@keyframes shine {
+    0% { background-position: 150% 0%; }
+    100% { background-position: -150% 0%; }
+}
+
+/* THE ROTATOR TRANSITION (Smooth Fade + Slight Slide) */
+.rotator-text { 
+    display: none; 
+    opacity: 0;
+}
+
+.active { 
+    display: block; 
+    animation: premiumFade 0.8s ease-out forwards; 
+}
+
+@keyframes premiumFade {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
