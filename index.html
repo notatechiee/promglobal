@@ -25,6 +25,18 @@
             height: 60px; /* Adjust this to your preferred size */
             width: auto;
             display: block;
+            filter: 
+                drop-shadow(0 0 10px rgba(255, 255, 255, 0.2)) /* Soft outer glow */
+                drop-shadow(0 4px 4px rgba(0, 0, 0, 0.8));    /* Sharp shadow for depth */
+            
+            transition: filter 0.3s ease;
+        
+        }
+        .logo-fixed-center:hover img {
+            /* Subtle 'Power On' effect when you hover to click */
+            filter: 
+                drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) /* Blue tint glow */
+                brightness(1.1);
         }
 
         /* --- THE MAGIC FLASH FIX --- */
