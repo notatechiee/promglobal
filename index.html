@@ -12,31 +12,62 @@
 
         html, body { margin: 0; padding: 0; height: 100vh; width: 100vw; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
 
-       /* --- RECTANGULAR LOGO BADGE --- */
+     /* --- HIGH-VOLTAGE RECTANGULAR LOGO --- */
         .logo-badge {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: #ffffff; /* This covers your logo's white background perfectly */
-            padding: 15px 30px; /* Adjust padding to fit your rectangle's width */
-            border-radius: 4px; /* Slight roundness for a modern "tech card" look */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.2);
-            border-left: 4px solid #3b82f6; /* Blue accent "power" line */
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            background: #ffffff;
+            padding: 18px 40px; 
+            border-radius: 2px; /* Sharper corners for industrial feel */
+            position: relative;
+            overflow: hidden;
+            
+            /* Initial State: Stronger Glow */
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), inset 0 0 15px rgba(59, 130, 246, 0.1);
+            border-left: 5px solid #3b82f6;
+            
+            /* The "Power-On" Pulse Animation */
+            animation: powerPulse 4s infinite ease-in-out;
+            transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
         }
-        
+
+        /* The Scanning Light "Laser" Effect */
+        .logo-badge::after {
+            content: "";
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.4), transparent);
+            transform: skewX(-25deg);
+            animation: techScan 3s infinite;
+        }
+
+        @keyframes techScan {
+            0% { left: -100%; }
+            30% { left: 150%; }
+            100% { left: 150%; }
+        }
+
+        @keyframes powerPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); border-left-color: #3b82f6; }
+            50% { box-shadow: 0 0 45px rgba(59, 130, 246, 0.7); border-left-color: #60a5fa; }
+        }
+
         .logo-badge:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
-            border-left-width: 8px;
+            transform: scale(1.05);
+            background: #f8fafc;
+            border-left-width: 12px;
+            box-shadow: 0 0 60px rgba(59, 130, 246, 0.8);
+            cursor: crosshair;
         }
 
         .logo-badge img {
-            height: 45px; /* Adjust height to make your logo look right */
+            height: 55px; /* Slightly larger for impact */
             width: auto;
             object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
-
         /* --- THE MAGIC FLASH FIX --- */
         .menu-mode #menu-overlay { opacity: 1 !important; pointer-events: auto !important; transition: none !important; display: flex !important; }
         .menu-mode header { opacity: 0; }
