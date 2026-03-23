@@ -23,7 +23,6 @@
             z-index: -1;
         }
 
-        /* --- VISIBLE BACK BUTTON --- */
         .nav-back {
             position: absolute; top: 40px; left: 60px;
             color: #ffffff; background: #0f172a;
@@ -36,7 +35,6 @@
         }
         .nav-back:hover { background: #3b82f6; transform: translateX(10px); }
 
-        /* --- HEADING: NO CLIPPING --- */
         .main-heading { display: flex; flex-direction: column; line-height: 0.95; }
         .line-stack { display: flex; align-items: center; white-space: nowrap; }
         .line-your { 
@@ -58,15 +56,14 @@
         .word-exit { transform: translateY(-100%); opacity: 0; }
         .word-enter { transform: translateY(100%); opacity: 0; }
 
-        /* --- SIDEBAR --- */
         .contact-sidebar { border-left: 4px solid #3b82f6; padding-left: 28px; margin-top: 2.5rem; }
         .info-label { font-size: 10px; font-weight: 900; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.3em; }
         .info-value { font-size: 14px; font-weight: 800; color: #1e293b; line-height: 1.5; margin-bottom: 1.5rem; }
 
-        /* --- FIXED: WIDE COMMANDING RECTANGLE --- */
+        /* --- THE FIX: FORCING HORIZONTAL DOMINANCE --- */
         .form-container { 
-            width: 100%; 
-            max-width: 950px; /* Adjusted for maximum horizontal impact */
+            flex: 0 0 950px; /* Lock it to 950px wide - no shrinking allowed */
+            width: 950px;
         } 
         
         .glass-panel {
@@ -74,11 +71,10 @@
             backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 24px; 
-            padding: 3.5rem 4rem; /* Balanced horizontal/vertical padding */
+            padding: 3.5rem 4rem; 
             box-shadow: 0 60px 120px -20px rgba(0, 0, 0, 0.7);
         }
 
-        /* --- RESTORED CSS FOR INTERACTIVE ELEMENTS --- */
         .input-group { position: relative; width: 100%; }
         .input-field {
             background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); 
@@ -108,9 +104,9 @@
     <div class="bg-overlay"></div>
     <a href="index.html?menu=open" class="nav-back"><i class="fas fa-chevron-left"></i> BACK TO HUB</a>
 
-    <div class="max-w-[1600px] w-full px-20 flex flex-col lg:flex-row items-center justify-between gap-16">
+    <div class="max-w-[1700px] w-full px-20 flex flex-row items-center justify-between gap-24">
         
-        <div class="flex-1">
+        <div class="w-[600px] shrink-0">
             <h1 class="main-heading text-5xl md:text-7xl font-black uppercase text-slate-900 tracking-tighter">
                 <span class="line-stack">Let's <span class="word-wrapper text-blue-600 ml-5"><span id="verb-word" class="dynamic-text">Secure</span></span></span>
                 <span class="line-stack line-your">Your</span>
@@ -201,7 +197,6 @@
     </div>
 
     <script>
-        // DYNAMIC WORDS
         const verbs = ["Secure", "Optimize", "Scale", "Direct", "Evolve"];
         const verticals = ["Supply Chain.", "Procurement.", "Logistics.", "Fulfillment.", "Operations."];
         let i = 0;
@@ -226,7 +221,6 @@
             }, 150);
         }, 2200);
 
-        // FORM LOGIC
         const form = document.getElementById('contactForm');
         form.addEventListener('submit', function(e) {
             e.preventDefault();
