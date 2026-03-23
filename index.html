@@ -12,24 +12,28 @@
 
         html, body { margin: 0; padding: 0; height: 100vh; width: 100vw; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
 
-        /* --- LOGO BADGE STYLING --- */
+       /* --- RECTANGULAR LOGO BADGE --- */
         .logo-badge {
-            width: 110px; height: 110px;
-            background: #ffffff;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.5s ease;
-            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff; /* This covers your logo's white background perfectly */
+            padding: 15px 30px; /* Adjust padding to fit your rectangle's width */
+            border-radius: 4px; /* Slight roundness for a modern "tech card" look */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.2);
+            border-left: 4px solid #3b82f6; /* Blue accent "power" line */
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
+        
         .logo-badge:hover {
-            transform: scale(1.05) rotate(5deg);
-            box-shadow: 0 0 50px rgba(59, 130, 246, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+            border-left-width: 8px;
         }
+
         .logo-badge img {
-            width: 80%; /* Adjust this if the logo looks too small/large inside the circle */
-            height: auto;
+            height: 45px; /* Adjust height to make your logo look right */
+            width: auto;
             object-fit: contain;
         }
 
@@ -123,7 +127,7 @@
             <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black"></div>
         </div>
 
-        <div class="relative z-10 pt-12">
+        <div class="relative z-10 pt-16">
             <div class="logo-badge">
                 <img src="Logoc.png" alt="Prominex Global">
             </div>
