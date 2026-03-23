@@ -47,7 +47,7 @@
         .word-wrapper {
             display: inline-flex; height: 1.1em; overflow: hidden;
             vertical-align: bottom; position: relative; 
-            min-width: 450px; /* INCREASED TO PREVENT CUTTING ENDS */
+            min-width: 550px; /* BUMPED TO PREVENT "IN" CUTTING OFF */
         }
 
         .dynamic-text {
@@ -63,32 +63,36 @@
         .info-label { font-size: 10px; font-weight: 900; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.3em; }
         .info-value { font-size: 14px; font-weight: 800; color: #1e293b; line-height: 1.5; margin-bottom: 1.5rem; }
 
-        /* --- RECTANGULAR WIDE FORM --- */
-        .form-container { width: 100%; max-width: 750px; } /* Wider & Rectangular */
+        /* --- WIDER RECTANGULAR FORM --- */
+        .form-container { width: 100%; max-width: 850px; } /* INCREASED WIDTH TO PREVENT SQUISHING */
         .glass-panel {
             background: rgba(15, 23, 42, 0.98); 
             backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px; padding: 2.5rem 3rem;
+            border-radius: 24px; padding: 2.5rem 3.5rem;
             box-shadow: 0 60px 120px -20px rgba(0, 0, 0, 0.7);
         }
 
+        /* --- RESTORED CSS FOR INTERACTIVE ELEMENTS --- */
         .input-group { position: relative; width: 100%; }
         .input-field {
-            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); 
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); 
             border-radius: 8px; padding: 12px 16px; width: 100%; color: #ffffff; font-size: 13px;
             transition: all 0.3s;
         }
-        .input-field:focus { border-color: #3b82f6; background: rgba(255, 255, 255, 0.06); outline: none; }
+        .input-field:hover { border-color: rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.08); }
+        .input-field:focus { border-color: #3b82f6; background: rgba(255, 255, 255, 0.1); outline: none; }
         
-        .label-text { font-size: 8px; font-weight: 900; text-transform: uppercase; color: #64748b; margin-bottom: 6px; display: block; letter-spacing: 0.1em; }
+        select.input-field option { background: #0f172a; color: white; }
+
+        .label-text { font-size: 8px; font-weight: 900; text-transform: uppercase; color: #64748b; margin-bottom: 6px; display: block; letter-spacing: 0.15em; }
 
         .submit-btn {
             background: #3b82f6; color: white; padding: 18px; border-radius: 10px; font-weight: 900; 
             text-transform: uppercase; letter-spacing: 0.4em; font-size: 11px; width: 100%; cursor: pointer; 
             transition: all 0.4s ease; border: none; margin-top: 10px;
         }
-        .submit-btn:hover { background: #2563eb; letter-spacing: 0.5em; box-shadow: 0 0 40px rgba(59, 130, 246, 0.3); }
+        .submit-btn:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4); }
         .submit-btn.btn-success { background: #10b981 !important; }
 
         .footer-text { color: #94a3b8; font-size: 9px; font-weight: 800; text-transform: uppercase; text-align: center; margin-top: 20px; }
@@ -99,7 +103,7 @@
     <div class="bg-overlay"></div>
     <a href="index.html?menu=open" class="nav-back"><i class="fas fa-chevron-left"></i> BACK TO HUB</a>
 
-    <div class="max-w-[1500px] w-full px-20 flex flex-col lg:flex-row items-center justify-between gap-12">
+    <div class="max-w-[1600px] w-full px-20 flex flex-col lg:flex-row items-center justify-between gap-16">
         
         <div class="flex-1">
             <h1 class="main-heading text-5xl md:text-7xl font-black uppercase text-slate-900 tracking-tighter">
@@ -122,7 +126,7 @@
 
         <div class="form-container">
             <div class="glass-panel">
-                <form id="contactForm" class="grid grid-cols-2 gap-x-8 gap-y-4">
+                <form id="contactForm" class="grid grid-cols-2 gap-x-10 gap-y-5">
                     
                     <div class="input-group">
                         <label class="label-text">Classification</label>
@@ -135,7 +139,7 @@
 
                     <div class="input-group">
                         <label class="label-text">Business Entity</label>
-                        <input type="text" placeholder="Company Name" class="input-field" required>
+                        <input type="text" placeholder="Company Legal Name" class="input-field" required>
                     </div>
 
                     <div class="input-group">
@@ -145,11 +149,11 @@
 
                     <div class="input-group">
                         <label class="label-text">Direct Email</label>
-                        <input type="email" placeholder="work@domain.com" class="input-field" required>
+                        <input type="email" placeholder="corporate@domain.com" class="input-field" required>
                     </div>
 
                     <div class="input-group">
-                        <label class="label-text">City</label>
+                        <label class="label-text">City of Operation</label>
                         <input type="text" placeholder="Location" class="input-field" required>
                     </div>
 
@@ -163,7 +167,7 @@
                         <select class="input-field">
                             <option>Manufacturing</option>
                             <option>Sourcing</option>
-                            <option>Logistics</option>
+                            <option>Logistics Sync</option>
                         </select>
                     </div>
 
@@ -171,13 +175,13 @@
                         <label class="label-text">Priority Status</label>
                         <select class="input-field">
                             <option>Standard Action</option>
-                            <option>Priority Deployment</option>
+                            <option>Priority Protocol</option>
                         </select>
                     </div>
 
                     <div class="col-span-2">
                         <label class="label-text">Strategic Brief</label>
-                        <textarea rows="1" placeholder="Define requirements..." class="input-field resize-none"></textarea>
+                        <textarea rows="1" placeholder="Define project parameters..." class="input-field resize-none"></textarea>
                     </div>
 
                     <div class="col-span-2">
@@ -192,6 +196,7 @@
     </div>
 
     <script>
+        // DYNAMIC WORDS
         const verbs = ["Secure", "Optimize", "Scale", "Direct", "Evolve"];
         const verticals = ["Supply Chain.", "Procurement.", "Logistics.", "Fulfillment.", "Operations."];
         let i = 0;
@@ -216,6 +221,7 @@
             }, 150);
         }, 2200);
 
+        // FORM LOGIC
         const form = document.getElementById('contactForm');
         form.addEventListener('submit', function(e) {
             e.preventDefault();
