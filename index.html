@@ -12,58 +12,21 @@
 
         html, body { margin: 0; padding: 0; height: 100vh; width: 100vw; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
 
-/* This class ensures the logo is dead-center and near the top */
-        .logo-anchor {
+        /* --- LOGO CENTERING (CLEAN & STATIC) --- */
+        .logo-fixed-center {
             position: absolute;
-            top: 40px; 
+            top: 40px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 1000; /* Higher than all other elements */
-            display: flex;
-            justify-content: center;
-            width: auto;
+            z-index: 9999;
+            display: block;
         }
-        
-/* --- BORDERLESS INDUSTRIAL LOGO --- */
-        .logo-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: #ffffff; 
-            padding: 4px 8px;    /* Minimal padding: just enough to keep it clean */
-            border-radius: 0;    /* Hard, sharp industrial corners */
-            
-            /* High-contrast shadows make the white feel "embedded" in the black */
-            box-shadow: 
-                inset 0 0 10px rgba(0,0,0,0.1), 
-                0 10px 30px rgba(0,0,0,0.9); 
-            
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease;
+        .logo-fixed-center img {
+            height: 60px; /* Adjust this to your preferred size */
+            width: auto;
+            display: block;
         }
 
-        .logo-badge:hover {
-            transform: scale(1.02); /* Very subtle reaction */
-            border-color: rgba(59, 130, 246, 0.3);
-        }
-
-        .logo-badge img {
-            height: 60px;       /* Increased size for visibility */
-            width: auto;
-            display: block;      /* Removes any tiny bottom gaps */
-            object-fit: contain;
-            /* If your logo has a white background, this makes it 1:1 with the box */
-        }
-        .logo-badge {
-            cursor: pointer; /* Shows the hand icon on hover */
-            text-decoration: none;
-        }
-        
-        /* This ensures the logo stays bright even when the header fades */
-        #menu-overlay .logo-anchor {
-            opacity: 1 !important;
-            z-index: 300;
-        }
         /* --- THE MAGIC FLASH FIX --- */
         .menu-mode #menu-overlay { opacity: 1 !important; pointer-events: auto !important; transition: none !important; display: flex !important; }
         .menu-mode header { opacity: 0; }
@@ -139,28 +102,19 @@
         }
         .close-btn:hover { opacity: 1; background: rgba(255,255,255,0.1); border-color: #fff; letter-spacing: 0.8em; }
     </style>
-
-    <script>
-        if (window.location.search.includes('menu=open')) {
-            document.documentElement.classList.add('menu-mode');
-        }
-    </script>
 </head>
 <body>
-    <div class="logo-anchor">
-        <div class="logo-badge">
-            <a href="index.html" class="logo-badge">
-            <img src="Logoc.png" alt="Prominex Global">
-            </a>
-        </div>
-    </div>
+
+    <a href="index.html" class="logo-fixed-center">
+        <img src="Logoc.png" alt="Prominex Global">
+    </a>
 
     <header id="main-header" class="relative h-screen w-full bg-black overflow-hidden px-8 md:px-24">
         <div class="absolute inset-0 z-0"> 
             <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80" class="w-full h-full object-cover opacity-50"> 
             <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black"></div>
         </div>
-
+        
         <div class="absolute inset-0 flex items-center justify-start z-10 pointer-events-none px-8 md:px-24">
             <div class="rotator-container">
                 <h1 class="rotator-text active font-black uppercase mirror-gloss" style="font-size: clamp(2rem, 7vw, 5.5rem);">Integrated <br>Supply Chain</h1>
@@ -184,11 +138,6 @@
     </header>
 
     <div id="menu-overlay">
-        <div class="logo-anchor">
-        <a href="index.html" class="logo-badge">
-            <img src="Logoc.png" alt="Prominex Global">
-        </a>
-        </div>
         <div class="canvas-area">
             <svg class="inf-svg" viewBox="0 0 800 400">
                 <path class="path-base" d="M400,200 C550,60 750,60 750,200 C750,340 550,340 400,200 C250,60 50,60 50,200 C50,340 250,340 400,200" />
@@ -196,8 +145,8 @@
                 <path class="signal sig-2" d="M400,200 C550,60 750,60 750,200 C750,340 550,340 400,200 C250,60 50,60 50,200 C50,340 250,340 400,200" />
             </svg>
 
-            <a href="about.html" class="node p-about"><div class="node-icon"><i class="fas fa-building"></i></div><span class="node-label">Corporate Profile</span></a>
-            <a href="services.html" class="node p-sourcing"><div class="node-icon"><i class="fas fa-layer-group"></i></div><span class="node-label">Service Modules</span></a>
+            <a href="industries.html" class="node p-about"><div class="node-icon"><i class="fas fa-city"></i></div><span class="node-label">Industry Verticals</span></a>
+            <a href="sourcing.html" class="node p-sourcing"><div class="node-icon"><i class="fas fa-handshake-angle"></i></div><span class="node-label">Supplier Management</span></a>
             <a href="logistics.html" class="node p-logistics"><div class="node-icon"><i class="fas fa-ship"></i></div><span class="node-label">Freight Management</span></a>
             <a href="distribution.html" class="node p-distribution"><div class="node-icon"><i class="fas fa-boxes-packing"></i></div><span class="node-label">Logistics Management</span></a>
             <a href="manufacturing.html" class="node p-industries"><div class="node-icon"><i class="fas fa-industry"></i></div><span class="node-label">Manufacturing Coordination</span></a>
@@ -207,7 +156,6 @@
             <div class="nav-row">
                 <a href="contact.html" class="about-link contact-link-nav">Contact Us</a>
                 <a href="about.html" class="about-link">Corporate Profile</a>
-                <a href="services.html" class="about-link">Services</a>
             </div>
             <div class="close-btn" onclick="toggleMenu()">CLOSE NETWORK HUB</div>
         </div>
@@ -222,7 +170,6 @@
             header.style.opacity = overlay.classList.contains('open') ? "0" : "1";
         }
 
-        // Rotator Logic
         let idx = 0; const slides = document.querySelectorAll('.rotator-text');
         setInterval(() => {
             if(slides.length > 0) {
