@@ -12,28 +12,28 @@
 
         html, body { margin: 0; padding: 0; height: 100vh; width: 100vw; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
 
-  /* --- GHOST-CENTERED MINIMAL LOGO --- */
-        .logo-fixed-center {
-            position: absolute;
-            top: 50px;       /* Distance from the very top */
-            left: 50%;       /* Move to horizontal center */
-            transform: translateX(-50%); /* Offset by its own width to be perfectly centered */
-            z-index: 999;    /* Ensure it stays above all other layers */
-            
-            background: #ffffff;
-            padding: 6px 14px; /* Tiny white frame */
-            border-radius: 1px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+ /* --- THE LOCKDOWN LOGO --- */
+    .logo-container-fixed {
+        position: absolute;
+        top: 40px;            /* Keeps it near the top */
+        left: 50%;            /* Moves to horizontal center */
+        transform: translateX(-50%); 
+        z-index: 9999;        /* Ensures it stays on top of everything */
+        
+        background: #ffffff;
+        padding: 8px 15px;    /* Tiny white border */
+        line-height: 0;       /* Removes extra bottom spacing */
+        display: block;
+        width: fit-content;   /* Only as wide as the logo */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
 
-        .logo-fixed-center img {
-            height: 45px;    /* Smaller, sharper, more professional */
-            width: auto;
-            display: block;
-        }
+    .logo-container-fixed img {
+        display: block;
+        height: 40px !important; /* FORCED height */
+        width: auto !important;   /* Maintains perfect proportion */
+        max-width: 200px;         /* Absolute limit on width */
+    }
         /* --- THE MAGIC FLASH FIX --- */
         .menu-mode #menu-overlay { opacity: 1 !important; pointer-events: auto !important; transition: none !important; display: flex !important; }
         .menu-mode header { opacity: 0; }
