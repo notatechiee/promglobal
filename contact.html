@@ -23,31 +23,31 @@
             z-index: -1;
         }
 
-        /* --- VISIBLE BACK BUTTON --- */
+        /* --- HIGH-VISIBILITY BACK BUTTON --- */
         .nav-back {
             position: absolute; top: 40px; left: 60px;
             color: #ffffff; background: #0f172a;
             padding: 14px 28px; border-radius: 50px;
             font-size: 11px; font-weight: 900; text-transform: uppercase; 
             letter-spacing: 0.3em; text-decoration: none;
-            z-index: 1000; transition: all 0.4s ease;
+            z-index: 1000; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             display: flex; align-items: center; gap: 12px;
         }
-        .nav-back:hover { background: #3b82f6; transform: translateX(10px); }
+        .nav-back:hover { background: #3b82f6; transform: translateX(10px); box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4); }
 
-        /* --- HEADING: NO CLIPPING --- */
-        .main-heading { display: flex; flex-direction: column; line-height: 0.95; }
+        /* --- HEADING SYSTEM --- */
+        .main-heading { display: flex; flex-direction: column; line-height: 0.95; margin-bottom: 2rem; }
         .line-stack { display: flex; align-items: center; white-space: nowrap; }
         .line-your { 
             color: #cbd5e1; font-weight: 300; font-size: 0.7em; 
-            letter-spacing: 0.5em; padding-left: 120px; margin: 8px 0;
+            letter-spacing: 0.5em; padding-left: 120px; margin: 12px 0;
         }
 
         .word-wrapper {
             display: inline-flex; height: 1.1em; overflow: hidden;
             vertical-align: bottom; position: relative; 
-            min-width: 550px; /* BUMPED TO PREVENT "IN" CUTTING OFF */
+            min-width: 600px; /* EXTRA WIDE TO PREVENT ANY CLIPPING */
         }
 
         .dynamic-text {
@@ -58,67 +58,66 @@
         .word-exit { transform: translateY(-100%); opacity: 0; }
         .word-enter { transform: translateY(100%); opacity: 0; }
 
-        /* --- SIDEBAR --- */
-        .contact-sidebar { border-left: 4px solid #3b82f6; padding-left: 28px; margin-top: 2.5rem; }
-        .info-label { font-size: 10px; font-weight: 900; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.3em; }
-        .info-value { font-size: 14px; font-weight: 800; color: #1e293b; line-height: 1.5; margin-bottom: 1.5rem; }
+        /* --- CONTACT SIDEBAR --- */
+        .contact-sidebar { border-left: 4px solid #3b82f6; padding-left: 32px; margin-top: 3rem; }
+        .info-label { font-size: 10px; font-weight: 900; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.35em; margin-bottom: 8px; }
+        .info-value { font-size: 15px; font-weight: 800; color: #1e293b; line-height: 1.6; margin-bottom: 2rem; }
 
-        /* --- WIDER RECTANGULAR FORM --- */
-        .form-container { width: 100%; max-width: 850px; } /* INCREASED WIDTH TO PREVENT SQUISHING */
+        /* --- THE COMMAND CENTER FORM (PROPER RECTANGLE) --- */
+        .form-container { width: 100%; max-width: 950px; } 
         .glass-panel {
             background: rgba(15, 23, 42, 0.98); 
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px; padding: 2.5rem 3.5rem;
-            box-shadow: 0 60px 120px -20px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 32px; padding: 4rem;
+            box-shadow: 0 60px 150px -30px rgba(0, 0, 0, 0.8);
         }
 
-        /* --- RESTORED CSS FOR INTERACTIVE ELEMENTS --- */
         .input-group { position: relative; width: 100%; }
         .input-field {
-            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); 
-            border-radius: 8px; padding: 12px 16px; width: 100%; color: #ffffff; font-size: 13px;
-            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 12px; padding: 16px 20px; width: 100%; color: #ffffff; font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .input-field:hover { border-color: rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.08); }
-        .input-field:focus { border-color: #3b82f6; background: rgba(255, 255, 255, 0.1); outline: none; }
+        .input-field:hover { border-color: rgba(59, 130, 246, 0.5); background: rgba(255, 255, 255, 0.07); }
+        .input-field:focus { border-color: #3b82f6; background: rgba(255, 255, 255, 0.1); outline: none; box-shadow: 0 0 25px rgba(59, 130, 246, 0.2); }
         
         select.input-field option { background: #0f172a; color: white; }
 
-        .label-text { font-size: 8px; font-weight: 900; text-transform: uppercase; color: #64748b; margin-bottom: 6px; display: block; letter-spacing: 0.15em; }
+        .label-text { font-size: 9px; font-weight: 900; text-transform: uppercase; color: #3b82f6; margin-bottom: 10px; display: block; letter-spacing: 0.2em; }
 
         .submit-btn {
-            background: #3b82f6; color: white; padding: 18px; border-radius: 10px; font-weight: 900; 
-            text-transform: uppercase; letter-spacing: 0.4em; font-size: 11px; width: 100%; cursor: pointer; 
-            transition: all 0.4s ease; border: none; margin-top: 10px;
+            background: #3b82f6; color: white; padding: 22px; border-radius: 14px; font-weight: 900; 
+            text-transform: uppercase; letter-spacing: 0.5em; font-size: 12px; width: 100%; cursor: pointer; 
+            transition: all 0.4s ease; border: none; margin-top: 20px;
         }
-        .submit-btn:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4); }
+        .submit-btn:hover { background: #2563eb; transform: translateY(-3px); box-shadow: 0 20px 40px rgba(37, 99, 235, 0.4); }
         .submit-btn.btn-success { background: #10b981 !important; }
 
-        .footer-text { color: #94a3b8; font-size: 9px; font-weight: 800; text-transform: uppercase; text-align: center; margin-top: 20px; }
+        .footer-text { color: #94a3b8; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6em; text-align: center; margin-top: 30px; }
     </style>
 </head>
-<body class="flex items-center justify-center">
+<body class="flex items-center justify-center min-h-screen">
 
     <div class="bg-overlay"></div>
-    <a href="index.html?menu=open" class="nav-back"><i class="fas fa-chevron-left"></i> BACK TO HUB</a>
+    <a href="index.html?menu=open" class="nav-back"><i class="fas fa-arrow-left"></i> NETWORK HUB</a>
 
-    <div class="max-w-[1600px] w-full px-20 flex flex-col lg:flex-row items-center justify-between gap-16">
+    <div class="max-w-[1700px] w-full px-24 flex flex-col lg:flex-row items-center justify-between gap-20">
         
-        <div class="flex-1">
-            <h1 class="main-heading text-5xl md:text-7xl font-black uppercase text-slate-900 tracking-tighter">
-                <span class="line-stack">Let's <span class="word-wrapper text-blue-600 ml-5"><span id="verb-word" class="dynamic-text">Secure</span></span></span>
+        <div class="flex-1 lg:max-w-[650px]">
+            <h1 class="main-heading text-6xl md:text-8xl font-black uppercase text-slate-900 tracking-tighter">
+                <span class="line-stack">Let's <span class="word-wrapper text-blue-600 ml-6"><span id="verb-word" class="dynamic-text">Secure</span></span></span>
                 <span class="line-stack line-your">Your</span>
                 <span class="line-stack"><span class="word-wrapper"><span id="vertical-word" class="dynamic-text">Supply Chain.</span></span></span>
             </h1>
 
             <div class="contact-sidebar">
                 <div>
-                    <div class="info-label">Global HQ</div>
+                    <div class="info-label">Global Operations Base</div>
                     <div class="info-value">Plot 778-780, Killa-Pardi,<br>Valsad, Gujarat, India</div>
                 </div>
                 <div>
-                    <div class="info-label">Secure Access</div>
+                    <div class="info-label">Secure Communications</div>
                     <div class="info-value">info@prominexglobal.com</div>
                 </div>
             </div>
@@ -126,12 +125,12 @@
 
         <div class="form-container">
             <div class="glass-panel">
-                <form id="contactForm" class="grid grid-cols-2 gap-x-10 gap-y-5">
+                <form id="contactForm" class="grid grid-cols-2 gap-x-12 gap-y-8">
                     
                     <div class="input-group">
                         <label class="label-text">Classification</label>
                         <select class="input-field" required>
-                            <option value="" disabled selected>Select Role</option>
+                            <option value="" disabled selected>Identify Role</option>
                             <option>Buyer / Importer</option>
                             <option>Supplier / Manufacturer</option>
                         </select>
@@ -148,13 +147,13 @@
                     </div>
 
                     <div class="input-group">
-                        <label class="label-text">Direct Email</label>
+                        <label class="label-text">Email Uplink</label>
                         <input type="email" placeholder="corporate@domain.com" class="input-field" required>
                     </div>
 
                     <div class="input-group">
-                        <label class="label-text">City of Operation</label>
-                        <input type="text" placeholder="Location" class="input-field" required>
+                        <label class="label-text">Operational City</label>
+                        <input type="text" placeholder="Headquarters" class="input-field" required>
                     </div>
 
                     <div class="input-group">
@@ -163,7 +162,7 @@
                     </div>
 
                     <div class="input-group">
-                        <label class="label-text">Industrial Vertical</label>
+                        <label class="label-text">Vertical</label>
                         <select class="input-field">
                             <option>Manufacturing</option>
                             <option>Sourcing</option>
@@ -172,16 +171,16 @@
                     </div>
 
                     <div class="input-group">
-                        <label class="label-text">Priority Status</label>
+                        <label class="label-text">Protocol Urgency</label>
                         <select class="input-field">
                             <option>Standard Action</option>
-                            <option>Priority Protocol</option>
+                            <option>Priority Deployment</option>
                         </select>
                     </div>
 
                     <div class="col-span-2">
                         <label class="label-text">Strategic Brief</label>
-                        <textarea rows="1" placeholder="Define project parameters..." class="input-field resize-none"></textarea>
+                        <textarea rows="2" placeholder="Define project parameters and mission requirements..." class="input-field resize-none"></textarea>
                     </div>
 
                     <div class="col-span-2">
@@ -191,12 +190,11 @@
                     </div>
                 </form>
             </div>
-            <div class="footer-text">Prominex Global © 2026 | Authority in Global Trade</div>
+            <div class="footer-text">Prominex Global © 2026 | Authority in Global Logistics</div>
         </div>
     </div>
 
     <script>
-        // DYNAMIC WORDS
         const verbs = ["Secure", "Optimize", "Scale", "Direct", "Evolve"];
         const verticals = ["Supply Chain.", "Procurement.", "Logistics.", "Fulfillment.", "Operations."];
         let i = 0;
@@ -221,7 +219,6 @@
             }, 150);
         }, 2200);
 
-        // FORM LOGIC
         const form = document.getElementById('contactForm');
         form.addEventListener('submit', function(e) {
             e.preventDefault();
