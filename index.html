@@ -54,6 +54,16 @@
             object-fit: contain;
             /* If your logo has a white background, this makes it 1:1 with the box */
         }
+        .logo-badge {
+            cursor: pointer; /* Shows the hand icon on hover */
+            text-decoration: none;
+        }
+        
+        /* This ensures the logo stays bright even when the header fades */
+        #menu-overlay .logo-anchor {
+            opacity: 1 !important;
+            z-index: 300;
+        }
         /* --- THE MAGIC FLASH FIX --- */
         .menu-mode #menu-overlay { opacity: 1 !important; pointer-events: auto !important; transition: none !important; display: flex !important; }
         .menu-mode header { opacity: 0; }
