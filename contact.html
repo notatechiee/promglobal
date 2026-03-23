@@ -13,223 +13,222 @@
             height: 100vh; width: 100vw; margin: 0; padding: 0;
             overflow: hidden; background-color: #ffffff; 
             font-family: 'Inter', sans-serif; 
+            display: flex; align-items: center; justify-content: center;
         }
 
         .bg-overlay {
             position: fixed; inset: 0;
             background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80');
             background-size: cover; background-position: center;
-            filter: grayscale(1) brightness(1.1) opacity(0.08);
+            filter: grayscale(1) brightness(1.1) opacity(0.06);
             z-index: -1;
         }
 
-        /* --- HIGH-VISIBILITY BACK BUTTON --- */
+        /* --- VISIBLE BACK BUTTON --- */
         .nav-back {
-            position: absolute; top: 40px; left: 60px;
-            color: #ffffff; background: #0f172a;
-            padding: 14px 28px; border-radius: 50px;
-            font-size: 11px; font-weight: 900; text-transform: uppercase; 
-            letter-spacing: 0.3em; text-decoration: none;
-            z-index: 1000; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            display: flex; align-items: center; gap: 12px;
+            position: absolute; top: 40px; left: 40px;
+            color: #ffffff; background: #1e293b;
+            padding: 12px 24px; border-radius: 50px;
+            font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em;
+            text-decoration: none; z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        .nav-back:hover { background: #3b82f6; transform: translateX(10px); box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4); }
+        .nav-back:hover { background: #3b82f6; transform: translateX(5px); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.3); }
 
-        /* --- HEADING SYSTEM --- */
-        .main-heading { display: flex; flex-direction: column; line-height: 0.95; margin-bottom: 2rem; }
-        .line-stack { display: flex; align-items: center; white-space: nowrap; }
-        .line-your { 
-            color: #cbd5e1; font-weight: 300; font-size: 0.7em; 
-            letter-spacing: 0.5em; padding-left: 120px; margin: 12px 0;
-        }
+        .main-heading { display: flex; flex-direction: column; line-height: 1.05; }
+        .line-one { display: flex; align-items: center; white-space: nowrap; }
 
         .word-wrapper {
             display: inline-flex; height: 1.1em; overflow: hidden;
-            vertical-align: bottom; position: relative; 
-            min-width: 600px; /* EXTRA WIDE TO PREVENT ANY CLIPPING */
+            position: relative; 
+            min-width: 600px; /* INCREASED: NO MORE CUTTING OFF */
+            margin-left: 20px; 
         }
 
-        .dynamic-text {
+        #dynamic-word {
             display: block; position: absolute; left: 0; width: 100%;
-            transition: all 0.2s cubic-bezier(0.76, 0, 0.24, 1);
+            transition: all 0.15s cubic-bezier(0.76, 0, 0.24, 1);
         }
 
         .word-exit { transform: translateY(-100%); opacity: 0; }
         .word-enter { transform: translateY(100%); opacity: 0; }
 
-        /* --- CONTACT SIDEBAR --- */
-        .contact-sidebar { border-left: 4px solid #3b82f6; padding-left: 32px; margin-top: 3rem; }
-        .info-label { font-size: 10px; font-weight: 900; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.35em; margin-bottom: 8px; }
-        .info-value { font-size: 15px; font-weight: 800; color: #1e293b; line-height: 1.6; margin-bottom: 2rem; }
-
-        /* --- THE COMMAND CENTER FORM (PROPER RECTANGLE) --- */
-        .form-container { width: 100%; max-width: 950px; } 
+        /* --- DARK GLOSSY GLASS PANEL (Original Size) --- */
         .glass-panel {
-            background: rgba(15, 23, 42, 0.98); 
-            backdrop-filter: blur(40px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 32px; padding: 4rem;
-            box-shadow: 0 60px 150px -30px rgba(0, 0, 0, 0.8);
+            background: rgba(15, 23, 42, 0.94); 
+            backdrop-filter: blur(25px) saturate(150%);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px; padding: 4rem;
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 20;
         }
 
-        .input-group { position: relative; width: 100%; }
+        /* --- RESTORED INTERACTIVE STATES --- */
         .input-field {
-            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); 
-            border-radius: 12px; padding: 16px 20px; width: 100%; color: #ffffff; font-size: 14px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 12px; padding: 16px; width: 100%;
+            color: #ffffff; outline: none; font-size: 13px;
+            transition: all 0.3s ease;
         }
-        .input-field:hover { border-color: rgba(59, 130, 246, 0.5); background: rgba(255, 255, 255, 0.07); }
-        .input-field:focus { border-color: #3b82f6; background: rgba(255, 255, 255, 0.1); outline: none; box-shadow: 0 0 25px rgba(59, 130, 246, 0.2); }
-        
-        select.input-field option { background: #0f172a; color: white; }
+        .input-field:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); }
+        .input-field:focus { background: rgba(255, 255, 255, 0.1); border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
+        .input-field::placeholder { color: rgba(255, 255, 255, 0.4); }
 
-        .label-text { font-size: 9px; font-weight: 900; text-transform: uppercase; color: #3b82f6; margin-bottom: 10px; display: block; letter-spacing: 0.2em; }
+        .label-text {
+            font-size: 10px; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 0.25em; color: #3b82f6; margin-bottom: 8px; display: block;
+        }
 
         .submit-btn {
-            background: #3b82f6; color: white; padding: 22px; border-radius: 14px; font-weight: 900; 
-            text-transform: uppercase; letter-spacing: 0.5em; font-size: 12px; width: 100%; cursor: pointer; 
-            transition: all 0.4s ease; border: none; margin-top: 20px;
+            background: #3b82f6; color: white; padding: 22px; 
+            border-radius: 14px; font-weight: 900; text-transform: uppercase; 
+            letter-spacing: 0.4em; font-size: 11px; width: 100%;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            cursor: pointer;
+            display: flex; justify-content: center; align-items: center;
         }
-        .submit-btn:hover { background: #2563eb; transform: translateY(-3px); box-shadow: 0 20px 40px rgba(37, 99, 235, 0.4); }
-        .submit-btn.btn-success { background: #10b981 !important; }
+        .submit-btn:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4); }
+        .submit-btn.btn-success { background: #10b981 !important; pointer-events: none; }
 
-        .footer-text { color: #94a3b8; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6em; text-align: center; margin-top: 30px; }
+        /* --- SIDEBAR INFO --- */
+        .info-card { display: flex; align-items: center; gap: 20px; }
+        .info-icon { color: #3b82f6; font-size: 24px; min-width: 30px; text-align: center; }
+        .info-label { font-size: 10px; font-weight: 900; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 2px; }
+        .info-value { font-size: 15px; font-weight: 800; color: #1e293b; line-height: 1.2; }
+
+        .footer-text { color: #94a3b8; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5em; text-align: center; margin-top: 35px; }
+        
+        select.input-field option { background: #0f172a; color: #fff; }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen">
+<body>
 
     <div class="bg-overlay"></div>
-    <a href="index.html?menu=open" class="nav-back"><i class="fas fa-arrow-left"></i> NETWORK HUB</a>
+    <a href="index.html?menu=open" class="nav-back">← Network Hub</a>
 
-    <div class="max-w-[1700px] w-full px-24 flex flex-col lg:flex-row items-center justify-between gap-20">
+    <div class="max-w-[1440px] w-full grid grid-cols-1 lg:grid-cols-12 gap-24 px-16 items-center">
         
-        <div class="flex-1 lg:max-w-[650px]">
-            <h1 class="main-heading text-6xl md:text-8xl font-black uppercase text-slate-900 tracking-tighter">
-                <span class="line-stack">Let's <span class="word-wrapper text-blue-600 ml-6"><span id="verb-word" class="dynamic-text">Secure</span></span></span>
-                <span class="line-stack line-your">Your</span>
-                <span class="line-stack"><span class="word-wrapper"><span id="vertical-word" class="dynamic-text">Supply Chain.</span></span></span>
+        <div class="lg:col-span-5 pr-6">
+            <h1 class="main-heading text-5xl md:text-7xl font-black uppercase mb-12 text-slate-900 tracking-tighter">
+                <span class="line-one">
+                    Let's <span class="word-wrapper text-blue-600"><span id="dynamic-word">Secure</span></span>
+                </span>
+                <span class="line-two">Your Logistics.</span>
             </h1>
 
-            <div class="contact-sidebar">
-                <div>
-                    <div class="info-label">Global Operations Base</div>
-                    <div class="info-value">Plot 778-780, Killa-Pardi,<br>Valsad, Gujarat, India</div>
-                </div>
-                <div>
-                    <div class="info-label">Secure Communications</div>
-                    <div class="info-value">info@prominexglobal.com</div>
+            <div class="grid grid-cols-1 gap-y-10 border-t border-slate-100 pt-12">
+                <div class="grid grid-cols-2 gap-10">
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt info-icon"></i>
+                        <div>
+                            <div class="info-label">Global HQ</div>
+                            <div class="info-value">Plot 778-780, Pardi<br>Valsad, Gujarat</div>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-envelope info-icon"></i>
+                        <div>
+                            <div class="info-label">Direct Uplink</div>
+                            <div class="info-value">info@prominex.global</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="form-container">
+        <div class="lg:col-span-7">
             <div class="glass-panel">
-                <form id="contactForm" class="grid grid-cols-2 gap-x-12 gap-y-8">
-                    
-                    <div class="input-group">
-                        <label class="label-text">Classification</label>
-                        <select class="input-field" required>
-                            <option value="" disabled selected>Identify Role</option>
-                            <option>Buyer / Importer</option>
-                            <option>Supplier / Manufacturer</option>
-                        </select>
+                <form id="contactForm" class="space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="label-text">Personnel Identifier</label>
+                            <input type="text" placeholder="Full Name" class="input-field" required>
+                        </div>
+                        <div>
+                            <label class="label-text">Digital Gateway</label>
+                            <input type="email" placeholder="email@company.com" class="input-field" required>
+                        </div>
                     </div>
 
-                    <div class="input-group">
-                        <label class="label-text">Business Entity</label>
-                        <input type="text" placeholder="Company Legal Name" class="input-field" required>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="label-text">Industrial Vertical</label>
+                            <select class="input-field">
+                                <option>Manufacturing</option>
+                                <option>Supply Chain Sync</option>
+                                <option>Strategic Sourcing</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="label-text">Protocol Urgency</label>
+                            <select class="input-field">
+                                <option>Standard Action</option>
+                                <option>Priority Deployment</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="input-group">
-                        <label class="label-text">Representative</label>
-                        <input type="text" placeholder="Full Name" class="input-field" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label class="label-text">Email Uplink</label>
-                        <input type="email" placeholder="corporate@domain.com" class="input-field" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label class="label-text">Operational City</label>
-                        <input type="text" placeholder="Headquarters" class="input-field" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label class="label-text">Country</label>
-                        <input type="text" placeholder="Nation" class="input-field" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label class="label-text">Vertical</label>
-                        <select class="input-field">
-                            <option>Manufacturing</option>
-                            <option>Sourcing</option>
-                            <option>Logistics Sync</option>
-                        </select>
-                    </div>
-
-                    <div class="input-group">
-                        <label class="label-text">Protocol Urgency</label>
-                        <select class="input-field">
-                            <option>Standard Action</option>
-                            <option>Priority Deployment</option>
-                        </select>
-                    </div>
-
-                    <div class="col-span-2">
+                    <div>
                         <label class="label-text">Strategic Brief</label>
-                        <textarea rows="2" placeholder="Define project parameters and mission requirements..." class="input-field resize-none"></textarea>
+                        <textarea rows="3" placeholder="Define project parameters..." class="input-field resize-none"></textarea>
                     </div>
 
-                    <div class="col-span-2">
-                        <button type="submit" id="submitBtn" class="submit-btn">
-                            <span id="btnText">Execute Transmission</span> <i id="btnIcon" class="fas fa-bolt ml-3"></i>
-                        </button>
-                    </div>
+                    <button type="submit" id="submitBtn" class="submit-btn">
+                        <span id="btnText">Execute Transmission</span> <i id="btnIcon" class="fas fa-bolt ml-3"></i>
+                    </button>
                 </form>
             </div>
-            <div class="footer-text">Prominex Global © 2026 | Authority in Global Logistics</div>
+            
+            <div class="footer-text">
+                Prominex Global © 2026 | Authority in Logistics
+            </div>
         </div>
     </div>
 
     <script>
-        const verbs = ["Secure", "Optimize", "Scale", "Direct", "Evolve"];
-        const verticals = ["Supply Chain.", "Procurement.", "Logistics.", "Fulfillment.", "Operations."];
+        // Restored Logic
+        const words = ["Secure", "Optimize", "Scale", "Supply Chain", "Evolve"];
         let i = 0;
-        const verbEl = document.getElementById("verb-word");
-        const vertEl = document.getElementById("vertical-word");
-
+        const wordElement = document.getElementById("dynamic-word");
         setInterval(() => {
-            verbEl.classList.add("word-exit");
-            vertEl.classList.add("word-exit");
+            wordElement.classList.add("word-exit");
             setTimeout(() => {
-                i = (i + 1) % verbs.length;
-                verbEl.innerText = verbs[i];
-                vertEl.innerText = verticals[i];
-                verbEl.classList.remove("word-exit");
-                verbEl.classList.add("word-enter");
-                vertEl.classList.remove("word-exit");
-                vertEl.classList.add("word-enter");
-                setTimeout(() => {
-                    verbEl.classList.remove("word-enter");
-                    vertEl.classList.remove("word-enter");
-                }, 20);
-            }, 150);
-        }, 2200);
+                i = (i + 1) % words.length;
+                wordElement.innerText = words[i];
+                wordElement.classList.remove("word-exit");
+                wordElement.classList.add("word-enter");
+                setTimeout(() => wordElement.classList.remove("word-enter"), 20); 
+            }, 150); 
+        }, 2200); 
 
+        // Submission Animation
         const form = document.getElementById('contactForm');
+        const btn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnIcon = document.getElementById('btnIcon');
+
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            const btnText = document.getElementById('btnText');
             btnText.innerText = "Transmitting...";
+            btnIcon.className = "fas fa-sync fa-spin ml-3";
+            
             setTimeout(() => {
                 btn.classList.add('btn-success');
                 btnText.innerText = "Protocol Secure";
-                setTimeout(() => location.reload(), 3000);
-            }, 1500);
+                btnIcon.className = "fas fa-check-circle ml-3";
+                
+                setTimeout(() => {
+                    btn.classList.remove('btn-success');
+                    btnText.innerText = "Execute Transmission";
+                    btnIcon.className = "fas fa-bolt ml-3";
+                    form.reset();
+                }, 4000);
+            }, 1800);
         });
     </script>
 </body>
