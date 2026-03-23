@@ -63,10 +63,10 @@
         .info-label { font-size: 10px; font-weight: 900; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.3em; }
         .info-value { font-size: 14px; font-weight: 800; color: #1e293b; line-height: 1.5; margin-bottom: 1.5rem; }
 
-        /* --- RE-ADJUSTED FORM SIZE PER REFERENCE --- */
+        /* --- THE FIXED FORM CONTAINER (WIDE RECTANGLE) --- */
         .form-container { 
             width: 100%; 
-            max-width: 750px; /* REVERTED TO COMMANDING RECTANGLE WIDTH */
+            max-width: 1000px; /* INCREASED FOR WIDTH-FIRST PRESENCE */
         } 
         
         .glass-panel {
@@ -74,11 +74,7 @@
             backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 32px; 
-            padding: 3.5rem;
-            min-height: 600px; /* ADDED HEIGHT TO PREVENT 'CHOCOLATE BAR' LOOK */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            padding: 4.5rem; /* GENEROUS PADDING FOR DEPTH */
             box-shadow: 0 60px 120px -20px rgba(0, 0, 0, 0.7);
         }
 
@@ -97,14 +93,14 @@
         .label-text { font-size: 8px; font-weight: 900; text-transform: uppercase; color: #64748b; margin-bottom: 8px; display: block; letter-spacing: 0.15em; }
 
         .submit-btn {
-            background: #3b82f6; color: white; padding: 20px; border-radius: 12px; font-weight: 900; 
+            background: #3b82f6; color: white; padding: 22px; border-radius: 12px; font-weight: 900; 
             text-transform: uppercase; letter-spacing: 0.4em; font-size: 11px; width: 100%; cursor: pointer; 
             transition: all 0.4s ease; border: none; margin-top: 15px;
         }
         .submit-btn:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4); }
         .submit-btn.btn-success { background: #10b981 !important; }
 
-        .footer-text { color: #94a3b8; font-size: 9px; font-weight: 800; text-transform: uppercase; text-align: center; margin-top: 25px; letter-spacing: 0.4em; }
+        .footer-text { color: #94a3b8; font-size: 9px; font-weight: 800; text-transform: uppercase; text-align: center; margin-top: 30px; letter-spacing: 0.4em; }
     </style>
 </head>
 <body class="flex items-center justify-center">
@@ -112,9 +108,9 @@
     <div class="bg-overlay"></div>
     <a href="index.html?menu=open" class="nav-back"><i class="fas fa-chevron-left"></i> BACK TO HUB</a>
 
-    <div class="max-w-[1600px] w-full px-20 flex flex-col lg:flex-row items-center justify-between gap-16">
+    <div class="max-w-[1700px] w-full px-20 flex flex-col lg:flex-row items-center justify-between gap-24">
         
-        <div class="flex-1">
+        <div class="flex-1 lg:max-w-[600px]">
             <h1 class="main-heading text-5xl md:text-7xl font-black uppercase text-slate-900 tracking-tighter">
                 <span class="line-stack">Let's <span class="word-wrapper text-blue-600 ml-5"><span id="verb-word" class="dynamic-text">Secure</span></span></span>
                 <span class="line-stack line-your">Your</span>
@@ -135,7 +131,7 @@
 
         <div class="form-container">
             <div class="glass-panel">
-                <form id="contactForm" class="grid grid-cols-2 gap-x-10 gap-y-6">
+                <form id="contactForm" class="grid grid-cols-2 gap-x-12 gap-y-8">
                     
                     <div class="input-group">
                         <label class="label-text">Classification</label>
