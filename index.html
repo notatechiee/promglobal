@@ -12,25 +12,42 @@
 
         html, body { margin: 0; padding: 0; height: 100vh; width: 100vw; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
 
-        /* --- LOGO CENTERING (CLEAN & STATIC) --- */
+       /* --- GLASSMORPH LOGO ANCHOR --- */
         .logo-fixed-center {
             position: absolute;
-            top: 40px;
+            top: 30px; /* Pushed up slightly for a tighter look */
             left: 50%;
             transform: translateX(-50%);
             z-index: 9999;
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            /* The Glass Effect */
+            background: rgba(255, 255, 255, 0.05); /* Ultra-thin white tint */
+            backdrop-filter: blur(12px);          /* This blurs the background image */
+            -webkit-backdrop-filter: blur(12px);   /* Safari support */
+            
+            padding: 12px 24px;
+            border-radius: 4px; /* Slight roundness for a modern feel */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* "Edge of the glass" border */
+            
+            /* Shadow to make the glass "float" */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            transition: all 0.4s ease;
         }
+
         .logo-fixed-center img {
-            height: 60px; /* Adjust this to your preferred size */
+            height: 50px; /* Adjusted height to fit the glass perfectly */
             width: auto;
             display: block;
-            filter: 
-                drop-shadow(0 0 10px rgba(255, 255, 255, 0.2)) /* Soft outer glow */
-                drop-shadow(0 4px 4px rgba(0, 0, 0, 0.8));    /* Sharp shadow for depth */
-            
-            transition: filter 0.3s ease;
-        
+            /* No extra shadows needed here, the glass does the work */
+        }
+
+        .logo-fixed-center:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(59, 130, 246, 0.5); /* Blue glow on the glass edge */
+            transform: translateX(-50%) translateY(-2px);
         }
         .logo-fixed-center:hover img {
             /* Subtle 'Power On' effect when you hover to click */
