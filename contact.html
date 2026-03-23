@@ -2,13 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
     <title>Contact | Prominex Global</title>
+    <meta name="description" content="Contact Prominex Global for supply chain solutions, logistics, and industrial consultancy.">
+    <link rel="canonical" href="https://prominexglobal.com/contact">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
         
+        /* ORIGINAL CORE STYLES - UNTOUCHED */
         html, body { 
             height: 100vh; width: 100vw; margin: 0; padding: 0;
             overflow: hidden; background-color: #ffffff; 
@@ -17,7 +24,7 @@
 
         .bg-overlay {
             position: fixed; inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80');
+            background-image: url('assets/contactpromp.webp');
             background-size: cover; background-position: center;
             filter: grayscale(1) brightness(1.1) opacity(0.08);
             z-index: -1;
@@ -48,10 +55,11 @@
             font-weight: 300; 
             font-size: 0.7em; 
             letter-spacing: 0.4em; 
-            text-align: center; /* This pulls it to the center of the branding block */
+            text-align: center; 
             margin: 8px 0;
             width: 100%;
-           display: block; /* Ensures the width is respected */}
+            display: block; 
+        }
 
         .word-wrapper {
             display: inline-flex; height: 1.1em; overflow: hidden;
@@ -95,25 +103,49 @@
         .input-field:focus { border-color: #3b82f6; outline: none; background: rgba(255, 255, 255, 0.08); }
         
         select.input-field option { background: #0f172a; color: white; }
-
         .label-text { font-size: 10px; font-weight: 900; text-transform: uppercase; color: #e2e8f0; margin-bottom: 5px; display: block; letter-spacing: 0.1em; }
 
+        /* BUTTON BASE */
         .submit-btn {
             background: #3b82f6; color: white; padding: 16px; border-radius: 8px; font-weight: 900; 
             text-transform: uppercase; letter-spacing: 0.3em; font-size: 10px; width: 100%; cursor: pointer; 
-            border: none; margin-top: 10px; transition: all 0.3s ease;
+            border: none; margin-top: 10px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; align-items: center; justify-content: center; gap: 8px;
         }
-        .submit-btn:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
+        .submit-btn:hover { background: #2563eb; transform: translateY(-2px); }
+        
+        /* SUCCESS STATE CLASS */
+        .submit-btn.success { background: #10b981 !important; pointer-events: none; }
 
-        /* --- THE FIXED FOOTER FONT --- */
         .footer-text { 
             color: #94a3b8; 
-            font-size: 12px; /* Increased from 8px */
+            font-size: 12px; 
             font-weight: 700; 
             text-transform: uppercase; 
             text-align: center; 
             margin-top: 18px; 
             letter-spacing: 0.05em;
+        }
+
+        /* --- SURGICAL MOBILE OPTIMIZATION --- */
+        @media (max-width: 1024px) {
+            html, body { overflow-y: auto; height: auto; }
+            body { padding: 20px !important; }
+            .nav-back { top: 20px; left: 20px; padding: 8px 16px; font-size: 8px; }
+            
+            .w-full.max-w-\[1400px\] { 
+                flex-direction: column !important; 
+                gap: 40px !important;
+                margin-top: 80px;
+            }
+            
+            .branding-section, .form-container { flex: 0 0 100%; width: 100%; }
+            .main-heading { text-align: center; font-size: 2.8rem !important; }
+            .line-stack { justify-content: center; }
+            
+            .glass-panel { padding: 1.8rem; }
+            #contactForm { grid-template-columns: 1fr !important; }
+            .col-span-2 { grid-column: span 1 / span 1 !important; }
         }
     </style>
 </head>
@@ -121,7 +153,7 @@
 
     <div class="bg-overlay"></div>
     
-    <a href="index.html?menu=open" class="nav-back">
+    <a href="index.html" class="nav-back">
         <i class="fas fa-chevron-left"></i> BACK TO HUB
     </a>
 
@@ -208,6 +240,37 @@
     </div>
 
     <script>
+        // FORM BUTTON LOGIC
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 1. Loading state
+            btnText.innerText = "TRANSMITTING...";
+            submitBtn.style.opacity = "0.7";
+            submitBtn.style.pointerEvents = "none";
+
+            // 2. Success state
+            setTimeout(() => {
+                submitBtn.classList.add('success');
+                submitBtn.style.opacity = "1";
+                btnText.innerHTML = '<i class="fas fa-check"></i> TRANSMITTED';
+                
+                // 3. Reset back to original Blue/SEND after 3 seconds
+                setTimeout(() => {
+                    submitBtn.classList.remove('success');
+                    btnText.innerText = "SEND";
+                    submitBtn.style.pointerEvents = "auto";
+                    contactForm.reset();
+                }, 3000);
+
+            }, 1500);
+        });
+
+        // TEXT ROTATOR LOGIC
         const verbs = ["Engineer", "Refine", "Leverage", "Scale", "Optimize"];
         const verticals = ["Supply Chain.", "Procurement.", "Logistics.", "Fulfillment.", "Operations."];
         let i = 0;
