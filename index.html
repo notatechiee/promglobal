@@ -12,28 +12,35 @@
 
         html, body { margin: 0; padding: 0; height: 100vh; width: 100vw; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
 
-     /* --- ULTRA-MINIMAL LOGO BOX --- */
+    /* --- BORDERLESS INDUSTRIAL LOGO --- */
         .logo-badge {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: #ffffff; /* Matches your logo background */
-            padding: 8px 16px;   /* Tightened space around the logo */
-            border-radius: 1px;  /* Almost sharp corners */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Ghost border */
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);  /* Deep shadow to sink into the dark bg */
-            transition: opacity 0.3s ease;
+            background: #ffffff; 
+            padding: 4px 8px;    /* Minimal padding: just enough to keep it clean */
+            border-radius: 0;    /* Hard, sharp industrial corners */
+            
+            /* High-contrast shadows make the white feel "embedded" in the black */
+            box-shadow: 
+                inset 0 0 10px rgba(0,0,0,0.1), 
+                0 10px 30px rgba(0,0,0,0.9); 
+            
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
         }
 
         .logo-badge:hover {
-            background: #fcfcfc;
-            border-color: #3b82f6; /* Only a hint of blue on hover */
+            transform: scale(1.02); /* Very subtle reaction */
+            border-color: rgba(59, 130, 246, 0.3);
         }
 
         .logo-badge img {
-            height: 32px; /* Scaled down for a more sophisticated, "quiet" luxury feel */
+            height: 60px;       /* Increased size for visibility */
             width: auto;
+            display: block;      /* Removes any tiny bottom gaps */
             object-fit: contain;
+            /* If your logo has a white background, this makes it 1:1 with the box */
         }
         /* --- THE MAGIC FLASH FIX --- */
         .menu-mode #menu-overlay { opacity: 1 !important; pointer-events: auto !important; transition: none !important; display: flex !important; }
