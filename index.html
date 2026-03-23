@@ -3,55 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prominex Global | Home</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    
+    <title>Prominex Global | Supply Chain Reimagined</title>
+    <meta name="description" content="Strategic global supply chain solutions and industrial consultancy. Engineering logistics, sourcing, and fulfillment for global scale.">
+    <meta name="keywords" content="Supply Chain, Logistics, Global Sourcing, Consultancy, Prominex Global">
+    <link rel="canonical" href="https://prominexglobal.com/" />
+    
+    <meta name="google-site-verification" content="VERIFICATION_CODE_HERE" />
+
+    <link rel="icon" type="image/png" href="assets/favprom.PNG">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Prominex Global | Integrated Supply Chain">
+    <meta property="og:description" content="Engineering predictability and accountability in global logistics.">
+    <meta property="og:image" content="assets/img/og-preview.jpg">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
 
         html, body { margin: 0; padding: 0; height: 100vh; width: 100vw; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
 
-    /* --- LOGO CENTERING (CLEAN & STATIC) --- */
         .logo-fixed-center {
-            position: absolute;
-            top: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999;
-            display: block;
+            position: absolute; top: 40px; left: 50%;
+            transform: translateX(-50%); z-index: 9999; display: block;
         }
-       .logo-fixed-center img {
-            height: 60px; 
-            width: auto;
-            display: block;
-            
-            /* This creates a crisp, clean 'backlit' effect */
-            filter: 
-                drop-shadow(0 0 10px rgba(255, 255, 255, 0.2)) /* Soft outer glow */
-                drop-shadow(0 4px 4px rgba(0, 0, 0, 0.8));    /* Sharp shadow for depth */
-            
+        .logo-fixed-center img {
+            height: 60px; width: auto; display: block;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2)) drop-shadow(0 4px 4px rgba(0, 0, 0, 0.8)); 
             transition: filter 0.3s ease;
         }
-
         .logo-fixed-center:hover img {
-            /* Subtle 'Power On' effect when you hover to click */
-            filter: 
-                drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) /* Blue tint glow */
-                brightness(1.1);
-        }
-        .logo-fixed-center:hover img {
-            /* Subtle 'Power On' effect when you hover to click */
-            filter: 
-                drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) /* Blue tint glow */
-                brightness(1.1);
+            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) brightness(1.1);
         }
 
-        /* --- THE MAGIC FLASH FIX --- */
         .menu-mode #menu-overlay { opacity: 1 !important; pointer-events: auto !important; transition: none !important; display: flex !important; }
         .menu-mode header { opacity: 0; }
 
-        /* --- HOME PAGE STYLES --- */
         .mirror-gloss {
             display: inline-block; color: #ffffff;
             background: linear-gradient(110deg, rgba(255,255,255,0.2) 20%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.2) 80%);
@@ -61,10 +52,9 @@
         @keyframes classySweep { 0% { background-position: 250% 0%; } 100% { background-position: -250% 0%; } }
         
         .rotator-container { position: relative; min-height: 40vh; width: 100%; display: flex; align-items: center; justify-content: center; overflow: visible;}
-        .rotator-text { position: absolute; opacity: 0; transition: opacity 2s ease-in-out; white-space: nowrap; pointer-events: none; line-height: 1.25; padding: 40px 0; width: 100%; text-align: center; letter-spacing: -0.02em; overflow: visible; }
+        .rotator-text { position: absolute; opacity: 0; transition: opacity 2s ease-in-out; white-space: nowrap; pointer-events: none; line-height: 1.25; padding: 40px 0; width: 100%; text-align: center; letter-spacing: -0.02em; }
         .rotator-text.active { opacity: 1; pointer-events: auto; z-index: 2; }
 
-        /* --- THE HUB OVERLAY --- */
         #menu-overlay {
             position: fixed; inset: 0;
             background: radial-gradient(circle at center, #0a1425 0%, #000 100%);
@@ -125,13 +115,13 @@
 </head>
 <body>
 
-    <a href="index.html" class="logo-fixed-center">
-        <img src="Logoc.png" alt="Prominex Global">
+    <a href="/" class="logo-fixed-center">
+        <img src="assets/img/Logoc.png" alt="Prominex Global">
     </a>
 
     <header id="main-header" class="relative h-screen w-full bg-black overflow-hidden px-8 md:px-24">
         <div class="absolute inset-0 z-0"> 
-            <img src="/assets/ship.webp" class="w-full h-full object-cover opacity-50"> 
+            <img src="assets/img/ship.webp" class="w-full h-full object-cover opacity-50"> 
             <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black"></div>
         </div>
         
@@ -143,11 +133,12 @@
                 <h1 class="rotator-text font-black uppercase mirror-gloss" style="font-size: clamp(2rem, 7vw, 5.5rem);">Single Point<br>Accountability</h1>
             </div>
         </div>
+
         <div class="absolute bottom-12 left-8 right-8 md:left-24 md:right-24 z-20">
             <div class="flex justify-between items-end w-full">
                 <div class="flex flex-col gap-4">
-                    <p class="text-white/50 max-w-xs md:max-w-sm text-[12px] md:text-[13px] font-light leading-relaxed uppercase tracking-widest"></p>
-                    <a href="contact.html" class="inline-block bg-blue-600 text-white px-10 py-5 font-black uppercase tracking-widest text-[11px] hover:bg-white hover:text-blue-600 transition-all w-fit">Partner With Us</a>
+                    <p class="text-white/50 max-w-xs md:max-w-sm text-[12px] md:text-[13px] font-light leading-relaxed uppercase tracking-widest">Authority in Global Logistics Solutions</p>
+                    <a href="contact" class="inline-block bg-blue-600 text-white px-10 py-5 font-black uppercase tracking-widest text-[11px] hover:bg-white hover:text-blue-600 transition-all w-fit">Partner With Us</a>
                 </div>
                 <button onclick="toggleMenu()" class="bg-white text-black px-10 py-5 font-black uppercase tracking-[0.3em] text-[11px] flex items-center gap-4 hover:bg-blue-600 hover:text-white transition-all shadow-xl">
                     <span>Explore Network</span>
@@ -165,17 +156,17 @@
                 <path class="signal sig-2" d="M400,200 C550,60 750,60 750,200 C750,340 550,340 400,200 C250,60 50,60 50,200 C50,340 250,340 400,200" />
             </svg>
 
-            <a href="industries.html" class="node p-about"><div class="node-icon"><i class="fas fa-city"></i></div><span class="node-label">Industry Verticals</span></a>
-            <a href="sourcing.html" class="node p-sourcing"><div class="node-icon"><i class="fas fa-handshake-angle"></i></div><span class="node-label">Supplier Management</span></a>
-            <a href="logistics.html" class="node p-logistics"><div class="node-icon"><i class="fas fa-ship"></i></div><span class="node-label">Freight Management</span></a>
-            <a href="distribution.html" class="node p-distribution"><div class="node-icon"><i class="fas fa-boxes-packing"></i></div><span class="node-label">Logistics Management</span></a>
-            <a href="manufacturing.html" class="node p-industries"><div class="node-icon"><i class="fas fa-industry"></i></div><span class="node-label">Manufacturing Coordination</span></a>
+            <a href="industries" class="node p-about"><div class="node-icon"><i class="fas fa-city"></i></div><span class="node-label">Industry Verticals</span></a>
+            <a href="sourcing" class="node p-sourcing"><div class="node-icon"><i class="fas fa-handshake-angle"></i></div><span class="node-label">Supplier Management</span></a>
+            <a href="logistics" class="node p-logistics"><div class="node-icon"><i class="fas fa-ship"></i></div><span class="node-label">Freight Management</span></a>
+            <a href="distribution" class="node p-distribution"><div class="node-icon"><i class="fas fa-boxes-packing"></i></div><span class="node-label">Logistics Management</span></a>
+            <a href="manufacturing" class="node p-industries"><div class="node-icon"><i class="fas fa-industry"></i></div><span class="node-label">Manufacturing Coordination</span></a>
         </div>
         
         <div class="secondary-nav">
             <div class="nav-row">
-                <a href="contact.html" class="about-link contact-link-nav">Contact Us</a>
-                <a href="about.html" class="about-link">Corporate Profile</a>
+                <a href="contact" class="about-link contact-link-nav">Contact Us</a>
+                <a href="about" class="about-link">Corporate Profile</a>
             </div>
             <div class="close-btn" onclick="toggleMenu()">CLOSE NETWORK HUB</div>
         </div>
@@ -185,7 +176,6 @@
         function toggleMenu() { 
             const overlay = document.getElementById('menu-overlay');
             const header = document.getElementById('main-header');
-            document.documentElement.classList.remove('menu-mode');
             overlay.classList.toggle('open');
             header.style.opacity = overlay.classList.contains('open') ? "0" : "1";
         }
