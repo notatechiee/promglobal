@@ -12,28 +12,36 @@
 
         html, body { margin: 0; padding: 0; height: 100vh; width: 100vw; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
 
- /* --- THE LOCKDOWN LOGO --- */
-    .logo-container-fixed {
-        position: absolute;
-        top: 40px;            /* Keeps it near the top */
-        left: 50%;            /* Moves to horizontal center */
-        transform: translateX(-50%); 
-        z-index: 9999;        /* Ensures it stays on top of everything */
-        
-        background: #ffffff;
-        padding: 8px 15px;    /* Tiny white border */
-        line-height: 0;       /* Removes extra bottom spacing */
-        display: block;
-        width: fit-content;   /* Only as wide as the logo */
-        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    }
+/* --- BORDERLESS INDUSTRIAL LOGO --- */
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff; 
+            padding: 4px 8px;    /* Minimal padding: just enough to keep it clean */
+            border-radius: 0;    /* Hard, sharp industrial corners */
+            
+            /* High-contrast shadows make the white feel "embedded" in the black */
+            box-shadow: 
+                inset 0 0 10px rgba(0,0,0,0.1), 
+                0 10px 30px rgba(0,0,0,0.9); 
+            
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
 
-    .logo-container-fixed img {
-        display: block;
-        height: 40px !important; /* FORCED height */
-        width: auto !important;   /* Maintains perfect proportion */
-        max-width: 200px;         /* Absolute limit on width */
-    }
+        .logo-badge:hover {
+            transform: scale(1.02); /* Very subtle reaction */
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .logo-badge img {
+            height: 60px;       /* Increased size for visibility */
+            width: auto;
+            display: block;      /* Removes any tiny bottom gaps */
+            object-fit: contain;
+            /* If your logo has a white background, this makes it 1:1 with the box */
+        }
         /* --- THE MAGIC FLASH FIX --- */
         .menu-mode #menu-overlay { opacity: 1 !important; pointer-events: auto !important; transition: none !important; display: flex !important; }
         .menu-mode header { opacity: 0; }
