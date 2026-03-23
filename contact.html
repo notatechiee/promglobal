@@ -26,7 +26,7 @@
         .nav-back {
             position: absolute; top: 40px; left: 60px;
             color: #ffffff; background: #0f172a;
-            padding: 10px 20px; border-radius: 50px;
+            padding: 12px 24px; border-radius: 50px;
             font-size: 10px; font-weight: 900; text-transform: uppercase; 
             letter-spacing: 0.3em; text-decoration: none;
             z-index: 1000; transition: all 0.4s ease;
@@ -35,17 +35,23 @@
         }
         .nav-back:hover { background: #3b82f6; transform: translateX(10px); }
 
-        .main-heading { display: flex; flex-direction: column; line-height: 0.95; }
-        .line-stack { display: flex; align-items: center; white-space: nowrap; }
+        .branding-section {
+            flex: 0 0 45%;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+
+        .main-heading { line-height: 0.9; width: 100%; }
+        .line-stack { display: flex; align-items: center; white-space: nowrap; width: 100%; }
+        
         .line-your { 
             color: #cbd5e1; font-weight: 300; font-size: 0.7em; 
-            letter-spacing: 0.5em; padding-left: 80px; margin: 6px 0;
+            letter-spacing: 0.4em; padding-left: 20px; margin: 5px 0;
         }
 
         .word-wrapper {
             display: inline-flex; height: 1.1em; overflow: hidden;
             vertical-align: bottom; position: relative; 
-            min-width: 400px; 
+            flex-grow: 1;
         }
 
         .dynamic-text {
@@ -56,58 +62,68 @@
         .word-exit { transform: translateY(-100%); opacity: 0; }
         .word-enter { transform: translateY(100%); opacity: 0; }
 
-        .contact-sidebar { border-left: 4px solid #3b82f6; padding-left: 20px; margin-top: 1.5rem; }
-        .info-label { font-size: 9px; font-weight: 900; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.2em; }
-        .info-value { font-size: 12px; font-weight: 800; color: #1e293b; line-height: 1.5; margin-bottom: 1rem; }
+        .contact-sidebar { border-left: 4px solid #3b82f6; padding-left: 20px; margin-top: 2rem; }
+        .info-label { font-size: 10px; font-weight: 900; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.2em; }
+        .info-value { font-size: 14px; font-weight: 800; color: #1e293b; line-height: 1.4; margin-bottom: 1rem; }
 
-        /* --- THE CRITICAL FIX: 650PX WIDTH --- */
         .form-container { 
-            flex: 0 0 650px; 
-            width: 650px;
+            flex: 0 0 50%;
+            display: flex; flex-direction: column; justify-content: center;
         } 
         
         .glass-panel {
             background: rgba(15, 23, 42, 0.98); 
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 20px; 
-            padding: 2.5rem 2.5rem; 
-            box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.6);
+            padding: 2.8rem; 
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
         }
 
         .input-group { position: relative; width: 100%; }
         .input-field {
-            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); 
-            border-radius: 6px; padding: 10px 14px; width: 100%; color: #ffffff; font-size: 11px;
-            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); 
+            border-radius: 6px; padding: 12px 14px; width: 100%; color: #ffffff; font-size: 11px;
+            transition: all 0.3s; appearance: none;
         }
-        .input-field:hover { border-color: rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.08); }
-        .input-field:focus { border-color: #3b82f6; background: rgba(255, 255, 255, 0.1); outline: none; }
+        .input-field:hover { border-color: rgba(255, 255, 255, 0.3); }
+        .input-field:focus { border-color: #3b82f6; outline: none; background: rgba(255, 255, 255, 0.08); }
         
         select.input-field option { background: #0f172a; color: white; }
 
-        .label-text { font-size: 8px; font-weight: 900; text-transform: uppercase; color: #64748b; margin-bottom: 5px; display: block; letter-spacing: 0.12em; }
+        .label-text { font-size: 8px; font-weight: 900; text-transform: uppercase; color: #64748b; margin-bottom: 5px; display: block; letter-spacing: 0.1em; }
 
         .submit-btn {
-            background: #3b82f6; color: white; padding: 15px; border-radius: 8px; font-weight: 900; 
+            background: #3b82f6; color: white; padding: 16px; border-radius: 8px; font-weight: 900; 
             text-transform: uppercase; letter-spacing: 0.3em; font-size: 10px; width: 100%; cursor: pointer; 
-            transition: all 0.4s ease; border: none; margin-top: 8px;
+            border: none; margin-top: 10px; transition: all 0.3s ease;
         }
         .submit-btn:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
-        .submit-btn.btn-success { background: #10b981 !important; }
 
-        .footer-text { color: #94a3b8; font-size: 8px; font-weight: 800; text-transform: uppercase; text-align: center; margin-top: 15px; }
+        /* --- THE FIXED FOOTER FONT --- */
+        .footer-text { 
+            color: #94a3b8; 
+            font-size: 12px; /* Increased from 8px */
+            font-weight: 700; 
+            text-transform: uppercase; 
+            text-align: center; 
+            margin-top: 18px; 
+            letter-spacing: 0.05em;
+        }
     </style>
 </head>
-<body class="flex items-center justify-center">
+<body class="flex items-center justify-center p-12">
 
     <div class="bg-overlay"></div>
-    <a href="index.html?menu=open" class="nav-back"><i class="fas fa-chevron-left"></i> BACK TO HUB</a>
+    
+    <a href="index.html?menu=open" class="nav-back">
+        <i class="fas fa-chevron-left"></i> BACK TO HUB
+    </a>
 
-    <div class="max-w-[1400px] w-full px-12 flex flex-row items-center justify-center gap-10">
+    <div class="w-full max-w-[1400px] h-full flex flex-row items-center justify-between gap-6">
         
-        <div class="shrink-0">
-            <h1 class="main-heading text-4xl md:text-5xl font-black uppercase text-slate-900 tracking-tighter">
+        <div class="branding-section">
+            <h1 class="main-heading text-5xl lg:text-7xl font-black uppercase text-slate-900 tracking-tighter">
                 <span class="line-stack">Let's <span class="word-wrapper text-blue-600 ml-4"><span id="verb-word" class="dynamic-text">Secure</span></span></span>
                 <span class="line-stack line-your">Your</span>
                 <span class="line-stack"><span class="word-wrapper"><span id="vertical-word" class="dynamic-text">Supply Chain.</span></span></span>
@@ -136,32 +152,26 @@
                             <option>Supplier / Manufacturer</option>
                         </select>
                     </div>
-
                     <div class="input-group">
                         <label class="label-text">Business Entity</label>
                         <input type="text" placeholder="Legal Name" class="input-field" required>
                     </div>
-
                     <div class="input-group">
                         <label class="label-text">Representative</label>
                         <input type="text" placeholder="Full Name" class="input-field" required>
                     </div>
-
                     <div class="input-group">
                         <label class="label-text">Direct Email</label>
                         <input type="email" placeholder="corporate@domain.com" class="input-field" required>
                     </div>
-
                     <div class="input-group">
                         <label class="label-text">City</label>
                         <input type="text" placeholder="Location" class="input-field" required>
                     </div>
-
                     <div class="input-group">
                         <label class="label-text">Country</label>
                         <input type="text" placeholder="Nation" class="input-field" required>
                     </div>
-
                     <div class="input-group">
                         <label class="label-text">Industrial Vertical</label>
                         <select class="input-field">
@@ -170,7 +180,6 @@
                             <option>Logistics Sync</option>
                         </select>
                     </div>
-
                     <div class="input-group">
                         <label class="label-text">Priority Status</label>
                         <select class="input-field">
@@ -178,15 +187,13 @@
                             <option>Priority Protocol</option>
                         </select>
                     </div>
-
                     <div class="col-span-2">
                         <label class="label-text">Strategic Brief</label>
                         <textarea rows="1" placeholder="Define project parameters..." class="input-field resize-none"></textarea>
                     </div>
-
                     <div class="col-span-2">
                         <button type="submit" id="submitBtn" class="submit-btn">
-                            <span id="btnText">Execute Transmission</span> <i id="btnIcon" class="fas fa-bolt ml-2"></i>
+                            <span id="btnText">Execute Transmission</span>
                         </button>
                     </div>
                 </form>
@@ -219,19 +226,6 @@
                 }, 20);
             }, 150);
         }, 2200);
-
-        const form = document.getElementById('contactForm');
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            const btnText = document.getElementById('btnText');
-            btnText.innerText = "Transmitting...";
-            setTimeout(() => {
-                btn.classList.add('btn-success');
-                btnText.innerText = "Protocol Secure";
-                setTimeout(() => location.reload(), 3000);
-            }, 1500);
-        });
     </script>
 </body>
 </html>
