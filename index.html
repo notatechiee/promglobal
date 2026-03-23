@@ -12,35 +12,44 @@
 
         html, body { margin: 0; padding: 0; height: 100vh; width: 100vw; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
 
-    /* --- BORDERLESS INDUSTRIAL LOGO --- */
+   /* --- FINAL CENTERED LOGO BOX --- */
         .logo-badge {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: #ffffff; 
-            padding: 4px 8px;    /* Minimal padding: just enough to keep it clean */
-            border-radius: 0;    /* Hard, sharp industrial corners */
-            
-            /* High-contrast shadows make the white feel "embedded" in the black */
-            box-shadow: 
-                inset 0 0 10px rgba(0,0,0,0.1), 
-                0 10px 30px rgba(0,0,0,0.9); 
-            
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease;
+            background: #ffffff;
+            /* Very tight padding to keep the rectangle minimal */
+            padding: 10px 25px; 
+            border-radius: 2px;
+            /* Deep drop shadow to make the white pop against the dark background */
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
         }
 
         .logo-badge:hover {
-            transform: scale(1.02); /* Very subtle reaction */
-            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 25px 60px rgba(59, 130, 246, 0.2);
         }
 
         .logo-badge img {
-            height: 60px;       /* Increased size for visibility */
+            /* Height 75px is the "Sweet Spot" for this wide rectangular logo */
+            height: 75px; 
             width: auto;
-            display: block;      /* Removes any tiny bottom gaps */
+            display: block;
             object-fit: contain;
-            /* If your logo has a white background, this makes it 1:1 with the box */
+        }
+
+        /* Centering Container */
+        .logo-wrapper {
+            position: absolute;
+            top: 15%; /* Pushes it slightly upwards from the center */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
         /* --- THE MAGIC FLASH FIX --- */
         .menu-mode #menu-overlay { opacity: 1 !important; pointer-events: auto !important; transition: none !important; display: flex !important; }
