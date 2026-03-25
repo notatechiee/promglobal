@@ -2,244 +2,235 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Prominex Global</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>About | Prominex Global Holdings</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
         
-        body, html {
-            margin: 0; padding: 0; font-family: 'Inter', sans-serif;
-            background-color: #ffffff; color: #1e293b;
-            overflow-x: hidden; scroll-behavior: smooth;
-        }
+        :root { --blue: #3b82f6; --red: #ef4444; --black: #020617; --white: #ffffff; }
 
-        /* --- LEFT PANEL: RE-ALIGNED FOR BETTER VERTICAL SPACE --- */
-        .side-panel {
-            position: fixed; top: 0; left: 0; width: 40%; height: 100vh;
-            background: radial-gradient(circle at 20% 30%, #1e293b 0%, #0f172a 100%);
-            display: flex; flex-direction: column; 
-            justify-content: flex-start; /* Pushes everything up */
-            padding: 5rem; z-index: 50; border-right: 1px solid rgba(59, 130, 246, 0.1);
-        }
+        body, html { margin: 0; padding: 0; height: 100vh; font-family: 'Inter', sans-serif; background: var(--white); overflow: hidden; color: #1e293b; }
 
-        .infinity-bg {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 30vw; color: rgba(59, 130, 246, 0.04);
-            font-weight: 900; pointer-events: none; user-select: none;
-            animation: pulse-slow 8s infinite ease-in-out;
-        }
-
-        @keyframes pulse-slow {
-            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.05); }
-        }
-
-        /* Adjusted Intel Grid spacing to avoid bottom cutoff */
-        .intel-grid {
-            display: grid; grid-cols: 1; gap: 30px;
-            padding-top: 30px; margin-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .intel-item .value { font-size: 2.5rem; font-weight: 900; color: #ffffff; line-height: 1; letter-spacing: -0.05em; }
-        .intel-item .label { font-size: 9px; font-weight: 900; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.3em; margin-top: 6px; }
-        .intel-item .desc { font-size: 10px; color: #64748b; margin-top: 4px; font-weight: 500; }
-
-        /* --- RIGHT CONTENT AREA --- */
-        .content-area { margin-left: 40%; width: 60%; background: #ffffff; }
-
-        section {
-            min-height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; padding: 8rem 6rem; position: relative;
-        }
-
-        .command-card {
-            background: #ffffff; border: 1px solid #f1f5f9;
-            border-radius: 2px; padding: 3.5rem; position: relative;
-            box-shadow: 20px 20px 60px #d1d9e6, -20px -20px 60px #ffffff;
-            transition: all 0.4s ease;
-        }
-        .command-card::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
-            background: #3b82f6;
-        }
-
-        .stat-heavy {
-            font-size: 8rem; font-weight: 900; color: #f1f5f9;
-            position: absolute; right: 2rem; top: 0; z-index: 0;
-            line-height: 1; user-select: none;
-        }
-
+        /* --- NAVIGATION --- */
         .nav-pill {
-            position: fixed; top: 30px; right: 30px; z-index: 100;
-            background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px);
-            padding: 8px 24px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1);
-            color: white; font-size: 10px; font-weight: 900; text-transform: uppercase;
-            letter-spacing: 0.3em; transition: 0.3s;
+            position: fixed; top: 30px; right: 30px; z-index: 500;
+            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px);
+            padding: 10px 25px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1);
+            color: white; font-size: 11px; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 0.3em; transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1); cursor: pointer; text-decoration: none;
         }
-        .nav-pill:hover { background: #3b82f6; transform: scale(1.05); }
+        .nav-pill i { transition: transform 0.3s; }
+        .nav-pill:hover { background: var(--blue); transform: translateX(-5px); }
+        .nav-pill:hover i { transform: translateX(-3px); }
 
-        .network-bar {
-            background: #0f172a; height: 100px; border-radius: 8px;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 3rem; position: relative; overflow: hidden;
-            transition: all 0.3s ease;
+        /* --- MASTER LAYOUT --- */
+        .master-container { display: flex; height: calc(100vh - 80px); }
+
+        /* --- SIDEBAR (LOCKED) --- */
+        .sidebar {
+            width: 35%; background: var(--black); color: white;
+            padding: 60px; display: flex; flex-direction: column; justify-content: space-between;
         }
-        .pulse-dot-large {
-            width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;
-            box-shadow: 0 0 0 rgba(59, 130, 246, 0.4);
-            animation: pulse-dot-large 2s infinite;
-        }
-        @keyframes pulse-dot-large {
-            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        .brand-h1 { font-size: 3.8rem; font-weight: 900; text-transform: uppercase; line-height: 0.8; letter-spacing: -0.06em; }
+        .resilient-text { color: var(--blue); }
+        .delivered-text { color: var(--red); position: relative; display: inline-block; }
+        .delivered-text::after { content: ''; position: absolute; bottom: 10px; left: 0; width: 100%; height: 8px; background: rgba(239, 68, 68, 0.2); z-index: -1; }
+
+        .engine-room { margin: 30px 0; }
+        .engine-label { font-size: 10px; font-weight: 900; color: #52525b; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 20px; display: block; }
+        .track { height: 1px; background: #27272a; position: relative; width: 100%; margin: 30px 0; }
+        .glow-line { position: absolute; height: 100%; width: 0%; background: var(--blue); animation: progress 6s infinite linear; }
+        .unit { position: absolute; top: -14px; left: 0%; transform: translateX(-50%); font-size: 24px; color: var(--blue); animation: moveUnit 6s infinite linear; }
+        
+        @keyframes progress { 0% { width: 0%; } 85% { width: 100%; } 100% { width: 100%; } }
+        @keyframes moveUnit { 0% { left: 0%; opacity: 0; } 5% { opacity: 1; } 85% { left: 100%; opacity: 1; } 95% { opacity: 0; } 100% { left: 100%; opacity: 0; } }
+
+        .currency-stage { height: 40px; overflow: hidden; width: 50px; font-size: 32px; font-weight: 900; color: var(--blue); }
+        .currency-list { display: flex; flex-direction: column; animation: rotateCurr 12s infinite cubic-bezier(0.8, 0, 0.2, 1); }
+        .currency-list div { height: 40px; display: flex; align-items: center; }
+        @keyframes rotateCurr { 0%, 15% { transform: translateY(0); } 20%, 35% { transform: translateY(-40px); } 40%, 55% { transform: translateY(-80px); } 60%, 75% { transform: translateY(-120px); } 80%, 95% { transform: translateY(-160px); } 100% { transform: translateY(0); } }
+
+        /* --- CONTENT PANEL --- */
+        .main-panel { width: 65%; overflow-y: auto; padding: 100px 8% 120px 8%; scroll-behavior: smooth; }
+
+        /* RESTORED TO ORIGINAL LEFT-BORDER STYLE */
+        .manifesto-callout { 
+            border-left: 4px solid var(--black); padding-left: 30px; margin-bottom: 50px; 
+            font-size: 1.6rem; font-weight: 700; color: var(--black); line-height: 1.4; letter-spacing: -0.01em;
         }
 
-        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        /* RESTORED TO ORIGINAL FULL-WIDTH STYLE */
+        .blue-statement {
+            background: var(--blue); color: white; padding: 40px; margin-bottom: 60px;
+            font-weight: 400; font-size: 1.25rem; line-height: 1.6;
+        }
+
+        .section-tag { color: var(--blue); font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; font-size: 13px; display: block; margin-bottom: 35px; text-align: center; }
+
+        /* CENTERED GRID CONTENT */
+        .pillar-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; margin: 40px 0; }
+        .pillar-card { grid-column: span 2; padding: 30px 20px; background: #f8fafc; border: 1px solid #e2e8f0; transition: 0.3s; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .pillar-card.wide { grid-column: span 3; }
+        .pillar-card:hover { border-color: var(--blue); background: #fff; transform: translateY(-4px); }
+        .pillar-card i { color: var(--blue); font-size: 24px; margin-bottom: 15px; }
+        .pillar-card h5 { font-weight: 900; text-transform: uppercase; font-size: 11px; color: #000; margin-bottom: 12px; }
+        .pillar-card p { font-size: 13px; line-height: 1.5; color: #64748b; margin: 0; }
+
+        .advantage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; }
+        .adv-cell { border-top: 1px solid #e2e8f0; padding-top: 25px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .adv-cell i { color: var(--red); font-size: 18px; margin-bottom: 15px; }
+        .adv-cell h4 { font-weight: 900; text-transform: uppercase; font-size: 12px; color: var(--black); margin-bottom: 12px; }
+        .adv-cell p { font-size: 14px; color: #64748b; line-height: 1.5; max-width: 90%; }
+
+        /* --- CTA BUTTON --- */
+        .cta-btn {
+            display: block; width: 100%; background: var(--black); color: white;
+            padding: 40px 0; margin-top: 80px; text-align: center; font-weight: 900; 
+            text-transform: uppercase; letter-spacing: 0.5em; font-size: 11px; 
+            transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1); position: relative; overflow: hidden;
+            text-decoration: none;
+        }
+        .cta-btn:hover { background: var(--blue); letter-spacing: 0.7em; }
+
+        /* --- CENTERED BLUE FOOTER --- */
+        .footer {
+            height: 80px; background: var(--black); display: flex; align-items: center; 
+            justify-content: center; border-top: 1px solid #1e293b;
+        }
+        .footer-text { font-size: 10px; font-weight: 900; color: var(--blue); text-transform: uppercase; letter-spacing: 0.4em; }
+
+        @media (max-width: 1100px) {
+            .master-container { flex-direction: column; overflow-y: auto; height: auto; }
+            .sidebar, .main-panel { width: 100%; height: auto; padding: 60px 40px; }
+            .pillar-grid { grid-template-columns: 1fr; }
+            .pillar-card.wide { grid-column: span 1; }
+            .advantage-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="nav-pill">← Return to Hub</a>
+    <a href="index" class="nav-pill"><i class="fas fa-chevron-left mr-2"></i> Return to Hub</a>
 
-    <div class="side-panel">
-        <div class="infinity-bg">∞</div>
-        
-        <div class="relative z-20 mt-12"> <div class="flex items-center gap-4 mb-8">
-                <div class="w-12 h-1 bg-blue-600"></div>
-                <div class="text-blue-500 font-black text-[10px] uppercase tracking-[0.6em]">Core Intelligence</div>
-            </div>
-            <h1 class="text-white text-7xl font-black uppercase tracking-tighter leading-[0.85] mb-10">
-                Global<br>Utility<br><span class="text-blue-600">Defined.</span>
-            </h1>
-            <div class="grid grid-cols-2 gap-8 text-slate-500 font-bold text-[10px] uppercase tracking-widest pt-10 border-t border-slate-800">
-                <div>Route<br><span class="text-white">BOM-DXB</span></div>
-                <div>Ops<br><span class="text-blue-500">Live 24/7</span></div>
-            </div>
-
-            <div class="intel-grid">
-                <div class="intel-item">
-                    <div class="value">24/7</div>
-                    <div class="label">Operational Pulse</div>
-                    <div class="desc">Continuous monitoring and real-time logistics sync.</div>
-                </div>
-                <div class="intel-item">
-                    <div class="value">Sync</div>
-                    <div class="label">Regional Integration</div>
-                    <div class="desc">Seamless Mumbai-Dubai trade corridor management.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-area">
-        
-        <section id="vision" class="reveal">
-            <div class="text-blue-600 font-black text-[10px] uppercase tracking-[0.5em] mb-4">Phase // 01</div>
-            <h2 class="text-5xl font-black uppercase tracking-tighter mb-12">The Industry Architecture.</h2>
-            <div class="command-card">
-                <div class="stat-heavy">01</div>
-                <p class="text-xl text-slate-700 leading-relaxed font-bold relative z-10">
-                    Prominex Global operates at the intersection of logistics, technology, and strategic sourcing. We eliminate the friction of international trade by controlling the variables that others outsource.
-                </p>
-            </div>
-        </section>
-
-        <section id="scale" class="bg-slate-50 reveal">
-            <div class="text-blue-600 font-black text-[10px] uppercase tracking-[0.5em] mb-4">Phase // 02</div>
-            <h2 class="text-5xl font-black uppercase tracking-tighter mb-12 text-slate-900">Modular Sourcing.</h2>
-            <div class="grid grid-cols-1 gap-12">
-                <div class="flex items-start gap-8">
-                    <div class="text-4xl font-black text-blue-600">01</div>
-                    <div>
-                        <div class="text-sm font-black uppercase tracking-widest mb-2 text-slate-900">Infinite Sourcing</div>
-                        <p class="text-slate-500 font-medium">Hyper-local purchasing teams across Indian manufacturing hubs, connected directly to your global requirements.</p>
+    <div class="master-container">
+        <aside class="sidebar">
+            <div class="w-32"><img src="Logoc.png" alt="Prominex" class="w-full invert"></div>
+            <div>
+                <h1 class="brand-h1">
+                    <span class="resilient-text">Resilient</span><br>
+                    Supply Chain<br>
+                    <span class="delivered-text"> - Delivered.</span>
+                </h1>
+                <div class="engine-room">
+                    <span class="engine-label">Operational Engine</span>
+                    <div class="track">
+                        <div class="glow-line"></div>
+                        <div id="unit" class="unit"><i class="fas fa-boxes-stacked"></i></div>
+                    </div>
+                    <div class="flex justify-between text-[8px] font-black uppercase text-zinc-600 tracking-widest">
+                        <span>Sourcing</span><span>Transit</span><span>Market</span>
                     </div>
                 </div>
-                <div class="flex items-start gap-8">
-                    <div class="text-4xl font-black text-blue-600">02</div>
-                    <div>
-                        <div class="text-sm font-black uppercase tracking-widest mb-2 text-slate-900">Global Transit</div>
-                        <p class="text-slate-500 font-medium">Frictionless export management with dedicated corridors between Mumbai and Middle Eastern trade zones.</p>
-                    </div>
+                <div class="flex items-center gap-6">
+                    <div class="currency-stage"><div class="currency-list"><div>$</div><div>€</div><div>₹</div><div>د.إ</div><div>£</div></div></div>
+                    <div class="text-[10px] font-black uppercase tracking-widest text-zinc-500">Seamless Global Trade</div>
                 </div>
             </div>
-        </section>
+            <div class="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-700">LDN // DXB // MUM // SGP // TOR</div>
+        </aside>
 
-        <section id="corridor" class="reveal">
-            <div class="text-blue-600 font-black text-[10px] uppercase tracking-[0.5em] mb-4">Phase // 03</div>
-            <h2 class="text-5xl font-black uppercase tracking-tighter mb-10">Network Hubs.</h2>
-            
-            <div class="space-y-6">
-                <div class="network-bar">
-                    <div class="text-white">
-                        <div class="text-[7px] font-black text-blue-500 uppercase tracking-widest">Node A</div>
-                        <div class="text-lg font-black tracking-tighter">BOM</div>
-                    </div>
-                    <div class="flex-grow mx-8 h-[1px] bg-slate-800 relative">
-                        <div class="pulse-dot-large absolute left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
-                    </div>
-                    <div class="text-right text-white">
-                        <div class="text-[7px] font-black text-blue-500 uppercase tracking-widest">Node B</div>
-                        <div class="text-lg font-black tracking-tighter">DXB</div>
-                    </div>
-                    <div class="ml-8 pl-8 border-l border-slate-800 hidden md:block">
-                        <div class="text-[8px] font-black text-green-500 uppercase tracking-widest">Status</div>
-                        <div class="text-[10px] text-slate-400 font-bold">Active</div>
-                    </div>
-                </div>
+        <main class="main-panel">
+            <header class="manifesto-callout">
+                Prominex Global operates at the intersection of logistics, technology, and strategic sourcing. We eliminate the friction of international trade by controlling the variables that others outsource.
+            </header>
 
-                <div class="network-bar opacity-60 hover:opacity-100">
-                    <div class="text-white">
-                        <div class="text-[7px] font-black text-slate-500 uppercase tracking-widest">Node A</div>
-                        <div class="text-lg font-black tracking-tighter">BOM</div>
-                    </div>
-                    <div class="flex-grow mx-8 h-[1px] bg-slate-800 relative">
-                        <div class="w-2 h-2 border border-slate-600 rounded-full absolute left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
-                    </div>
-                    <div class="text-right text-white">
-                        <div class="text-[7px] font-black text-slate-500 uppercase tracking-widest">Node C</div>
-                        <div class="text-lg font-black tracking-tighter">SIN</div>
-                    </div>
-                    <div class="ml-8 pl-8 border-l border-slate-800 hidden md:block">
-                        <div class="text-[8px] font-black text-blue-400 uppercase tracking-widest">Status</div>
-                        <div class="text-[10px] text-slate-400 font-bold">Optimizing</div>
-                    </div>
-                </div>
+            <div class="blue-statement">
+                "We bridge the gap between Tier-1 manufacturing base and strategic industrial requirements. By controlling the entire value chain—from factory-gate procurement to last-mile delivery—we eliminate middleman volatility."
             </div>
-            
-            <p class="mt-10 text-slate-500 font-medium leading-relaxed">
-                By maintaining local expertise in both Mumbai and Dubai, we bridge the gap between heavy industrial capacity and high-speed distribution centers.
-            </p>
-        </section>
 
-        <section class="bg-slate-900 text-white reveal">
-            <h2 class="text-7xl font-black uppercase tracking-tighter mb-10">Start the<br>Network.</h2>
-            <a href="contact.html" class="inline-block border-2 border-white text-white px-12 py-6 font-black uppercase tracking-[0.4em] text-xs hover:bg-white hover:text-slate-900 transition-all">
-                Execute Transmission <i class="fas fa-bolt ml-4"></i>
+            <section>
+                <span class="section-tag">01 // The Pillars</span>
+                <div class="pillar-grid">
+                    <div class="pillar-card wide">
+                        <i class="fas fa-microchip"></i>
+                        <h5>Intelligence</h5>
+                        <p>Direct engagement with audited manufacturers to bypass the Broker Layer.</p>
+                    </div>
+                    <div class="pillar-card wide">
+                        <i class="fas fa-microscope"></i>
+                        <h5>Proxy Engineering</h5>
+                        <p>On-site oversight translating international ASTM/ISO standards into production.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <i class="fas fa-anchor"></i>
+                        <h5>Maritime</h5>
+                        <p>Direct carrier volume and corridor-specific risk management.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <i class="fas fa-warehouse"></i>
+                        <h5>Storage</h5>
+                        <p>Integrated 3PL and bonded warehousing solutions for last-mile delivery.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <i class="fas fa-gem"></i>
+                        <h5>Verticals</h5>
+                        <p>Specialized handling for critical mineral and packaging trade.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mt-20">
+                <span class="section-tag">02 // Comparative Advantage</span>
+                <div class="advantage-grid">
+                    <div class="adv-cell">
+                        <i class="fas fa-shield-halved"></i>
+                        <h4>Zero-Trust QC</h4>
+                        <p>Proprietary 4-Gate Inspection Protocol ensuring compliance before any seal is applied.</p>
+                    </div>
+                    <div class="adv-cell">
+                        <i class="fas fa-link"></i>
+                        <h4>Sovereign 3PL</h4>
+                        <p>Owned relationship from floor to floor, eliminating information black holes.</p>
+                    </div>
+                    <div class="adv-cell">
+                        <i class="fas fa-check-double"></i>
+                        <h4>Technical Audit</h4>
+                        <p>Qualification based on MIL-SPEC and GMP standards rather than generic lists.</p>
+                    </div>
+                    <div class="adv-cell">
+                        <i class="fas fa-route"></i>
+                        <h4>Trade Corridors</h4>
+                        <p>Leveraging multilateral trade agreements to optimize global tariff structures.</p>
+                    </div>
+                </div>
+            </section>
+
+            <a href="contact" class="cta-btn">
+                Partner with us <i class="fas fa-chevron-right ml-4"></i>
             </a>
-            <div class="mt-20 text-[9px] font-black text-slate-500 uppercase tracking-[0.6em]">
-                Prominex Global © 2026 | All Rights Reserved
-            </div>
-        </section>
-
+        </main>
     </div>
+
+    <footer class="footer">
+        <div class="footer-text">© 2026 Prominex Global Holdings // All Rights Reserved</div>
+    </footer>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        const unit = document.getElementById('unit');
+        let setFlag = 1;
+        function runLifecycle() {
+            const transitIcon = (setFlag === 1) ? 'fa-ship' : 'fa-plane-departure';
+            unit.innerHTML = `<i class="fas fa-boxes-stacked"></i>`;
+            setTimeout(() => { unit.innerHTML = `<i class="fas fa-truck"></i>`; }, 200);
+            setTimeout(() => { unit.innerHTML = `<i class="fas ${transitIcon}"></i>`; }, 1500);
+            setTimeout(() => { unit.innerHTML = `<i class="fas fa-truck"></i>`; }, 3000);
+            setTimeout(() => { unit.innerHTML = `<i class="fas fa-boxes-stacked"></i>`; }, 4500);
+            setFlag = (setFlag === 1) ? 2 : 1;
+        }
+        runLifecycle();
+        setInterval(runLifecycle, 6000);
     </script>
 </body>
 </html>
