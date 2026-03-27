@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     
     <title>Prominex Global | Supply Chain Reimagined</title>
-    <link rel="icon" type="image/png" href="assets/favprom.PNG">
+    <link rel="icon" type="image/png" href="assets/favicon-new.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
@@ -14,44 +14,50 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
 
-        /* FIX: 100svh prevents mobile browser bars from hiding the action buttons */
         html, body { margin: 0; padding: 0; height: 100svh; width: 100%; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
 
-       /* --- NEW SVG LOGO: STABLE CENTERING --- */
+       /* --- LOGO: NO-JITTER FIX --- */
         .logo-fixed-center {
             position: absolute; top: 0; left: 50%;
             transform: translateX(-50%); 
             z-index: 9999;
             padding-top: max(25px, env(safe-area-inset-top)); 
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             display: flex; flex-direction: column; align-items: center; text-decoration: none;
+            /* Remove transition from here to prevent container jitter */
         }
 
         .sovereign-svg { 
             width: 80px; height: auto; 
             filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.4));
-            transition: all 0.4s ease;
+            /* Apply transition directly to the element being scaled */
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.4s ease;
+            will-change: transform;
         }
         
         .logo-text-group { text-align: center; line-height: 1; margin-top: 8px; }
         .logo-main { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.05em; color: white; }
-        .logo-sub { font-size: 0.6rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.5em; color: #3b82f6; display: block; margin-top: 2px; }
+        
+        /* VISIBILITY BOOST FOR 'GLOBAL' */
+        .logo-sub { 
+            font-size: 0.65rem; font-weight: 800; /* Heavier weight */
+            text-transform: uppercase; letter-spacing: 0.55em; 
+            color: #60a5fa; /* Brighter blue for visibility */
+            display: block; margin-top: 4px; 
+        }
 
         @media (min-width: 768px) { 
             .sovereign-svg { width: 100px; } 
             .logo-main { font-size: 1.8rem; }
-            .logo-sub { font-size: 0.7rem; }
+            .logo-sub { font-size: 0.75rem; }
         }
 
-        .logo-fixed-center:hover {
-            transform: translateX(-50%) scale(1.05);
-        }
-
-        .logo-fixed-center:hover .sovereign-svg { 
+        /* Hover logic applied only to SVG to stop text jitter */
+        .logo-fixed-center:hover .sovereign-svg {
+            transform: scale(1.1);
             filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.8));
         }
 
-        /* --- BANNER TYPOGRAPHY: RESTORED --- */
+        /* --- REST OF THE CODE REMAINS UNCHANGED --- */
         .mirror-gloss {
             display: inline-block; color: #ffffff;
             background: linear-gradient(110deg, rgba(255,255,255,0.2) 20%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.2) 80%);
@@ -64,7 +70,6 @@
         .rotator-text { position: absolute; opacity: 0; transition: opacity 2s ease-in-out; white-space: nowrap; pointer-events: none; width: 100%; text-align: center; }
         .rotator-text.active { opacity: 1; pointer-events: auto; }
 
-        /* --- THE HUB OVERLAY: RESTORED --- */
         #menu-overlay {
             position: fixed; inset: 0;
             background: radial-gradient(circle at center, #0a1425 0%, #000 100%);
@@ -77,14 +82,12 @@
         .canvas-area { position: relative; width: 800px; height: 400px; display: none; }
         @media (min-width: 1024px) { .canvas-area { display: block; } }
 
-        /* Infinity Signals */
         .inf-svg { width: 100%; height: 100%; overflow: visible; }
         .path-base { fill: none; stroke: rgba(255, 255, 255, 0.1); stroke-width: 2.5; }
         .signal { fill: none; stroke: #3b82f6; stroke-width: 4; stroke-dasharray: 140, 1500; filter: drop-shadow(0 0 12px #2563eb); animation: flowLoop 6s linear infinite; }
         .sig-2 { animation-delay: -3s; stroke: #60a5fa; }
         @keyframes flowLoop { from { stroke-dashoffset: 1640; } to { stroke-dashoffset: 0; } }
 
-        /* Node Styling */
         .node { position: absolute; z-index: 10; display: flex; flex-direction: column; align-items: center; text-decoration: none; transform: translate(-50%, -50%); transition: transform 0.4s ease; }
         .node-icon { 
             width: 64px; height: 64px; background: #000; border: 1px solid rgba(255,255,255,0.2); 
@@ -111,7 +114,6 @@
             10%, 60% { transform: scale(1.5); opacity: 0; }
         }
 
-        /* Mobile List Styling */
         .mobile-node-list { display: flex; flex-direction: column; gap: 12px; width: 88%; max-width: 400px; margin-top: 50px; }
         @media (min-width: 1024px) { .mobile-node-list { display: none; } }
         .m-node {
