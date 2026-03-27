@@ -17,34 +17,39 @@
         /* FIX: 100svh prevents mobile browser bars from hiding the action buttons */
         html, body { margin: 0; padding: 0; height: 100svh; width: 100%; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
 
-       /* --- LOGO: STABLE CENTERING --- */
+       /* --- NEW SVG LOGO: STABLE CENTERING --- */
         .logo-fixed-center {
             position: absolute; top: 0; left: 50%;
-            /* Centering stays here */
             transform: translateX(-50%); 
             z-index: 9999;
             padding-top: max(25px, env(safe-area-inset-top)); 
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex; flex-direction: column; align-items: center; text-decoration: none;
         }
 
-        .logo-fixed-center img {
-            height: 48px; width: auto;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2)) drop-shadow(0 4px 4px rgba(0, 0, 0, 0.8)); 
-            /* Transition happens on the image properties */
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        .sovereign-svg { 
+            width: 80px; height: auto; 
+            filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.4));
+            transition: all 0.4s ease;
         }
-        @media (min-width: 768px) { .logo-fixed-center img { height: 60px; } }
+        
+        .logo-text-group { text-align: center; line-height: 1; margin-top: 8px; }
+        .logo-main { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.05em; color: white; }
+        .logo-sub { font-size: 0.6rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.5em; color: #3b82f6; display: block; margin-top: 2px; }
 
-        /* --- THE NO-JERK HOVER --- */
+        @media (min-width: 768px) { 
+            .sovereign-svg { width: 100px; } 
+            .logo-main { font-size: 1.8rem; }
+            .logo-sub { font-size: 0.7rem; }
+        }
+
         .logo-fixed-center:hover {
-            /* We include the translateX(-50%) so it stays centered while scaling */
-            transform: translateX(-50%) scale(1.08);
+            transform: translateX(-50%) scale(1.05);
         }
 
-        .logo-fixed-center:hover img { 
-            filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.7)) brightness(1.1);
+        .logo-fixed-center:hover .sovereign-svg { 
+            filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.8));
         }
-        @media (min-width: 768px) { .logo-fixed-center img { height: 60px; } }
 
         /* --- BANNER TYPOGRAPHY: RESTORED --- */
         .mirror-gloss {
@@ -79,7 +84,7 @@
         .sig-2 { animation-delay: -3s; stroke: #60a5fa; }
         @keyframes flowLoop { from { stroke-dashoffset: 1640; } to { stroke-dashoffset: 0; } }
 
-        /* Node Styling: Industrial Restored */
+        /* Node Styling */
         .node { position: absolute; z-index: 10; display: flex; flex-direction: column; align-items: center; text-decoration: none; transform: translate(-50%, -50%); transition: transform 0.4s ease; }
         .node-icon { 
             width: 64px; height: 64px; background: #000; border: 1px solid rgba(255,255,255,0.2); 
@@ -90,26 +95,16 @@
         .node-label { position: absolute; top: 75px; width: 180px; color: rgba(255,255,255,0.4); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; text-align: center; transition: 0.4s; }
         .node:hover .node-label { color: #fff; letter-spacing: 0.35em; }
 
-        /* --- SYNCED CENTER GLOW (Industry Verticals) --- */
         .p-about .node-icon { 
-            position: relative;
-            border-color: rgba(59, 130, 246, 0.4);
+            position: relative; border-color: rgba(59, 130, 246, 0.4);
             animation: centerFlash 6s infinite cubic-bezier(0.4, 0, 0.2, 1);
         }
         @keyframes centerFlash {
-            0%, 50%, 100% { 
-                box-shadow: 0 0 40px rgba(59, 130, 246, 0.8), inset 0 0 15px rgba(59, 130, 246, 0.5);
-                border-color: #fff; color: #fff;
-            }
-            25%, 75% { 
-                box-shadow: 0 0 0px transparent;
-                border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.4);
-            }
+            0%, 50%, 100% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8), inset 0 0 15px rgba(59, 130, 246, 0.5); border-color: #fff; color: #fff; }
+            25%, 75% { box-shadow: 0 0 0px transparent; border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.4); }
         }
-        /* Ripple Shockwave */
         .p-about .node-icon::after {
-            content: ''; position: absolute; inset: -2px; border-radius: 50%;
-            border: 1px solid #3b82f6; opacity: 0; animation: ripple 6s infinite;
+            content: ''; position: absolute; inset: -2px; border-radius: 50%; border: 1px solid #3b82f6; opacity: 0; animation: ripple 6s infinite;
         }
         @keyframes ripple {
             0%, 50%, 100% { transform: scale(1); opacity: 1; }
@@ -128,7 +123,6 @@
         .m-node i { color: #3b82f6; }
         .m-node:hover { background: #2563eb; border-color: #fff; }
 
-        /* --- HUB FOOTER LINKS: RESTORED CSS --- */
         .secondary-nav { margin-top: 50px; display: flex; flex-direction: column; align-items: center; gap: 35px; }
         .nav-row { display: flex; gap: 50px; }
         .about-link { 
@@ -146,7 +140,6 @@
         }
         .close-btn:hover { opacity: 1; background: rgba(255,255,255,0.05); border-color: #fff; letter-spacing: 0.8em; }
 
-        /* --- ACTION BUTTONS: RESTORED HOVER & POSITION --- */
         .action-container { 
             position: absolute; bottom: max(40px, env(safe-area-inset-bottom)); left: 0; right: 0; 
             padding: 0 30px; z-index: 20;
@@ -164,7 +157,6 @@
         .btn-white { background: #fff; color: #000; border: 1px solid transparent; }
         .btn-white:hover { background: #2563eb; color: #fff; border-color: #fff; transform: translateY(-4px); box-shadow: 0 15px 35px rgba(37, 99, 235, 0.5); }
 
-        /* Desktop Node Map */
         .p-about { top: 200px; left: 400px; } 
         .p-sourcing { top: 100px; left: 180px; }
         .p-logistics { top: 100px; left: 620px; }
@@ -175,7 +167,15 @@
 <body>
 
     <a href="/" class="logo-fixed-center">
-        <img src="Logoc.png" alt="Prominex Global">
+        <svg class="sovereign-svg" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 10C30 15 45 25 50 30C45 35 30 45 10 50C25 45 35 35 35 30C35 25 25 15 10 10Z" fill="white"/>
+            <path d="M90 10C70 15 55 25 50 30C55 35 70 45 90 50C75 45 65 35 65 30C65 25 75 15 90 10Z" fill="white"/>
+            <rect x="47" y="27" width="6" height="6" transform="rotate(45 50 30)" fill="#06b6d4"/>
+        </svg>
+        <div class="logo-text-group">
+            <div class="logo-main">Prominex</div>
+            <div class="logo-sub">Global</div>
+        </div>
     </a>
 
     <header id="main-header" class="relative w-full bg-black overflow-hidden" style="height: 100svh;">
