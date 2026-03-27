@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supplier Management | Prominex Global</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <title>Supplier Management & Governance | Prominex Global</title>
+    <link rel="icon" type="image/png" href="assets/favicon-new.PNG">
+    <meta name="description" content="Rigorous auditing and relationship governance for high-performance manufacturing partners in the global supply chain.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
         
         html, body { 
-            margin: 0; padding: 0; min-height: 100vh; width: 100vw; 
+            margin: 0; padding: 0; min-height: 100svh; width: 100vw; 
             font-family: 'Inter', sans-serif; 
             background: #f1f5f9; color: #1e293b; 
             overflow-x: hidden; 
@@ -24,17 +28,18 @@
             z-index: -1; filter: blur(120px);
         }
 
-        /* --- NAVIGATION --- */
+        /* --- NAVIGATION: PROMINEX INDUSTRIAL THEME --- */
         .nav-link {
             position: fixed; top: 25px;
-            color: #475569; font-size: 10px; font-weight: 900; 
+            /* DARKER SHADE & PROMINEX BLUE TEXT */
+            color: #3b82f6; font-size: 10px; font-weight: 900; 
             text-transform: uppercase; letter-spacing: 0.2em;
             text-decoration: none; z-index: 1000;
             padding: 14px 24px; border-radius: 50px;
-            background: rgba(255, 255, 255, 0.9);
+            background: #0f172a; /* Deep Slate/Darker shade */
             backdrop-filter: blur(12px);
-            border: 1px solid #ffffff;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex; align-items: center;
             cursor: pointer;
@@ -43,8 +48,8 @@
         .nav-home { right: 25px; }
         .nav-link:hover { 
             color: #fff; background: #2563eb; 
-            transform: translateY(-2px); border-color: #2563eb; 
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.15);
+            transform: translateY(-2px); border-color: #fff; 
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3);
         }
 
         /* --- CENTERED TILES --- */
@@ -79,6 +84,18 @@
         .label-blue { color: #2563eb; font-weight: 900; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.35em; margin-bottom: 0.75rem; display: block; }
         h1 { line-height: 0.85; letter-spacing: -0.05em; }
         ul { list-style: none; padding: 0; margin: 0; }
+
+        /* --- FOOTER STATEMENT --- */
+        .copy-footer {
+            padding: 60px 0;
+            text-align: center;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            color: rgba(30, 41, 59, 0.4);
+            text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+        }
     </style>
 </head>
 <body>
@@ -87,10 +104,10 @@
 
     <nav>
         <a href="index.html?menu=open" class="nav-link nav-back">
-            <i class="fas fa-th-large mr-2 text-[12px]"></i> Service Menu
+            <i class="fas fa-th-large mr-3 text-[12px]"></i> Service Menu
         </a>
         <a href="index.html" class="nav-link nav-home">
-            Home <i class="fas fa-home ml-2 text-[12px]"></i>
+            Home <i class="fas fa-home ml-3 text-[12px]"></i>
         </a>
     </nav>
 
@@ -190,6 +207,10 @@
                 <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-blue-600/20 filter blur-[80px] rounded-full"></div>
             </div>
         </div>
+
+        <footer class="copy-footer">
+            © 2026 Prominex Global // Strategic Supply Chain Solutions
+        </footer>
 
     </main>
 </body>
