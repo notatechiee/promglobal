@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>About | Prominex Global Holdings</title>
+    
+    <title>About | Prominex Global | India-Canada Manufacturing Solutions</title>
+    <meta name="description" content="Prominex Global: Bridging Tier-1 manufacturing in India with global supply chains. Specializing in strategic sourcing, logistics, and China-Plus-One transition strategies.">
+    <meta name="keywords" content="Supply Chain, India Manufacturing, Strategic Sourcing, CEPA, Logistics, China Plus One, Prominex Global">
+    <meta property="og:title" content="Prominex Global | Resilient Supply Chain Delivered">
+    <meta property="og:description" content="Strategic sourcing and logistical intelligence for the modern enterprise.">
+    <meta name="theme-color" content="#020617">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
         
-        :root { --blue: #3b82f6; --red: #ef4444; --black: #020617; --white: #ffffff; }
+        :root { --blue: #3b82f6; --cyan: #06b6d4; --red: #ef4444; --black: #020617; --white: #ffffff; }
 
-        body, html { margin: 0; padding: 0; height: 100vh; font-family: 'Inter', sans-serif; background: var(--white); overflow: hidden; color: #1e293b; }
+        body, html { margin: 0; padding: 0; height: 100vh; font-family: 'Inter', sans-serif; background: var(--white); overflow-x: hidden; color: #1e293b; }
 
         /* --- NAVIGATION --- */
         .nav-pill {
@@ -19,57 +26,53 @@
             background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px);
             padding: 10px 25px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1);
             color: white; font-size: 11px; font-weight: 900; text-transform: uppercase;
-            letter-spacing: 0.3em; transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1); cursor: pointer; text-decoration: none;
+            letter-spacing: 0.3em; transition: 0.4s; cursor: pointer; text-decoration: none;
         }
-        .nav-pill i { transition: transform 0.3s; }
         .nav-pill:hover { background: var(--blue); transform: translateX(-5px); }
-        .nav-pill:hover i { transform: translateX(-3px); }
 
         /* --- MASTER LAYOUT --- */
         .master-container { display: flex; height: calc(100vh - 80px); }
 
-        /* --- SIDEBAR (LOCKED) --- */
+        /* --- SIDEBAR --- */
         .sidebar {
             width: 35%; background: var(--black); color: white;
-            padding: 60px; display: flex; flex-direction: column; justify-content: space-between;
+            padding: 40px 50px 40px 50px; display: flex; flex-direction: column;
+            flex-shrink: 0;
         }
-        .brand-h1 { font-size: 3.8rem; font-weight: 900; text-transform: uppercase; line-height: 0.8; letter-spacing: -0.06em; }
+
+        /* --- BRANDING BLOCK --- */
+        .brand-block-centered { 
+            display: flex; flex-direction: column; align-items: center; text-align: center; 
+            margin-bottom: 40px; 
+        }
+        .sovereign-svg { width: 90px; height: auto; filter: drop-shadow(0 0 10px var(--cyan)); margin-bottom: 12px; }
+        .logo-text-group { line-height: 1; }
+        .logo-main { font-size: 2rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.05em; color: white; }
+        .logo-sub { font-size: 0.8rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.5em; color: var(--blue); display: block; margin-top: 2px; }
+        .logo-slogan { font-size: 8px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; color: var(--cyan); margin-top: 10px; opacity: 0.7; }
+
+        /* Headlines - SUPPLY CHAIN ON ONE LINE */
+        .headline-container { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        .brand-h1 { font-size: 3rem; font-weight: 900; text-transform: uppercase; line-height: 0.9; letter-spacing: -0.05em; }
         .resilient-text { color: var(--blue); }
         .delivered-text { color: var(--red); position: relative; display: inline-block; }
-        .delivered-text::after { content: ''; position: absolute; bottom: 10px; left: 0; width: 100%; height: 8px; background: rgba(239, 68, 68, 0.2); z-index: -1; }
+        .delivered-text::after { content: ''; position: absolute; bottom: 8px; left: 0; width: 100%; height: 6px; background: rgba(239, 68, 68, 0.2); z-index: -1; }
 
-        .engine-room { margin: 30px 0; }
+        .engine-room { margin: 40px 0; }
         .engine-label { font-size: 10px; font-weight: 900; color: #52525b; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 20px; display: block; }
         .track { height: 1px; background: #27272a; position: relative; width: 100%; margin: 30px 0; }
         .glow-line { position: absolute; height: 100%; width: 0%; background: var(--blue); animation: progress 6s infinite linear; }
-        .unit { position: absolute; top: -14px; left: 0%; transform: translateX(-50%); font-size: 24px; color: var(--blue); animation: moveUnit 6s infinite linear; }
+        .unit { position: absolute; top: -14px; left: 0%; transform: translateX(-50%); font-size: 24px; color: var(--blue); animation: moveUnit 6s infinite linear; will-change: left; }
         
         @keyframes progress { 0% { width: 0%; } 85% { width: 100%; } 100% { width: 100%; } }
         @keyframes moveUnit { 0% { left: 0%; opacity: 0; } 5% { opacity: 1; } 85% { left: 100%; opacity: 1; } 95% { opacity: 0; } 100% { left: 100%; opacity: 0; } }
 
-        .currency-stage { height: 40px; overflow: hidden; width: 50px; font-size: 32px; font-weight: 900; color: var(--blue); }
-        .currency-list { display: flex; flex-direction: column; animation: rotateCurr 12s infinite cubic-bezier(0.8, 0, 0.2, 1); }
-        .currency-list div { height: 40px; display: flex; align-items: center; }
-        @keyframes rotateCurr { 0%, 15% { transform: translateY(0); } 20%, 35% { transform: translateY(-40px); } 40%, 55% { transform: translateY(-80px); } 60%, 75% { transform: translateY(-120px); } 80%, 95% { transform: translateY(-160px); } 100% { transform: translateY(0); } }
-
         /* --- CONTENT PANEL --- */
         .main-panel { width: 65%; overflow-y: auto; padding: 100px 8% 120px 8%; scroll-behavior: smooth; }
-
-        /* RESTORED TO ORIGINAL LEFT-BORDER STYLE */
-        .manifesto-callout { 
-            border-left: 4px solid var(--black); padding-left: 30px; margin-bottom: 50px; 
-            font-size: 1.6rem; font-weight: 700; color: var(--black); line-height: 1.4; letter-spacing: -0.01em;
-        }
-
-        /* RESTORED TO ORIGINAL FULL-WIDTH STYLE */
-        .blue-statement {
-            background: var(--blue); color: white; padding: 40px; margin-bottom: 60px;
-            font-weight: 400; font-size: 1.25rem; line-height: 1.6;
-        }
-
+        .manifesto-callout { border-left: 4px solid var(--black); padding-left: 30px; margin-bottom: 50px; font-size: 1.6rem; font-weight: 700; color: var(--black); line-height: 1.4; }
+        .blue-statement { background: var(--blue); color: white; padding: 40px; margin-bottom: 60px; font-size: 1.25rem; line-height: 1.6; }
         .section-tag { color: var(--blue); font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; font-size: 13px; display: block; margin-bottom: 35px; text-align: center; }
 
-        /* CENTERED GRID CONTENT */
         .pillar-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; margin: 40px 0; }
         .pillar-card { grid-column: span 2; padding: 30px 20px; background: #f8fafc; border: 1px solid #e2e8f0; transition: 0.3s; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .pillar-card.wide { grid-column: span 3; }
@@ -84,46 +87,58 @@
         .adv-cell h4 { font-weight: 900; text-transform: uppercase; font-size: 12px; color: var(--black); margin-bottom: 12px; }
         .adv-cell p { font-size: 14px; color: #64748b; line-height: 1.5; max-width: 90%; }
 
-        /* --- CTA BUTTON --- */
-        .cta-btn {
-            display: block; width: 100%; background: var(--black); color: white;
-            padding: 40px 0; margin-top: 80px; text-align: center; font-weight: 900; 
-            text-transform: uppercase; letter-spacing: 0.5em; font-size: 11px; 
-            transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1); position: relative; overflow: hidden;
-            text-decoration: none;
-        }
+        .cta-btn { display: block; width: 100%; background: var(--black); color: white; padding: 40px 0; margin-top: 80px; text-align: center; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5em; font-size: 11px; transition: 0.4s; text-decoration: none; }
         .cta-btn:hover { background: var(--blue); letter-spacing: 0.7em; }
 
-        /* --- CENTERED BLUE FOOTER --- */
-        .footer {
-            height: 80px; background: var(--black); display: flex; align-items: center; 
-            justify-content: center; border-top: 1px solid #1e293b;
-        }
+        .footer { height: 80px; background: var(--black); display: flex; align-items: center; justify-content: center; border-top: 1px solid #1e293b; }
         .footer-text { font-size: 10px; font-weight: 900; color: var(--blue); text-transform: uppercase; letter-spacing: 0.4em; }
 
+        /* --- MOBILE OVERRIDES (BOOM) --- */
         @media (max-width: 1100px) {
-            .master-container { flex-direction: column; overflow-y: auto; height: auto; }
-            .sidebar, .main-panel { width: 100%; height: auto; padding: 60px 40px; }
+            body, html { overflow: auto; height: auto; }
+            .master-container { flex-direction: column; height: auto; }
+            .sidebar { width: 100%; padding: 80px 30px 40px 30px; }
+            .main-panel { width: 100%; padding: 60px 20px; height: auto; }
+            
+            .brand-h1 { font-size: 2.2rem; }
+            .brand-block-centered { margin-bottom: 30px; }
+            .nav-pill { top: 15px; right: 15px; font-size: 9px; padding: 8px 18px; }
+
             .pillar-grid { grid-template-columns: 1fr; }
-            .pillar-card.wide { grid-column: span 1; }
+            .pillar-card.wide, .pillar-card { grid-column: span 1; }
             .advantage-grid { grid-template-columns: 1fr; }
+            .manifesto-callout { font-size: 1.3rem; }
+            .blue-statement { padding: 30px 20px; font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
-    <a href="index" class="nav-pill"><i class="fas fa-chevron-left mr-2"></i> Return to Hub</a>
+    <a href="index" class="nav-pill" aria-label="Return to Homepage"><i class="fas fa-chevron-left mr-2"></i> Return to Hub</a>
 
     <div class="master-container">
         <aside class="sidebar">
-            <div class="w-32"><img src="Logoc.png" alt="Prominex" class="w-full invert"></div>
-            <div>
+            <div class="brand-block-centered">
+                <svg class="sovereign-svg" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M10 10C30 15 45 25 50 30C45 35 30 45 10 50C25 45 35 35 35 30C35 25 25 15 10 10Z" fill="white"/>
+                    <path d="M90 10C70 15 55 25 50 30C55 35 70 45 90 50C75 45 65 35 65 30C65 25 75 15 90 10Z" fill="white"/>
+                    <rect x="47" y="27" width="6" height="6" transform="rotate(45 50 30)" fill="#06b6d4"/>
+                </svg>
+                <div class="logo-text-group">
+                    <div class="logo-main">Prominex</div>
+                    <div class="logo-sub">Global</div>
+                    <div class="logo-slogan">Connect // Optimize // Grow</div>
+                </div>
+            </div>
+
+            <div class="headline-container">
                 <h1 class="brand-h1">
                     <span class="resilient-text">Resilient</span><br>
                     Supply Chain<br>
-                    <span class="delivered-text"> - Delivered.</span>
+                    <span class="delivered-text">Delivered.</span>
                 </h1>
-                <div class="engine-room">
+                
+                <div class="engine-room" aria-hidden="true">
                     <span class="engine-label">Operational Engine</span>
                     <div class="track">
                         <div class="glow-line"></div>
@@ -133,12 +148,9 @@
                         <span>Sourcing</span><span>Transit</span><span>Market</span>
                     </div>
                 </div>
-                <div class="flex items-center gap-6">
-                    <div class="currency-stage"><div class="currency-list"><div>$</div><div>€</div><div>₹</div><div>د.إ</div><div>£</div></div></div>
-                    <div class="text-[10px] font-black uppercase tracking-widest text-zinc-500">Seamless Global Trade</div>
-                </div>
             </div>
-            <div class="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-700">LDN // DXB // MUM // SGP // TOR</div>
+
+            <div class="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-700 pb-4">LDN // DXB // MUM // SGP // TOR</div>
         </aside>
 
         <main class="main-panel">
@@ -146,35 +158,35 @@
                 Prominex Global operates at the intersection of logistics, technology, and strategic sourcing. We eliminate the friction of international trade by controlling the variables that others outsource.
             </header>
 
-            <div class="blue-statement">
+            <article class="blue-statement">
                 "We bridge the gap between Tier-1 manufacturing base and strategic industrial requirements. By controlling the entire value chain—from factory-gate procurement to last-mile delivery—we eliminate middleman volatility."
-            </div>
+            </article>
 
             <section>
                 <span class="section-tag">01 // The Pillars</span>
                 <div class="pillar-grid">
                     <div class="pillar-card wide">
-                        <i class="fas fa-microchip"></i>
+                        <i class="fas fa-microchip" aria-hidden="true"></i>
                         <h5>Intelligence</h5>
                         <p>Direct engagement with audited manufacturers to bypass the Broker Layer.</p>
                     </div>
                     <div class="pillar-card wide">
-                        <i class="fas fa-microscope"></i>
+                        <i class="fas fa-microscope" aria-hidden="true"></i>
                         <h5>Proxy Engineering</h5>
                         <p>On-site oversight translating international ASTM/ISO standards into production.</p>
                     </div>
                     <div class="pillar-card">
-                        <i class="fas fa-anchor"></i>
+                        <i class="fas fa-anchor" aria-hidden="true"></i>
                         <h5>Maritime</h5>
                         <p>Direct carrier volume and corridor-specific risk management.</p>
                     </div>
                     <div class="pillar-card">
-                        <i class="fas fa-warehouse"></i>
+                        <i class="fas fa-warehouse" aria-hidden="true"></i>
                         <h5>Storage</h5>
                         <p>Integrated 3PL and bonded warehousing solutions for last-mile delivery.</p>
                     </div>
                     <div class="pillar-card">
-                        <i class="fas fa-gem"></i>
+                        <i class="fas fa-gem" aria-hidden="true"></i>
                         <h5>Verticals</h5>
                         <p>Specialized handling for critical mineral and packaging trade.</p>
                     </div>
@@ -185,24 +197,24 @@
                 <span class="section-tag">02 // Comparative Advantage</span>
                 <div class="advantage-grid">
                     <div class="adv-cell">
-                        <i class="fas fa-shield-halved"></i>
+                        <i class="fas fa-shield-halved" aria-hidden="true"></i>
                         <h4>Zero-Trust QC</h4>
                         <p>Proprietary 4-Gate Inspection Protocol ensuring compliance before any seal is applied.</p>
                     </div>
                     <div class="adv-cell">
-                        <i class="fas fa-link"></i>
+                        <i class="fas fa-link" aria-hidden="true"></i>
                         <h4>Sovereign 3PL</h4>
                         <p>Owned relationship from floor to floor, eliminating information black holes.</p>
                     </div>
                     <div class="adv-cell">
-                        <i class="fas fa-check-double"></i>
+                        <i class="fas fa-check-double" aria-hidden="true"></i>
                         <h4>Technical Audit</h4>
                         <p>Qualification based on MIL-SPEC and GMP standards rather than generic lists.</p>
                     </div>
                     <div class="adv-cell">
-                        <i class="fas fa-route"></i>
+                        <i class="fas fa-route" aria-hidden="true"></i>
                         <h4>Trade Corridors</h4>
-                        <p>Leveraging multilateral trade agreements to optimize global tariff structures.</p>
+                        <p>Leveraging multilateral trade agreements (CEPA) to optimize tariff structures.</p>
                     </div>
                 </div>
             </section>
