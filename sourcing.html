@@ -43,18 +43,9 @@
         .nav-home { right: 25px; }
         .nav-link:hover { color: #fff; background: #2563eb; transform: translateY(-2px); }
 
-        /* --- THE ANTI-CLIP HEADER --- */
-        .hero-container {
-            overflow: visible !important; /* Force browser to show clipped pixels */
-            padding-top: 40px; /* Room for the top of letters */
-        }
-        
-        h1 { 
-            line-height: 1.2 !important; /* Increased for safety */
-            letter-spacing: -0.02em; 
-            padding: 20px 0; /* Creates internal "safe zone" for tall letters */
-            display: block;
-        }
+        /* --- HERO --- */
+        .hero-container { overflow: visible !important; padding-top: 40px; }
+        h1 { line-height: 1.2 !important; letter-spacing: -0.02em; padding: 20px 0; display: block; }
 
         /* --- TILES --- */
         .glass-tile { 
@@ -64,29 +55,30 @@
             text-align: center; transition: all 0.4s ease;
         }
         .glass-tile:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(37, 99, 235, 0.1); }
-
         .icon-box {
             width: 80px; height: 80px; background: #f8fafc; margin: 0 auto 2rem;
             display: flex; align-items: center; justify-content: center;
             border-radius: 24px; color: #2563eb; font-size: 2rem; border: 1px solid #e2e8f0;
         }
-
         .label-blue { color: #2563eb; font-weight: 900; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.35em; margin-bottom: 0.75rem; display: block; }
 
-        /* --- THE ANTI-CLIP CTA --- */
-        .cta-box { overflow: visible !important; }
+        /* --- CTA BLOCK: FIXED WRAPPING & SCALE --- */
+        .cta-box { overflow: visible !important; width: 100%; }
         
         .btn-cta {
-            display: inline-block; background: #2563eb; color: #fff; 
-            padding: 24px 60px; border-radius: 9999px; font-weight: 900; 
-            text-transform: uppercase; font-size: 11px; letter-spacing: 0.3em;
-            transition: all 0.4s; box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
-            text-decoration: none;
-            /* CRITICAL FIXES */
-            line-height: 1.5; 
-            vertical-align: middle;
+            display: inline-flex; align-items: center; justify-content: center;
+            background: #2563eb; color: #fff; 
+            padding: 24px 40px; border-radius: 9999px; font-weight: 900; 
+            text-transform: uppercase; font-size: 12px; letter-spacing: 0.3em;
+            transition: all 0.4s; box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3);
+            text-decoration: none; text-align: center;
+            min-height: 70px; width: 100%; max-width: 400px;
         }
         .btn-cta:hover { background: #fff; color: #2563eb; transform: translateY(-3px); }
+
+        @media (min-width: 768px) {
+            .btn-cta { width: auto; padding: 24px 80px; font-size: 11px; }
+        }
 
         .copy-footer {
             padding: 60px 0; text-align: center; font-size: 10px; font-weight: 900;
@@ -108,7 +100,7 @@
         </a>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-8 py-24">
+    <main class="max-w-7xl mx-auto px-6 md:px-8 py-24">
         
         <div class="hero-container mb-24 text-center mt-12">
             <span class="label-blue">Strategic Asset Governance</span>
@@ -124,7 +116,7 @@
             <div class="glass-tile">
                 <div class="icon-box"><i class="fas fa-search-location"></i></div>
                 <span class="label-blue">Step 01</span>
-                <h3 class="text-2xl font-black uppercase mb-4 text-slate-900 tracking-tight">Sourcing & Discovery</h3>
+                <h3 class="text-2xl font-black uppercase mb-4 text-slate-900">Sourcing & Discovery</h3>
                 <ul class="space-y-2 text-sm text-slate-500 font-medium list-none p-0">
                     <li>Global Vertical Identification</li>
                     <li>Niche Capability Matching</li>
@@ -134,7 +126,7 @@
             <div class="glass-tile">
                 <div class="icon-box"><i class="fas fa-clipboard-check"></i></div>
                 <span class="label-blue">Step 02</span>
-                <h3 class="text-2xl font-black uppercase mb-4 text-slate-900 tracking-tight">Technical Auditing</h3>
+                <h3 class="text-2xl font-black uppercase mb-4 text-slate-900">Technical Auditing</h3>
                 <ul class="space-y-2 text-sm text-slate-500 font-medium list-none p-0">
                     <li>ISO Compliance Verification</li>
                     <li>Machine Capacity Checks</li>
@@ -144,7 +136,7 @@
             <div class="glass-tile">
                 <div class="icon-box"><i class="fas fa-user-plus"></i></div>
                 <span class="label-blue">Step 03</span>
-                <h3 class="text-2xl font-black uppercase mb-4 text-slate-900 tracking-tight">Onboarding Flow</h3>
+                <h3 class="text-2xl font-black uppercase mb-4 text-slate-900">Onboarding Flow</h3>
                 <ul class="space-y-2 text-sm text-slate-500 font-medium list-none p-0">
                     <li>Financial Scrutiny</li>
                     <li>Digital ERP Setup</li>
@@ -154,7 +146,7 @@
             <div class="glass-tile">
                 <div class="icon-box"><i class="fas fa-chart-line"></i></div>
                 <span class="label-blue">Step 04</span>
-                <h3 class="text-2xl font-black uppercase mb-4 text-slate-900 tracking-tight">KPI Governance</h3>
+                <h3 class="text-2xl font-black uppercase mb-4 text-slate-900">KPI Governance</h3>
                 <ul class="space-y-2 text-sm text-slate-500 font-medium list-none p-0">
                     <li>Delivery Benchmarking</li>
                     <li>Defect Rate Monitoring</li>
@@ -164,7 +156,7 @@
             <div class="glass-tile">
                 <div class="icon-box"><i class="fas fa-handshake"></i></div>
                 <span class="label-blue">Step 05</span>
-                <h3 class="text-2xl font-black uppercase mb-4 text-slate-900 tracking-tight">Partner Relations</h3>
+                <h3 class="text-2xl font-black uppercase mb-4 text-slate-900">Partner Relations</h3>
                 <ul class="space-y-2 text-sm text-slate-500 font-medium list-none p-0">
                     <li>Tiered Incentives</li>
                     <li>Dispute Frameworks</li>
@@ -174,7 +166,7 @@
             <div class="glass-tile">
                 <div class="icon-box"><i class="fas fa-sync-alt"></i></div>
                 <span class="label-blue">Step 06</span>
-                <h3 class="text-2xl font-black uppercase mb-4 text-slate-900 tracking-tight">Resilience Checks</h3>
+                <h3 class="text-2xl font-black uppercase mb-4 text-slate-900">Resilience Checks</h3>
                 <ul class="space-y-2 text-sm text-slate-500 font-medium list-none p-0">
                     <li>Failure Audit</li>
                     <li>Sourcing Redundancy</li>
@@ -184,11 +176,13 @@
         </div>
 
         <div class="mt-20 cta-box">
-            <div class="bg-slate-900 p-16 rounded-[40px] text-center shadow-2xl relative overflow-hidden">
+            <div class="bg-slate-900 p-10 md:p-16 rounded-[40px] text-center shadow-2xl relative overflow-hidden">
                 <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
-                <div class="relative z-10">
+                <div class="relative z-10 flex flex-col items-center">
                     <span class="text-blue-500 font-black uppercase text-[10px] tracking-[0.5em] mb-4 block">Final Execution Phase</span>
-                    <h2 class="text-4xl font-black uppercase mb-6 tracking-tighter text-white">Initialize Consultation</h2>
+                    <h2 class="text-3xl md:text-4xl font-black uppercase mb-6 tracking-tighter text-white leading-tight">
+                        Initialize Consultation
+                    </h2>
                     <p class="text-slate-400 mb-10 max-w-lg mx-auto font-light text-sm leading-relaxed">
                         Secure your global supply chain with audited execution frameworks and verified partner integrity.
                     </p>
