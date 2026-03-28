@@ -7,7 +7,7 @@
     <title>Contact | Prominex Global</title>
     <meta name="description" content="Contact Prominex Global for supply chain solutions, logistics, and industrial consultancy.">
     <link rel="canonical" href="https://prominexglobal.com/contact">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="icon" type="image/png" href="assets/favicon-new.PNG">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,18 +15,19 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
         
-        /* ORIGINAL CORE STYLES - UNTOUCHED */
         html, body { 
             height: 100vh; width: 100vw; margin: 0; padding: 0;
             overflow: hidden; background-color: #ffffff; 
             font-family: 'Inter', sans-serif; 
         }
 
+        /* UPDATED BACKGROUND LAYER */
         .bg-overlay {
             position: fixed; inset: 0;
             background-image: url('assets/contactpromp.webp');
             background-size: cover; background-position: center;
-            filter: grayscale(1) brightness(1.1) opacity(0.02);
+            /* Bumped opacity to 0.07 for subtle visibility */
+            filter: grayscale(1) brightness(1.05) opacity(0.07);
             z-index: -1;
         }
 
@@ -50,7 +51,7 @@
         .main-heading { line-height: 0.9; width: 100%; }
         .line-stack { display: flex; align-items: center; white-space: nowrap; width: 100%; }
         
-       .line-your { 
+        .line-your { 
             color: #EB0000; 
             font-weight: 300; 
             font-size: 0.7em; 
@@ -105,7 +106,6 @@
         select.input-field option { background: #0f172a; color: white; }
         .label-text { font-size: 10px; font-weight: 900; text-transform: uppercase; color: #e2e8f0; margin-bottom: 5px; display: block; letter-spacing: 0.1em; }
 
-        /* BUTTON BASE */
         .submit-btn {
             background: #3b82f6; color: white; padding: 16px; border-radius: 8px; font-weight: 900; 
             text-transform: uppercase; letter-spacing: 0.3em; font-size: 10px; width: 100%; cursor: pointer; 
@@ -113,8 +113,6 @@
             display: flex; align-items: center; justify-content: center; gap: 8px;
         }
         .submit-btn:hover { background: #2563eb; transform: translateY(-2px); }
-        
-        /* SUCCESS STATE CLASS */
         .submit-btn.success { background: #10b981 !important; pointer-events: none; }
 
         .footer-text { 
@@ -127,7 +125,7 @@
             letter-spacing: 0.05em;
         }
 
-        /* --- SURGICAL MOBILE OPTIMIZATION --- */
+        /* MOBILE OPTIMIZATION */
         @media (max-width: 1024px) {
             html, body { overflow-y: auto; height: auto; }
             body { padding: 20px !important; }
@@ -240,37 +238,30 @@
     </div>
 
     <script>
-        // FORM BUTTON LOGIC
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
         const btnText = document.getElementById('btnText');
 
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // 1. Loading state
             btnText.innerText = "TRANSMITTING...";
             submitBtn.style.opacity = "0.7";
             submitBtn.style.pointerEvents = "none";
 
-            // 2. Success state
             setTimeout(() => {
                 submitBtn.classList.add('success');
                 submitBtn.style.opacity = "1";
                 btnText.innerHTML = '<i class="fas fa-check"></i> TRANSMITTED';
                 
-                // 3. Reset back to original Blue/SEND after 3 seconds
                 setTimeout(() => {
                     submitBtn.classList.remove('success');
                     btnText.innerText = "SEND";
                     submitBtn.style.pointerEvents = "auto";
                     contactForm.reset();
                 }, 3000);
-
             }, 1500);
         });
 
-        // TEXT ROTATOR LOGIC
         const verbs = ["Engineer", "Refine", "Leverage", "Scale", "Optimize"];
         const verticals = ["Supply Chain.", "Procurement.", "Logistics.", "Fulfillment.", "Operations."];
         let i = 0;
