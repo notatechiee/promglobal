@@ -79,13 +79,21 @@
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
             text-decoration: none; text-align: center; padding: 25px;
+            
+            /* --- STABILIZERS --- */
             transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            backface-visibility: hidden; /* Prevents the 'shiver' */
+            -webkit-font-smoothing: subpixel-antialiased;
+            transform: translateZ(0); /* Forces GPU acceleration */
+            will-change: transform, box-shadow; /* Prepares browser for the move */
         }
 
         .sector-card:hover {
             background: rgba(30, 41, 59, 0.8);
             border-color: #3b82f6;
-            transform: scale(1.05) translateY(-5px); /* Gentle lift */
+            
+            /* Combined transform: simplified to prevent rounding jitters */
+            transform: scale(1.04) translateY(-4px); 
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
