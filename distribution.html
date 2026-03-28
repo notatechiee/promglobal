@@ -2,21 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
     <title>Logistics Management | Prominex Global</title>
+    <link rel="icon" type="image/png" href="assets/favicon-new.PNG">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
         
         html, body { 
-            margin: 0; padding: 0; min-height: 100vh; width: 100vw; 
+            margin: 0; padding: 0; min-height: 100svh; width: 100vw; 
             font-family: 'Inter', sans-serif; 
             background: #f1f5f9; color: #1e293b; 
             overflow-x: hidden; 
         }
 
-        /* --- AMBIENT LAYER --- */
         .ambient-glow {
             position: fixed; top: -10%; left: -5%;
             width: 900px; height: 900px;
@@ -24,61 +26,86 @@
             z-index: -1; filter: blur(120px);
         }
 
-        /* --- NAVIGATION --- */
+        /* --- NAVIGATION: PROMINEX DARK STYLE --- */
         .nav-link {
             position: fixed; top: 25px;
-            color: #475569; font-size: 10px; font-weight: 900; 
+            color: #3b82f6; font-size: 10px; font-weight: 900; 
             text-transform: uppercase; letter-spacing: 0.2em;
             text-decoration: none; z-index: 1000;
             padding: 14px 24px; border-radius: 50px;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            border: 1px solid #ffffff;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            background: #0f172a; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex; align-items: center;
-            cursor: pointer;
         }
         .nav-back { left: 25px; }
         .nav-home { right: 25px; }
-        .nav-link:hover { 
-            color: #fff; background: #2563eb; 
-            transform: translateY(-2px); border-color: #2563eb; 
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.15);
-        }
+        .nav-link:hover { color: #fff; background: #2563eb; transform: translateY(-2px); }
 
-        /* --- CENTERED TILES --- */
+        /* --- THE POPUP TILES --- */
         .glass-tile { 
             background: rgba(255, 255, 255, 0.94); 
-            backdrop-filter: blur(20px); 
-            border: 1px solid #ffffff; 
-            border-radius: 35px;
-            padding: 60px 40px; 
-            text-align: center;
-            display: flex; flex-direction: column;
+            backdrop-filter: blur(20px); border: 1px solid #ffffff; 
+            border-radius: 35px; padding: 60px 40px; 
+            text-align: center; display: flex; flex-direction: column;
             align-items: center; justify-content: center;
             box-shadow: 0 15px 40px rgba(15, 23, 42, 0.04);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
         }
         .glass-tile:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 30px 60px rgba(37, 99, 235, 0.1);
-            border-color: rgba(37, 99, 235, 0.3);
+            transform: translateY(-12px); 
+            box-shadow: 0 40px 80px rgba(37, 99, 235, 0.12);
+            border-color: rgba(37, 99, 235, 0.2);
         }
 
+        /* --- THE ICON POPUP --- */
         .icon-box {
-            width: 80px; height: 80px; background: #f8fafc; 
+            width: 80px; height: 80px; background: #f8fafc; margin: 0 auto 2rem;
             display: flex; align-items: center; justify-content: center;
-            border-radius: 24px; color: #2563eb; margin-bottom: 2rem;
-            font-size: 2rem; border: 1px solid #e2e8f0;
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.05);
-            transition: transform 0.3s ease;
+            border-radius: 24px; color: #2563eb; font-size: 2rem; border: 1px solid #e2e8f0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .glass-tile:hover .icon-box { transform: scale(1.1); }
+        .glass-tile:hover .icon-box { 
+            transform: scale(1.15) translateY(-8px); 
+            background: #fff;
+            color: #2563eb;
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.1);
+        }
 
         .label-blue { color: #2563eb; font-weight: 900; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.35em; margin-bottom: 0.75rem; display: block; }
-        h1 { line-height: 0.85; letter-spacing: -0.05em; }
-        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* NO-CLIP HERO */
+        .hero-container { overflow: visible !important; padding-top: 40px; }
+        h1 { line-height: 1.1 !important; letter-spacing: -0.04em; padding: 20px 0; display: block; }
+
+        /* --- JITTER-FREE CTA --- */
+        .btn-cta {
+            display: inline-flex; align-items: center; justify-content: center;
+            background: #2563eb; color: #fff; 
+            padding: 24px 40px; border-radius: 9999px; font-weight: 900; 
+            text-transform: uppercase; font-size: 12px; letter-spacing: 0.3em;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            will-change: transform;
+            backface-visibility: hidden;
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3);
+            text-decoration: none; text-align: center;
+            min-height: 70px; width: 100%; max-width: 400px;
+        }
+        .btn-cta:hover { 
+            background: #fff; color: #2563eb; 
+            transform: scale(1.05) translateY(-2px); 
+            box-shadow: 0 25px 50px rgba(37, 99, 235, 0.4);
+        }
+
+        @media (min-width: 768px) { .btn-cta { width: auto; padding: 24px 80px; font-size: 11px; } }
+
+        .copy-footer {
+            padding: 60px 0; text-align: center; font-size: 10px; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 0.4em;
+            color: rgba(30, 41, 59, 0.4); text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+        }
     </style>
 </head>
 <body>
@@ -87,19 +114,21 @@
 
     <nav>
         <a href="index.html?menu=open" class="nav-link nav-back">
-            <i class="fas fa-th-large mr-2 text-[12px]"></i> Service Menu
+            <i class="fas fa-th-large mr-3 text-[12px]"></i> Service Menu
         </a>
         <a href="index.html" class="nav-link nav-home">
-            Home <i class="fas fa-home ml-2 text-[12px]"></i>
+            Home <i class="fas fa-home ml-3 text-[12px]"></i>
         </a>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-8 py-24">
+    <main class="max-w-7xl mx-auto px-6 md:px-8 py-24">
         
-        <div class="mb-24 text-center">
+        <div class="hero-container mb-24 text-center mt-12">
             <span class="label-blue">Distribution Performance Layer</span>
-            <h1 class="text-8xl font-black uppercase text-slate-900 mb-8">Logistics <br>Management</h1>
-            <p class="text-2xl text-slate-500 font-light max-w-3xl mx-auto leading-relaxed">
+            <h1 class="text-6xl md:text-8xl font-black uppercase text-slate-900 mb-8">
+                Logistics <br>Management
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-500 font-light max-w-3xl mx-auto leading-relaxed">
                 Optimizing inventory placement and last-mile distribution to ensure your supply chain achieves maximum throughput.
             </p>
         </div>
@@ -110,7 +139,7 @@
                 <div class="icon-box"><i class="fas fa-boxes"></i></div>
                 <span class="label-blue">Step 01</span>
                 <h3 class="text-2xl font-black uppercase mb-4 text-slate-900 tracking-tight">Inventory Velocity</h3>
-                <ul class="space-y-2 text-sm text-slate-500 font-medium">
+                <ul class="space-y-2 text-sm text-slate-500 font-medium list-none p-0">
                     <li>SKU-Level Stock Auditing</li>
                     <li>JIT (Just-in-Time) Flow Sync</li>
                     <li>Obsolete Stock Mitigation</li>
@@ -121,7 +150,7 @@
                 <div class="icon-box"><i class="fas fa-warehouse"></i></div>
                 <span class="label-blue">Step 02</span>
                 <h3 class="text-2xl font-black uppercase mb-4 text-slate-900 tracking-tight">Node Strategy</h3>
-                <ul class="space-y-2 text-sm text-slate-500 font-medium">
+                <ul class="space-y-2 text-sm text-slate-500 font-medium list-none p-0">
                     <li>Regional Warehouse Allocation</li>
                     <li>Cross-Docking Optimization</li>
                     <li>Scalable Storage Solutions</li>
@@ -132,7 +161,7 @@
                 <div class="icon-box"><i class="fas fa-shipping-fast"></i></div>
                 <span class="label-blue">Step 03</span>
                 <h3 class="text-2xl font-black uppercase mb-4 text-slate-900 tracking-tight">Last-Mile Control</h3>
-                <ul class="space-y-2 text-sm text-slate-500 font-medium">
+                <ul class="space-y-2 text-sm text-slate-500 font-medium list-none p-0">
                     <li>Carrier Route Optimization</li>
                     <li>Receiving Window Management</li>
                     <li>Real-Time Delivery Audits</li>
@@ -143,7 +172,7 @@
                 <div class="icon-box"><i class="fas fa-barcode"></i></div>
                 <span class="label-blue">Step 04</span>
                 <h3 class="text-2xl font-black uppercase mb-4 text-slate-900 tracking-tight">Digital Custody</h3>
-                <ul class="space-y-2 text-sm text-slate-500 font-medium">
+                <ul class="space-y-2 text-sm text-slate-500 font-medium list-none p-0">
                     <li>Cloud-Based WMS Sync</li>
                     <li>Lot & Serial Tracking</li>
                     <li>Digital Proof-of-Crating</li>
@@ -154,7 +183,7 @@
                 <div class="icon-box"><i class="fas fa-hand-holding-heart"></i></div>
                 <span class="label-blue">Step 05</span>
                 <h3 class="text-2xl font-black uppercase mb-4 text-slate-900 tracking-tight">Reverse Logistics</h3>
-                <ul class="space-y-2 text-sm text-slate-500 font-medium">
+                <ul class="space-y-2 text-sm text-slate-500 font-medium list-none p-0">
                     <li>RMA Flow Management</li>
                     <li>Refurbishment Redirection</li>
                     <li>Salvage Value Optimization</li>
@@ -165,7 +194,7 @@
                 <div class="icon-box"><i class="fas fa-shield-virus"></i></div>
                 <span class="label-blue">Step 06</span>
                 <h3 class="text-2xl font-black uppercase mb-4 text-slate-900 tracking-tight">Asset Protection</h3>
-                <ul class="space-y-2 text-sm text-slate-500 font-medium">
+                <ul class="space-y-2 text-sm text-slate-500 font-medium list-none p-0">
                     <li>Industrial Security Audits</li>
                     <li>Damage Prevention Handling</li>
                     <li>Environment Stability Monitoring</li>
@@ -175,21 +204,26 @@
         </div>
 
         <div class="mt-20">
-            <div class="bg-slate-900 p-16 rounded-[40px] text-center shadow-2xl relative overflow-hidden">
+            <div class="bg-slate-900 p-10 md:p-16 rounded-[40px] text-center shadow-2xl relative overflow-hidden">
                 <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
-                <div class="relative z-10">
+                <div class="relative z-10 flex flex-col items-center">
                     <span class="text-blue-500 font-black uppercase text-[10px] tracking-[0.5em] mb-4 block">Final Execution Phase</span>
-                    <h2 class="text-4xl font-black uppercase mb-4 tracking-tighter text-white">Initialize Consultation</h2>
+                    <h2 class="text-3xl md:text-4xl font-black uppercase mb-6 tracking-tighter text-white leading-tight">
+                        Initialize Consultation
+                    </h2>
                     <p class="text-slate-400 mb-10 max-w-lg mx-auto font-light text-sm leading-relaxed">
                         Secure your global supply chain with audited execution frameworks and high-velocity distribution.
                     </p>
-                    <a href="contact.html" class="inline-block bg-blue-600 text-white px-16 py-6 rounded-full font-black uppercase text-[11px] tracking-[0.3em] hover:bg-white hover:text-blue-600 transition-all transform hover:scale-105 shadow-xl">
+                    <a href="contact.html" class="btn-cta">
                         Request a Quote
                     </a>
                 </div>
-                <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-blue-600/20 filter blur-[80px] rounded-full"></div>
             </div>
         </div>
+
+        <footer class="copy-footer">
+            © 2026 Prominex Global // Strategic Supply Chain Solutions
+        </footer>
 
     </main>
 </body>
