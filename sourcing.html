@@ -36,45 +36,64 @@
             background: #0f172a; 
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex; align-items: center;
         }
         .nav-back { left: 25px; }
         .nav-home { right: 25px; }
         .nav-link:hover { color: #fff; background: #2563eb; transform: translateY(-2px); }
 
-        /* --- HERO --- */
-        .hero-container { overflow: visible !important; padding-top: 40px; }
-        h1 { line-height: 1.2 !important; letter-spacing: -0.02em; padding: 20px 0; display: block; }
-
-        /* --- TILES --- */
+        /* --- THE POPUP TILES --- */
         .glass-tile { 
             background: rgba(255, 255, 255, 0.94); 
             backdrop-filter: blur(20px); border: 1px solid #ffffff; 
             border-radius: 35px; padding: 60px 40px; 
-            text-align: center; transition: all 0.4s ease;
+            text-align: center; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            box-shadow: 0 15px 40px rgba(15, 23, 42, 0.04);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
         }
-        .glass-tile:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(37, 99, 235, 0.1); }
+        .glass-tile:hover { 
+            transform: translateY(-12px); 
+            box-shadow: 0 40px 80px rgba(37, 99, 235, 0.12);
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        /* --- THE ICON POPUP --- */
         .icon-box {
             width: 80px; height: 80px; background: #f8fafc; margin: 0 auto 2rem;
             display: flex; align-items: center; justify-content: center;
             border-radius: 24px; color: #2563eb; font-size: 2rem; border: 1px solid #e2e8f0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+        /* Bounce icon when tile is hovered */
+        .glass-tile:hover .icon-box { 
+            transform: scale(1.15) translateY(-8px); 
+            background: #fff;
+            color: #2563eb;
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.1);
+        }
+
         .label-blue { color: #2563eb; font-weight: 900; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.35em; margin-bottom: 0.75rem; display: block; }
 
-        /* --- CTA BLOCK: FIXED WRAPPING & SCALE --- */
+        /* NO-CLIP HERO */
+        .hero-container { overflow: visible !important; padding-top: 40px; }
+        h1 { line-height: 1.2 !important; letter-spacing: -0.02em; padding: 20px 0; display: block; }
+
+        /* NO-CLIP CTA */
         .cta-box { overflow: visible !important; width: 100%; }
-        
         .btn-cta {
             display: inline-flex; align-items: center; justify-content: center;
             background: #2563eb; color: #fff; 
             padding: 24px 40px; border-radius: 9999px; font-weight: 900; 
             text-transform: uppercase; font-size: 12px; letter-spacing: 0.3em;
-            transition: all 0.4s; box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3);
             text-decoration: none; text-align: center;
             min-height: 70px; width: 100%; max-width: 400px;
         }
-        .btn-cta:hover { background: #fff; color: #2563eb; transform: translateY(-3px); }
+        .btn-cta:hover { background: #fff; color: #2563eb; transform: scale(1.05) translateY(-3px); }
 
         @media (min-width: 768px) {
             .btn-cta { width: auto; padding: 24px 80px; font-size: 11px; }
@@ -175,7 +194,7 @@
             </div>
         </div>
 
-        <div class="mt-20 cta-box">
+        <div class="mt-20">
             <div class="bg-slate-900 p-10 md:p-16 rounded-[40px] text-center shadow-2xl relative overflow-hidden">
                 <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
                 <div class="relative z-10 flex flex-col items-center">
