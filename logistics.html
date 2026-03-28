@@ -82,18 +82,33 @@
         .hero-container { overflow: visible !important; padding-top: 40px; }
         h1 { line-height: 1.2 !important; letter-spacing: -0.02em; padding: 20px 0; display: block; }
 
-        /* NO-CLIP CTA */
-        .btn-cta {
-            display: inline-flex; align-items: center; justify-content: center;
-            background: #2563eb; color: #fff; 
-            padding: 24px 40px; border-radius: 9999px; font-weight: 900; 
-            text-transform: uppercase; font-size: 12px; letter-spacing: 0.3em;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3);
-            text-decoration: none; text-align: center;
-            min-height: 70px; width: 100%; max-width: 400px;
-        }
-        .btn-cta:hover { background: #fff; color: #2563eb; transform: scale(1.05) translateY(-3px); }
+       /* --- CTA BLOCK: JITTER-FREE VERSION --- */
+.cta-box { overflow: visible !important; width: 100%; }
+
+.btn-cta {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #2563eb; color: #fff; 
+    padding: 24px 40px; border-radius: 9999px; font-weight: 900; 
+    text-transform: uppercase; font-size: 12px; letter-spacing: 0.3em;
+    
+    /* THE ANTI-JITTER KIT */
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    transform-origin: center center;
+    
+    box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3);
+    text-decoration: none; text-align: center;
+    min-height: 70px; width: 100%; max-width: 400px;
+}
+
+.btn-cta:hover { 
+    background: #fff; 
+    color: #2563eb; 
+    transform: scale(1.05) translateY(-2px); /* Reduced Y-axis shift to prevent ground-collision jitter */
+    box-shadow: 0 25px 50px rgba(37, 99, 235, 0.4);
+}
 
         @media (min-width: 768px) {
             .btn-cta { width: auto; padding: 24px 80px; font-size: 11px; }
