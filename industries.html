@@ -1,220 +1,146 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Industry Sectors | Prominex Global</title>
-
+    <link rel="icon" type="image/png" href="assets/favicon-new.PNG">
     <script src="https://cdn.tailwindcss.com"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap');
-
         
+        /* 1. THE BASEMENT (Darkness) */
+        html {
+            background-color: #000;
+        }
 
-        html, body { 
-
+        body { 
             height: 100vh; width: 100vw; margin: 0; 
-
             overflow: hidden; font-family: 'Inter', sans-serif;
-
             display: flex; align-items: center; justify-content: center;
-
-            background: #000;
-
+            background: transparent; /* Must be transparent for image to show */
         }
 
-
-        .bg-overlay {
-
-            position: fixed; inset: 0;
-
+        /* 2. THE BACKGROUND IMAGE LAYER */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
             background-image: url('assets/contactpromp.webp');
-
-            background-size: cover; background-position: center;
-
-            filter: brightness(0.25) contrast(1.1) blur(2px);
-
-            z-index: 1; /* Changed to positive */
-
+            background-size: cover;
+            background-position: center;
+            /* We use opacity here instead of filter for better performance */
+            opacity: 0.25; 
+            filter: grayscale(0.5) blur(1px);
+            z-index: -1;
+            pointer-events: none;
         }
 
-
-        
-
-
-        /* --- FIXED NAVIGATION --- */
-
+        /* --- NAVIGATION --- */
         .nav-home {
-
-            position: absolute; top: 50px; left: 45px;
-
-            color: #fff; font-size: 13px; /* Increased for consistency with Contact page */
-
+            position: absolute; top: 40px; left: 50px;
+            color: #fff; font-size: 11px;
             font-weight: 900; text-transform: uppercase; 
-
-            letter-spacing: 0.5em;
-
+            letter-spacing: 0.4em;
             text-decoration: none; 
-
-            border-bottom: 2px solid rgba(255,255,255,0.4);
-
-            padding-bottom: 5px;
-
-            z-index: 1000; /* Force to the very top */
-
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-            display: flex; align-items: center;
-
+            z-index: 1000;
+            transition: all 0.4s ease;
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
         }
-
 
         .nav-home:hover { 
-
-            color: #3b82f6; 
-
-            border-color: #3b82f6; 
-
-            letter-spacing: 0.6em;
-
-            transform: translateX(8px);
-
+            background: #3b82f6;
+            color: #fff; 
+            transform: translateX(5px);
         }
 
-
+        /* --- OPTIMIZED GRID --- */
         .grid-container {
-
             display: grid;
-
-            grid-template-columns: repeat(2, 280px);
-
-            grid-template-rows: repeat(2, 280px);
-
+            /* Reduced size so it doesn't hit the top on laptops */
+            grid-template-columns: repeat(2, 250px);
+            grid-template-rows: repeat(2, 250px);
             gap: 25px;
-
             z-index: 10;
-
-            position: relative; /* Ensure it respects z-index */
-
+            position: relative;
         }
-
 
         .sector-card {
-
-            background: rgba(255, 255, 255, 0.05);
-
+            background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(15px);
-
-            border: 1px solid rgba(255, 255, 255, 0.15);
-
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 40px;
-
             display: flex; flex-direction: column;
-
             align-items: center; justify-content: center;
-
-            text-decoration: none; text-align: center; padding: 30px;
-
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
+            text-decoration: none; text-align: center; padding: 25px;
+            transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
         }
-
 
         .sector-card:hover {
-
-            background: rgba(37, 99, 235, 0.15);
-
+            background: rgba(30, 41, 59, 0.8);
             border-color: #3b82f6;
-
-            transform: scale(1.08) translateY(-10px);
-
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-
+            transform: scale(1.05) translateY(-5px); /* Gentle lift */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
-
 
         .icon-box {
-
-            font-size: 3.5rem; color: #3b82f6; margin-bottom: 20px;
-
-            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
-
-            transition: color 0.3s ease;
-
+            font-size: 3rem; color: #3b82f6; margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.4));
+            transition: all 0.3s ease;
         }
 
-
-        .sector-card:hover .icon-box { color: #fff; }
-
+        .sector-card:hover .icon-box { color: #fff; transform: scale(1.1); }
 
         .title-text {
-
             font-weight: 900; text-transform: uppercase;
-
-            letter-spacing: 0.1em; font-size: 12px;
-
+            letter-spacing: 0.15em; font-size: 11px;
             color: #fff; line-height: 1.4;
-
         }
 
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            html, body { overflow-y: auto; height: auto; padding: 100px 20px 40px; }
+            .grid-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                width: 100%;
+                max-width: 300px;
+            }
+            .nav-home { top: 25px; left: 20px; font-size: 9px; }
+            .sector-card { height: 250px; }
+        }
     </style>
-
 </head>
-
 <body>
 
-    <div class="bg-overlay"></div>
-
-    
-
-    <a href="index.html?menu=open" class="nav-home">← Network Hub</a>
-
+    <a href="index.html?menu=open" class="nav-home">
+        <i class="fas fa-arrow-left"></i> Network Hub
+    </a>
 
     <div class="grid-container">
-
         <a href="industry-detail.html?cat=foodservice" class="sector-card">
-
             <i class="fas fa-boxes-packing icon-box"></i>
-
             <span class="title-text">Foodservice & <br>Packaging</span>
-
         </a>
-
         <a href="industry-detail.html?cat=patientcare" class="sector-card">
-
             <i class="fas fa-hand-holding-medical icon-box"></i>
-
             <span class="title-text">Patient Care & <br>Sterile Supply</span>
-
         </a>
-
         <a href="industry-detail.html?cat=precision" class="sector-card">
-
             <i class="fas fa-microchip icon-box"></i>
-
             <span class="title-text">Precision <br>Components</span>
-
         </a>
-
         <a href="industry-detail.html?cat=chemicals" class="sector-card">
-
             <i class="fas fa-flask-vial icon-box"></i>
-
             <span class="title-text">Specialty <br>Chemicals</span>
-
         </a>
-
     </div>
 
 </body>
-
-</html> 
+</html>
