@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
     <title>Technical Detail | Prominex Global</title>
-    <meta name="description" content="Explore technical specifications, compliance standards, and material frameworks for Prominex Global industry sectors.">
-    <meta name="robots" content="index, follow">
+    <meta name="description" content="Explore technical specifications and compliance standards for Prominex Global industry sectors.">
     <link rel="icon" type="image/png" href="assets/favicon-new.PNG">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,12 +17,11 @@
         html, body { 
             margin: 0; padding: 0; min-height: 100vh; width: 100vw; 
             font-family: 'Inter', sans-serif; 
-            background: #f1f5f9; /* Keeping your clean light background */
+            background: #f1f5f9; 
             color: #1e293b; 
             overflow-x: hidden; 
         }
 
-        /* --- AMBIENT LAYER --- */
         .ambient-glow {
             position: fixed; top: 0; right: -5%;
             width: 800px; height: 800px;
@@ -31,17 +29,18 @@
             z-index: -1; filter: blur(80px);
         }
 
-        /* --- UPDATED PILL NAVIGATION (Matching Logistics/Services) --- */
+        /* --- PROMINEX DARK PILL NAVIGATION --- */
         .nav-link {
             position: fixed; top: 25px;
-            color: #475569; font-size: 10px; font-weight: 900; 
-            text-transform: uppercase; letter-spacing: 0.25em;
+            /* High contrast: White text on Dark Slate */
+            color: #ffffff; 
+            font-size: 10px; font-weight: 900; 
+            text-transform: uppercase; letter-spacing: 0.3em;
             text-decoration: none; z-index: 1000;
-            padding: 12px 24px; border-radius: 50px;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 1);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 14px 28px; border-radius: 50px;
+            background: #0f172a; /* Prominex Deep Dark */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex; align-items: center;
             backface-visibility: hidden; transform: translateZ(0);
@@ -51,21 +50,21 @@
         .nav-home { right: 40px; }
 
         .nav-link:hover { 
-            color: #fff; background: #2563eb; 
-            border-color: #2563eb; transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.25);
+            background: #2563eb; /* Prominex Blue */
+            border-color: #3b82f6;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3);
         }
 
         /* --- GLASS CARD --- */
         .glass-card { 
-            background: rgba(255, 255, 255, 0.94); 
-            backdrop-filter: blur(25px); 
+            background: rgba(255, 255, 255, 0.96); 
+            backdrop-filter: blur(20px); 
             border: 1px solid #ffffff; 
             border-radius: 40px;
-            padding: 70px 80px; 
-            margin-top: 100px;
-            box-shadow: 0 40px 100px rgba(15, 23, 42, 0.06);
-            will-change: transform;
+            padding: 80px; 
+            margin-top: 110px; /* Extra room for the dark buttons */
+            box-shadow: 0 40px 100px rgba(15, 23, 42, 0.05);
         }
 
         .label-blue { color: #2563eb; font-weight: 900; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.4em; margin-bottom: 0.6rem; display: block; }
@@ -73,13 +72,12 @@
 
         /* --- MOBILE REFINEMENT --- */
         @media (max-width: 1024px) {
-            .nav-link { top: 15px; font-size: 8px; padding: 10px 16px; letter-spacing: 0.15em; }
+            .nav-link { top: 15px; font-size: 8px; padding: 12px 20px; letter-spacing: 0.15em; }
             .nav-back { left: 15px; } 
             .nav-home { right: 15px; }
-            .glass-card { padding: 40px 25px; margin-top: 80px; border-radius: 30px; }
+            .glass-card { padding: 40px 25px; margin-top: 90px; border-radius: 30px; }
             h1 { font-size: 2.8rem !important; }
             .grid { gap: 40px !important; }
-            .nav-link i { font-size: 10px; }
         }
     </style>
 </head>
@@ -88,13 +86,13 @@
     <div class="ambient-glow"></div>
 
     <a href="industries.html" class="nav-link nav-back">
-        <i class="fas fa-chevron-left mr-2"></i> Sectors
+        <i class="fas fa-arrow-left mr-3"></i> Sectors
     </a>
     <a href="index.html" class="nav-link nav-home">
-        Home <i class="fas fa-home ml-2"></i>
+        Hub <i class="fas fa-network-wired ml-3"></i>
     </a>
 
-    <div id="content-area" class="max-w-7xl mx-auto px-6 pb-12"></div>
+    <div id="content-area" class="max-w-7xl mx-auto px-6 pb-20"></div>
 
     <script>
         const data = {
@@ -178,7 +176,7 @@
                 <div class="bg-slate-900 p-12 rounded-[40px] text-center shadow-2xl relative overflow-hidden group">
                     <h2 class="text-3xl font-black uppercase mb-4 tracking-tighter text-white">Initialize Consultation</h2>
                     <p class="text-slate-400 mb-8 max-w-lg mx-auto font-light">Secure your global supply chain with audited execution frameworks.</p>
-                    <a href="contact.html" class="inline-block bg-blue-600 text-white px-14 py-5 rounded-full font-black uppercase text-xs tracking-[0.3em] hover:bg-white hover:text-blue-600 transition-all transform hover:scale-105 backface-hidden">
+                    <a href="contact.html" class="inline-block bg-blue-600 text-white px-14 py-5 rounded-full font-black uppercase text-xs tracking-[0.3em] hover:bg-white hover:text-blue-600 transition-all transform hover:scale-105">
                         Request a Quote
                     </a>
                 </div>
