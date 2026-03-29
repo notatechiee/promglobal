@@ -2,114 +2,143 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Detail | Prominex Global</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <title>Technical Specifications | Prominex Global</title>
+    <meta name="description" content="Detailed technical specifications and compliance frameworks for Prominex Global industrial sectors.">
+    <link rel="canonical" href="https://prominexglobal.com/industry-detail">
+    
+    <link rel="icon" type="image/png" href="assets/favicon-new.PNG">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
         
         html, body { 
             margin: 0; padding: 0; min-height: 100vh; width: 100vw; 
             font-family: 'Inter', sans-serif; 
-            background: #f1f5f9; 
-            color: #1e293b; 
+            background-color: #0f172a; 
+            color: #f8fafc; 
             overflow-x: hidden; 
         }
 
-        /* --- AMBIENT LAYER --- */
-        .ambient-glow {
-            position: fixed; top: 0; right: -5%;
-            width: 800px; height: 800px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(241, 245, 249, 0) 70%);
-            z-index: -1; filter: blur(80px);
+        /* SIGNATURE GHOST BACKGROUND */
+        body::before {
+            content: "";
+            position: fixed; inset: 0;
+            background-image: url('assets/contactpromp.webp');
+            background-size: cover; background-position: center;
+            opacity: 0.12; filter: grayscale(1);
+            z-index: -1;
         }
 
-        /* --- TOP PILL NAVIGATION --- */
+        /* --- STABILIZED NAVIGATION --- */
         .nav-link {
             position: fixed; top: 25px;
-            color: #475569; font-size: 10px; font-weight: 900; 
-            text-transform: uppercase; letter-spacing: 0.2em;
+            color: #fff; font-size: 10px; font-weight: 900; 
+            text-transform: uppercase; letter-spacing: 0.25em;
             text-decoration: none; z-index: 1000;
-            padding: 12px 20px; border-radius: 50px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 1);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 14px 24px; border-radius: 50px;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
             display: flex; align-items: center;
+            backface-visibility: hidden; transform: translateZ(0);
         }
-
-        .nav-back { left: 20px; }
-        .nav-home { right: 20px; }
+        .nav-back { left: 40px; }
+        .nav-home { right: 40px; }
 
         .nav-link:hover { 
-            color: #fff; background: #2563eb; 
-            border-color: #2563eb; transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.25);
+            background: #3b82f6; border-color: #3b82f6; 
+            transform: translateY(-2px);
         }
 
-        /* --- GLASS CARD --- */
+        /* --- CONTENT WRAPPER --- */
         .glass-card { 
-            background: rgba(255, 255, 255, 0.94); 
+            background: rgba(15, 23, 42, 0.85); 
             backdrop-filter: blur(25px); 
-            border: 1px solid #ffffff; 
-            border-radius: 40px;
-            padding: 70px 80px; 
-            margin-top: 90px; /* Space for the top buttons */
-            box-shadow: 0 40px 100px rgba(15, 23, 42, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            border-radius: 48px;
+            padding: 80px; 
+            margin-top: 100px;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
+            will-change: transform;
         }
 
-        .label-blue { color: #2563eb; font-weight: 900; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.4em; margin-bottom: 0.6rem; display: block; }
-        .spec-row { border-top: 1px solid rgba(0,0,0,0.06); padding-top: 2rem; transition: 0.3s; }
+        .label-blue { color: #3b82f6; font-weight: 900; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.4em; margin-bottom: 0.8rem; display: block; }
+        .spec-row { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 2.5rem; transition: 0.3s; }
+        
+        .framework-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 40px; border-radius: 32px;
+        }
+
+        /* --- MOBILE REFINEMENT --- */
+        @media (max-width: 1024px) {
+            body { overflow-y: auto; }
+            .nav-link { top: 15px; font-size: 8px; padding: 10px 16px; letter-spacing: 0.15em; }
+            .nav-back { left: 15px; } 
+            .nav-home { right: 15px; }
+            .glass-card { 
+                padding: 40px 25px; 
+                margin-top: 80px; 
+                border-radius: 30px; 
+            }
+            h1 { font-size: 2.5rem !important; }
+            .framework-box { padding: 25px; }
+            .grid { gap: 40px !important; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="ambient-glow"></div>
+    <a href="industries.html" class="nav-link nav-back"><i class="fas fa-chevron-left mr-2"></i> Sectors</a>
+    <a href="index.html" class="nav-link nav-home">Network Hub <i class="fas fa-home ml-2"></i></a>
 
-    <a href="industries.html" class="nav-link nav-back"><i class="fas fa-chevron-left mr-2"></i> All Industries</a>
-    <a href="index.html" class="nav-link nav-home">Home <i class="fas fa-home ml-2"></i></a>
-
-    <div id="content-area" class="max-w-7xl mx-auto px-8 pb-12"></div>
+    <div id="content-area" class="max-w-7xl mx-auto px-6 pb-20"></div>
 
     <script>
         const data = {
             foodservice: {
                 title: "Foodservice & <br>Packaging",
-                overview: "Operational management of high-velocity consumable portfolios. We specialize in large-scale procurement and SKU consolidation.",
+                overview: "High-velocity consumable portfolios. We integrate production buffers with real-time transit milestones to ensure zero-gap availability.",
                 segments: "Fiber-Based (Molded pulp), Polymer-Based (PP/PET), Flexible Barriers",
-                specs: "Thermal Range: -40°C to 120°C | Rim Integrity: Double-wall",
+                specs: "Thermal Range: -40°C to 120°C | Rim Integrity: Double-wall Reinforced",
                 materials: "Virgin/PCR Fiber, RPET, Biopolymers (PLA)",
                 compliance: "BRCGS Global, SQF Level 3, ISO 9001:2015, HACCP",
-                note: "Single-point accountability integrating production buffers with real-time transit milestones."
+                note: "Single-point accountability for large-scale SKU consolidation."
             },
             patientcare: { 
                 title: "Patient Care & <br>Sterile Supply", 
-                overview: "Class I and II medical consumables management.", 
+                overview: "Class I and II medical consumables. Predictable execution through audited multi-site redundancy and strictly verified sterilization protocols.", 
                 segments: "Nitrile Barriers, Surgical Textiles, Aseptic Systems", 
                 specs: "AAMI PB70 Level 1–4 | Sterilization: EtO, Gamma", 
                 materials: "Synthetic Elastomers, SMS Non-wovens", 
-                compliance: "FDA 510(k), ISO 13485:2016", 
-                note: "Predictable execution through audited multi-site redundancy." 
+                compliance: "FDA 510(k), ISO 13485:2016 Certified", 
+                note: "Medical-grade sourcing with complete batch traceability." 
             },
             precision: { 
                 title: "Precision <br>Components", 
-                overview: "High-tolerance engineered parts sourcing.", 
+                overview: "High-tolerance engineered parts. Our on-site Quality Engineers provide verified data packets for mission-critical industrial assemblies.", 
                 segments: "5-axis CNC, Die-casting, Injection Molding", 
-                specs: "Precision: ±0.002mm | Finish: Ra 0.4 mirror", 
+                specs: "Precision: ±0.002mm | Finish: Ra 0.4 mirror-grade", 
                 materials: "Aluminum 7000, 316 Stainless, Titanium, PEEK", 
                 compliance: "IATF 16949, AS9100, RoHS 3", 
-                note: "On-site Quality Engineers provide verified data packets." 
+                note: "Technical sourcing managed via automated QA gates." 
             },
             chemicals: { 
                 title: "Specialty <br>Chemicals", 
-                overview: "Strategic sourcing of industrial chemical formulations.", 
+                overview: "Strategic sourcing of high-purity industrial chemical formulations. We manage the entire regulatory chain and documentation cycle.", 
                 segments: "Additives, Intermediates, Surfactants, Biocides", 
                 specs: "Purity: PPB/PPM analysis | Moisture: Max 50ppm", 
                 materials: "Inorganic Catalysts, Esters, Organometallics", 
                 compliance: "GHS-SDS, IMDG/IATA DG, ISO 14001", 
-                note: "Management of entire regulatory chain with CoA documentation." 
+                note: "Global chemical compliance with integrated CoA logistics." 
             }
         };
 
@@ -121,42 +150,42 @@
             <div class="glass-card">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
                     <div>
-                        <h1 class="text-6xl font-black uppercase mb-8 tracking-tighter text-slate-900 leading-none">${item.title}</h1>
-                        <p class="text-xl text-slate-500 leading-relaxed font-light mb-10">${item.overview}</p>
+                        <h1 class="text-6xl font-black uppercase mb-8 tracking-tighter text-white leading-none">${item.title}</h1>
+                        <p class="text-xl text-slate-400 leading-relaxed font-light mb-12">${item.overview}</p>
                         
-                        <div class="bg-blue-50 border border-blue-100 p-8 rounded-[30px] shadow-sm">
-                            <p class="text-[9px] font-black uppercase tracking-[0.4em] mb-4 text-blue-600">Prominex Framework</p>
-                            <p class="text-xl italic font-medium leading-relaxed text-slate-800">"${item.note}"</p>
+                        <div class="framework-box">
+                            <p class="text-[9px] font-black uppercase tracking-[0.4em] mb-4 text-blue-500">Prominex Framework</p>
+                            <p class="text-xl italic font-medium leading-relaxed text-slate-200">"${item.note}"</p>
                         </div>
                     </div>
 
-                    <div class="space-y-10">
+                    <div class="space-y-12">
                         <div class="spec-row">
-                            <span class="label-blue">Product Segments</span>
-                            <p class="text-xl font-bold tracking-tight text-slate-900">${item.segments}</p>
+                            <span class="label-blue">Core Segments</span>
+                            <p class="text-2xl font-bold tracking-tight text-white">${item.segments}</p>
                         </div>
                         <div class="spec-row">
                             <span class="label-blue">Technical Specs</span>
-                            <p class="text-lg text-slate-600 font-medium">${item.specs}</p>
+                            <p class="text-lg text-slate-300 font-medium">${item.specs}</p>
                         </div>
                         <div class="spec-row">
-                            <span class="label-blue">Materials</span>
-                            <p class="text-lg text-slate-600">${item.materials}</p>
+                            <span class="label-blue">Material Composition</span>
+                            <p class="text-lg text-slate-300">${item.materials}</p>
                         </div>
                         <div class="spec-row">
-                            <span class="label-blue">Compliance</span>
-                            <p class="text-2xl font-black text-blue-600 tracking-tight">${item.compliance}</p>
+                            <span class="label-blue">Industrial Compliance</span>
+                            <p class="text-3xl font-black text-blue-500 tracking-tighter">${item.compliance}</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-12">
-                <div class="bg-slate-900 p-12 rounded-[40px] text-center shadow-2xl relative overflow-hidden">
-                    <h2 class="text-3xl font-black uppercase mb-4 tracking-tighter text-white">Initialize Consultation</h2>
-                    <p class="text-slate-400 mb-8 max-w-lg mx-auto font-light">Secure your global supply chain with audited execution frameworks.</p>
-                    <a href="contact.html" class="inline-block bg-blue-600 text-white px-14 py-5 rounded-full font-black uppercase text-xs tracking-[0.3em] hover:bg-white hover:text-blue-600 transition-all transform hover:scale-105">
-                        Request a Quote
+            <div class="mt-16">
+                <div class="bg-blue-600 p-10 lg:p-16 rounded-[40px] lg:rounded-[48px] text-center shadow-2xl relative overflow-hidden group">
+                    <h2 class="text-3xl lg:text-4xl font-black uppercase mb-4 tracking-tighter text-white">Initialize Project Scope</h2>
+                    <p class="text-blue-100 mb-10 max-w-lg mx-auto font-light px-4">Bring our technical audit and logistics framework to your supply chain.</p>
+                    <a href="contact.html" class="inline-block bg-white text-blue-600 px-12 lg:px-16 py-5 lg:py-6 rounded-full font-black uppercase text-[10px] tracking-[0.3em] hover:bg-slate-900 hover:text-white transition-all transform hover:scale-105">
+                        Request Protocol
                     </a>
                 </div>
             </div>
