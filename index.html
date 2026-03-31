@@ -20,7 +20,7 @@
         html, body { 
             margin: 0; padding: 0; height: 100svh; width: 100%; overflow: hidden; 
             background-color: #000; font-family: 'Inter', sans-serif; 
-            opacity: 0; transition: opacity 0.8s ease-in;
+            opacity: 0.01; transition: opacity 0.8s ease-in;
         }
 
         .logo-fixed-center {
@@ -169,13 +169,18 @@
 <body>
 
     <script>
+    (function() {
         const bgImg = new Image();
         bgImg.src = "assets/ship.webp";
-        bgImg.onload = function() {
+        const revealPage = () => {
             document.body.style.opacity = "1";
         };
+        bgImg.onload = revealPage;
+        
         // Backup in case of network error
-        setTimeout(() => { document.body.style.opacity = "1"; }, 2000);
+        setTimeout((revealPage, 1000);
+        bgImg.onerror = revealPage;
+    })();
     </script>
 
     <a href="/" class="logo-fixed-center">
