@@ -16,7 +16,7 @@
 
         html, body { margin: 0; padding: 0; height: 100svh; width: 100%; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
 
-       /* --- LOGO: NO-JITTER FIX --- */
+        /* --- LOGO --- */
         .logo-fixed-center {
             position: absolute; top: 0; left: 50%;
             transform: translateX(-50%); 
@@ -53,11 +53,11 @@
             filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.8));
         }
 
-        /* --- UPDATED BANNER TEXT BLUE SHADE --- */
+        /* --- TEXT ROTATOR & BLUE LIGHT EFFECT --- */
         .mirror-gloss {
             display: inline-block; color: #ffffff;
-            /* Added #60a5fa into the gradient for the blue shade effect */
-            background: linear-gradient(110deg, rgba(255,255,255,0.2) 15%, rgba(255,255,255,1) 35%, #60a5fa 40%, #60a5fa 50%, rgba(255,255,255,1) 65%, rgba(255,255,255,0.2) 85%);
+            /* Wider blue spread: 40% to 60% */
+            background: linear-gradient(110deg, rgba(255,255,255,0.2) 15%, rgba(255,255,255,1) 35%, #60a5fa 40%, #60a5fa 60%, rgba(255,255,255,1) 65%, rgba(255,255,255,0.2) 85%);
             background-size: 250% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: classySweep 10s linear infinite; line-height: 1.1; font-weight: 900;
         }
@@ -67,6 +67,19 @@
         .rotator-text { position: absolute; opacity: 0; transition: opacity 3s ease-in-out; white-space: nowrap; pointer-events: none; width: 100%; text-align: center; }
         .rotator-text.active { opacity: 1; pointer-events: auto; }
 
+        /* --- BACKGROUND IMAGE OPTIMIZATION --- */
+        .hero-bg-container {
+            position: absolute; inset: 0; z-index: 0;
+            background-color: #050a14; /* Placeholder color matches image palette */
+        }
+        .hero-img {
+            width: 100%; height: 100%; object-fit: cover;
+            opacity: 0; /* Hidden until loaded */
+            transition: opacity 2s ease-in; /* Smooth fade in */
+        }
+        .hero-img.loaded { opacity: 0.6; }
+
+        /* --- NETWORK HUB & MENU --- */
         #menu-overlay {
             position: fixed; inset: 0;
             background: radial-gradient(circle at center, #0a1425 0%, #000 100%);
@@ -178,8 +191,8 @@
     </a>
 
     <header id="main-header" class="relative w-full bg-black overflow-hidden" style="height: 100svh;">
-        <div class="absolute inset-0 z-0"> 
-            <img src="assets/ship.webp" class="w-full h-full object-cover opacity-60" onload="this.parentElement.parentElement.style.opacity='1'"> 
+        <div class="hero-bg-container"> 
+            <img src="assets/ship.webp" class="hero-img" onload="this.classList.add('loaded')"> 
             <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black"></div>
         </div>
         
@@ -190,7 +203,6 @@
                 <h1 class="rotator-text font-black uppercase mirror-gloss" style="font-size: clamp(1.8rem, 8vw, 5.5rem);">Streamlined <br>Global Procurement</h1>
                 <h1 class="rotator-text font-black uppercase mirror-gloss" style="font-size: clamp(1.8rem, 8vw, 5.5rem);">Single Point<br>Accountability</h1>
                 <h1 class="rotator-text font-black uppercase mirror-gloss" style="font-size: clamp(1.8rem, 8vw, 5.5rem);">Geopolitical <br> De-Risking</h1>
-                
             </div>
         </div>
 
@@ -243,27 +255,19 @@
             overlay.classList.toggle('open');
             header.style.opacity = overlay.classList.contains('open') ? "0" : "1";
         }
-        // 1. Identify all your text lines
-    const slides = document.querySelectorAll('.rotator-text');
-    let idx = 0; 
 
-    // 2. Create the function that actually moves the text
-    function rotateText() {
-        if(slides.length > 0) {
-            // Remove 'active' from the current line
-            slides[idx].classList.remove('active');
-            
-            // Move to the next index (looping back to 0 at the end)
-            idx = (idx + 1) % slides.length;
-            
-            // Add 'active' to the next line
-            slides[idx].classList.add('active');
+        const slides = document.querySelectorAll('.rotator-text');
+        let idx = 0; 
+
+        function rotateText() {
+            if(slides.length > 0) {
+                slides[idx].classList.remove('active');
+                idx = (idx + 1) % slides.length;
+                slides[idx].classList.add('active');
+            }
         }
-    }
 
-    // 3. Set the interval to exactly 8000ms (8 seconds)
-    // This ensures every transition happens on the exact same beat.
-    setInterval(rotateText, 7000);
-</script>
+        setInterval(rotateText, 8000); // 8 seconds per text line
+    </script>
 </body>
 </html>
