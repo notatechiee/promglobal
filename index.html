@@ -11,42 +11,55 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
 
-        /* FORCE VISIBILITY - Prevent the black screen bug */
+        /* 1. LAYOUT RESET & VISIBILITY */
         html, body { 
             margin: 0; padding: 0; height: 100svh; width: 100%; overflow: hidden; 
             background-color: #000; font-family: 'Inter', sans-serif; 
-            opacity: 1 !important; 
+            opacity: 1 !important; /* Forced visibility */
         }
 
-        /* THE BLUE LIGHT SWEEP (Mirror Gloss) */
-        .mirror-gloss {
-            display: inline-block;
-            background: linear-gradient(110deg, #555 20%, #fff 45%, #60a5fa 50%, #fff 55%, #555 80%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: luckySweep 7s linear infinite;
-        }
-        @keyframes luckySweep {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-
-        /* Restored Original Logo Styles */
+        /* 2. THE SOVEREIGN LOGO (TOP CENTER) */
         .logo-fixed-center {
             position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 9999;
-            padding-top: 30px; display: flex; flex-direction: column; align-items: center; text-decoration: none;
+            padding-top: max(25px, env(safe-area-inset-top)); 
+            display: flex; flex-direction: column; align-items: center; text-decoration: none;
         }
-        .sovereign-svg { width: 80px; filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.4)); }
-        .logo-main { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; color: white; letter-spacing: -0.02em; }
-        .logo-sub { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; color: #60a5fa; letter-spacing: 0.55em; margin-top: 4px; }
+        .sovereign-svg { width: 100px; height: auto; filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.4)); }
+        .logo-main { font-size: 1.8rem; font-weight: 900; text-transform: uppercase; color: white; letter-spacing: -0.05em; }
+        .logo-sub { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.55em; color: #60a5fa; margin-top: 4px; }
 
-        /* Rotator Logic */
-        .rotator-container { position: relative; height: 300px; width: 100%; display: flex; align-items: center; justify-content: center; }
-        .rotator-text { position: absolute; opacity: 0; transition: opacity 1.5s ease; text-align: center; width: 100%; pointer-events: none; }
+        /* 3. TERMINAL NAV PILL (TOP RIGHT) */
+        .nav-pill {
+            position: absolute; top: max(30px, env(safe-area-inset-top)); right: 40px;
+            z-index: 100; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            padding: 10px 20px; border-radius: 50px; color: #60a5fa; font-size: 10px; 
+            font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase;
+            transition: 0.4s; cursor: pointer;
+        }
+        .nav-pill:hover { background: #2563eb; color: white; border-color: white; }
+
+        /* 4. MIRROR GLOSS & ROTATOR */
+        .mirror-gloss {
+            display: inline-block; color: #ffffff;
+            background: linear-gradient(110deg, rgba(255,255,255,0.2) 20%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.2) 80%);
+            background-size: 250% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: classySweep 10s linear infinite; line-height: 1.1; font-weight: 900;
+        }
+        @keyframes classySweep { 0% { background-position: 250% 0%; } 100% { background-position: -250% 0%; } }
+        
+        .rotator-container { position: relative; height: 35vh; width: 100%; display: flex; align-items: center; justify-content: center; }
+        .rotator-text { position: absolute; opacity: 0; transition: opacity 1.5s ease; width: 100%; text-align: center; pointer-events: none; }
         .rotator-text.active { opacity: 1; }
 
-        /* SVG Network Hub (Original) */
+        /* 5. ORIGINAL BUTTON PLACEMENT (BOTTOM ACTION) */
+        .action-container { position: absolute; bottom: 60px; left: 0; right: 0; z-index: 20; padding: 0 100px; }
+        .btn-industrial {
+            padding: 22px 55px; font-weight: 900; text-transform: uppercase; 
+            letter-spacing: 0.3em; font-size: 11px; transition: 0.4s;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* 6. INFINITY HUB OVERLAY */
         #menu-overlay {
             position: fixed; inset: 0; background: radial-gradient(circle at center, #0a1425 0%, #000 100%);
             z-index: 1000; display: none; flex-direction: column; align-items: center; justify-content: center;
@@ -54,30 +67,28 @@
         #menu-overlay.open { display: flex; }
         .canvas-area { position: relative; width: 800px; height: 400px; display: none; }
         @media (min-width: 1024px) { .canvas-area { display: block; } }
-        
+
         .inf-svg { width: 100%; height: 100%; overflow: visible; }
-        .path-base { fill: none; stroke: rgba(255, 255, 255, 0.1); stroke-width: 2; }
-        .signal { fill: none; stroke: #3b82f6; stroke-width: 3; stroke-dasharray: 100, 1000; animation: flow 5s linear infinite; }
-        @keyframes flow { from { stroke-dashoffset: 1100; } to { stroke-dashoffset: 0; } }
+        .path-base { fill: none; stroke: rgba(255, 255, 255, 0.1); stroke-width: 2.5; }
+        .signal { fill: none; stroke: #3b82f6; stroke-width: 4; stroke-dasharray: 140, 1500; animation: flowLoop 6s linear infinite; }
+        @keyframes flowLoop { from { stroke-dashoffset: 1640; } to { stroke-dashoffset: 0; } }
 
-        .node { position: absolute; transform: translate(-50%, -50%); text-align: center; text-decoration: none; }
-        .node-icon { width: 60px; height: 60px; background: #000; border: 1px solid #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #666; transition: 0.3s; }
-        .node:hover .node-icon { background: #2563eb; color: #fff; border-color: #fff; box-shadow: 0 0 20px #2563eb; }
-        .node-label { display: block; margin-top: 10px; font-size: 10px; font-weight: 900; color: #666; text-transform: uppercase; letter-spacing: 0.2em; }
+        .node { position: absolute; z-index: 10; display: flex; flex-direction: column; align-items: center; text-decoration: none; transform: translate(-50%, -50%); }
+        .node-icon { width: 64px; height: 64px; background: #000; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 22px; transition: 0.4s; }
+        .node:hover .node-icon { background: #2563eb; color: #fff; border-color: #fff; box-shadow: 0 0 30px rgba(37, 99, 235, 0.6); }
+        .node-label { position: absolute; top: 75px; width: 180px; color: rgba(255,255,255,0.4); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; text-align: center; }
 
-        /* Positions for Nodes */
+        /* Node Locations */
         .p-1 { top: 100px; left: 180px; } .p-2 { top: 100px; left: 620px; }
         .p-3 { top: 200px; left: 400px; } .p-4 { top: 300px; left: 180px; } .p-5 { top: 300px; left: 620px; }
-
-        .btn-industrial {
-            padding: 20px 50px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; font-size: 11px; transition: 0.4s;
-        }
     </style>
 </head>
 <body>
 
-    <a href="#" class="logo-fixed-center">
-        <svg class="sovereign-svg" viewBox="0 0 100 60">
+    <div class="nav-pill" onclick="toggleMenu()">Network Terminal</div>
+
+    <a href="/" class="logo-fixed-center">
+        <svg class="sovereign-svg" viewBox="0 0 100 60" fill="none">
             <path d="M10 10C30 15 45 25 50 30C45 35 30 45 10 50C25 45 35 35 35 30C35 25 25 15 10 10Z" fill="white"/>
             <path d="M90 10C70 15 55 25 50 30C55 35 70 45 90 50C75 45 65 35 65 30C65 25 75 15 90 10Z" fill="white"/>
             <rect x="47" y="27" width="6" height="6" transform="rotate(45 50 30)" fill="#06b6d4"/>
@@ -89,20 +100,20 @@
     </a>
 
     <header class="relative w-full h-screen bg-black overflow-hidden">
-        <img src="assets/ship.webp" class="absolute inset-0 w-full h-full object-cover opacity-50">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black"></div>
-
-        <div class="relative z-10 h-full flex flex-col items-center justify-center px-6">
+        <img src="assets/ship.webp" class="absolute inset-0 w-full h-full object-cover opacity-60">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black"></div>
+        
+        <div class="relative z-10 h-full flex flex-col items-center justify-center">
             <div class="rotator-container">
-                <h1 class="rotator-text active font-black uppercase mirror-gloss text-4xl md:text-7xl">Integrated <br>Supply Chain</h1>
-                <h1 class="rotator-text font-black uppercase mirror-gloss text-4xl md:text-7xl">Global <br>Procurement</h1>
-                <h1 class="rotator-text font-black uppercase mirror-gloss text-4xl md:text-7xl">Geopolitical <br>De-Risking</h1>
+                <h1 class="rotator-text active mirror-gloss" style="font-size: clamp(2rem, 8vw, 5rem);">RESILIENT SUPPLY CHAIN <br> DELIVERED.</h1>
+                <h1 class="rotator-text mirror-gloss" style="font-size: clamp(2rem, 8vw, 5rem);">GEOPOLITICAL <br> DE-RISKING.</h1>
+                <h1 class="rotator-text mirror-gloss" style="font-size: clamp(2rem, 8vw, 5rem);">SINGLE POINT <br> ACCOUNTABILITY.</h1>
             </div>
+        </div>
 
-            <div class="mt-12 flex flex-col md:flex-row gap-6">
-                <a href="#" class="btn-industrial bg-blue-600 text-white hover:bg-white hover:text-blue-600">Partner With Us</a>
-                <button onclick="toggleMenu()" class="btn-industrial border border-white text-white hover:bg-blue-600 hover:border-blue-600">Explore Network</button>
-            </div>
+        <div class="action-container flex justify-center gap-8">
+            <a href="contact" class="btn-industrial bg-blue-600 text-white hover:bg-white hover:text-blue-600">Initiate Integration Audit</a>
+            <button onclick="toggleMenu()" class="btn-industrial border border-white text-white hover:bg-blue-600">Explore Network Hub</button>
         </div>
     </header>
 
@@ -112,32 +123,25 @@
                 <path class="path-base" d="M400,200 C550,60 750,60 750,200 C750,340 550,340 400,200 C250,60 50,60 50,200 C50,340 250,340 400,200" />
                 <path class="signal" d="M400,200 C550,60 750,60 750,200 C750,340 550,340 400,200 C250,60 50,60 50,200 C50,340 250,340 400,200" />
             </svg>
-            <a href="#" class="node p-1"><div class="node-icon"><i class="fas fa-handshake"></i></div><span class="node-label">Sourcing</span></a>
-            <a href="#" class="node p-2"><div class="node-icon"><i class="fas fa-ship"></i></div><span class="node-label">Logistics</span></a>
-            <a href="#" class="node p-3"><div class="node-icon"><i class="fas fa-microchip"></i></div><span class="node-label">Strategy</span></a>
-            <a href="#" class="node p-4"><div class="node-icon"><i class="fas fa-industry"></i></div><span class="node-label">Production</span></a>
-            <a href="#" class="node p-5"><div class="node-icon"><i class="fas fa-boxes"></i></div><span class="node-label">Distribution</span></a>
+            <a href="sourcing" class="node p-1"><div class="node-icon"><i class="fas fa-handshake"></i></div><span class="node-label">Sourcing</span></a>
+            <a href="logistics" class="node p-2"><div class="node-icon"><i class="fas fa-ship"></i></div><span class="node-label">Freight</span></a>
+            <a href="strategy" class="node p-3"><div class="node-icon"><i class="fas fa-microchip"></i></div><span class="node-label">Global Strategy</span></a>
+            <a href="production" class="node p-4"><div class="node-icon"><i class="fas fa-industry"></i></div><span class="node-label">Production</span></a>
+            <a href="distribution" class="node p-5"><div class="node-icon"><i class="fas fa-boxes"></i></div><span class="node-label">Logistics</span></a>
         </div>
-
-        <div class="mt-10 flex flex-col items-center gap-8">
-            <a href="#" class="text-blue-400 font-black tracking-widest text-xs uppercase hover:text-white transition">Corporate Profile</a>
-            <button onclick="toggleMenu()" class="border border-white/20 px-10 py-4 text-white font-black text-[10px] tracking-[0.5em] hover:bg-white hover:text-black transition">CLOSE HUB</button>
+        <div class="mt-20 flex flex-col items-center gap-6">
+            <div class="cursor-pointer border border-white/20 px-12 py-4 text-white font-black text-[10px] tracking-[0.5em] hover:bg-white hover:text-black transition" onclick="toggleMenu()">TERMINATE CONNECTION</div>
         </div>
     </div>
 
     <script>
-        function toggleMenu() {
-            document.getElementById('menu-overlay').classList.toggle('open');
-        }
-
-        // Rotator Logic
-        let idx = 0;
-        const slides = document.querySelectorAll('.rotator-text');
+        function toggleMenu() { document.getElementById('menu-overlay').classList.toggle('open'); }
+        let idx = 0; const slides = document.querySelectorAll('.rotator-text');
         setInterval(() => {
             slides[idx].classList.remove('active');
             idx = (idx + 1) % slides.length;
             slides[idx].classList.add('active');
-        }, 5000);
+        }, 5500);
     </script>
 </body>
 </html>
