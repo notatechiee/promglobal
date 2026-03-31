@@ -8,40 +8,42 @@
     <title>Prominex Global | Supply Chain Reimagined</title>
     <link rel="icon" type="image/png" href="assets/favicon-new.PNG">
 
+    <link rel="preload" as="image" href="assets/ship.webp">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
 
-        html, body { margin: 0; padding: 0; height: 100svh; width: 100%; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
+        /* 2. ADDED OPACITY TRANSITION TO PREVENT FLASH */
+        html, body { 
+            margin: 0; padding: 0; height: 100svh; width: 100%; overflow: hidden; 
+            background-color: #000; font-family: 'Inter', sans-serif; 
+            opacity: 0; transition: opacity 0.8s ease-in;
+        }
 
-       /* --- LOGO: NO-JITTER FIX --- */
         .logo-fixed-center {
             position: absolute; top: 0; left: 50%;
             transform: translateX(-50%); 
             z-index: 9999;
             padding-top: max(25px, env(safe-area-inset-top)); 
             display: flex; flex-direction: column; align-items: center; text-decoration: none;
-            /* Remove transition from here to prevent container jitter */
         }
 
         .sovereign-svg { 
             width: 80px; height: auto; 
             filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.4));
-            /* Apply transition directly to the element being scaled */
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.4s ease;
             will-change: transform;
         }
         
         .logo-text-group { text-align: center; line-height: 1; margin-top: 8px; }
         .logo-main { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.05em; color: white; }
-        
-        /* VISIBILITY BOOST FOR 'GLOBAL' */
         .logo-sub { 
-            font-size: 0.65rem; font-weight: 800; /* Heavier weight */
+            font-size: 0.65rem; font-weight: 800; 
             text-transform: uppercase; letter-spacing: 0.55em; 
-            color: #60a5fa; /* Brighter blue for visibility */
+            color: #60a5fa; 
             display: block; margin-top: 4px; 
         }
 
@@ -51,13 +53,11 @@
             .logo-sub { font-size: 0.75rem; }
         }
 
-        /* Hover logic applied only to SVG to stop text jitter */
         .logo-fixed-center:hover .sovereign-svg {
             transform: scale(1.1);
             filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.8));
         }
 
-        /* --- REST OF THE CODE REMAINS UNCHANGED --- */
         .mirror-gloss {
             display: inline-block; color: #ffffff;
             background: linear-gradient(110deg, rgba(255,255,255,0.2) 20%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.2) 80%);
@@ -167,6 +167,16 @@
     </style>
 </head>
 <body>
+
+    <script>
+        const bgImg = new Image();
+        bgImg.src = "assets/ship.webp";
+        bgImg.onload = function() {
+            document.body.style.opacity = "1";
+        };
+        // Backup in case of network error
+        setTimeout(() => { document.body.style.opacity = "1"; }, 2000);
+    </script>
 
     <a href="/" class="logo-fixed-center">
         <svg class="sovereign-svg" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
