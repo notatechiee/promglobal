@@ -10,65 +10,39 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap');
         
-        /* 1. THE BASEMENT (Darkness) */
-        html {
-            background-color: #000;
-        }
+        html, body { margin: 0; padding: 0; height: 100svh; width: 100%; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
+        body { display: flex; align-items: center; justify-content: center; }
 
-        body { 
-            height: 100vh; width: 100vw; margin: 0; 
-            overflow: hidden; font-family: 'Inter', sans-serif;
-            display: flex; align-items: center; justify-content: center;
-            background: transparent; /* Must be transparent for image to show */
+        /* --- SMOOTH BACKGROUND (MATCHING INDEX) --- */
+        .hero-bg-container {
+            position: absolute; inset: 0; z-index: 0;
+            background-color: #050a14; 
         }
-
-        /* 2. THE BACKGROUND IMAGE LAYER */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background-image: url('assets/contactpromp.webp');
-            background-size: cover;
-            background-position: center;
-            /* We use opacity here instead of filter for better performance */
-            opacity: 0.25; 
+        .hero-img {
+            width: 100%; height: 100%; object-fit: cover;
+            opacity: 0; 
+            transition: opacity 2s ease-in;
             filter: grayscale(0.5) blur(1px);
-            z-index: -1;
-            pointer-events: none;
         }
+        .hero-img.loaded { opacity: 0.25; }
 
         /* --- NAVIGATION --- */
         .nav-home {
             position: absolute; top: 40px; left: 50px;
-            color: #fff; font-size: 11px;
-            font-weight: 900; text-transform: uppercase; 
-            letter-spacing: 0.4em;
-            text-decoration: none; 
-            z-index: 1000;
-            transition: all 0.4s ease;
-            display: flex; align-items: center; gap: 10px;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
+            color: #fff; font-size: 11px; font-weight: 900; text-transform: uppercase; 
+            letter-spacing: 0.4em; text-decoration: none; z-index: 1000;
+            transition: all 0.4s ease; display: flex; align-items: center; gap: 10px;
+            padding: 10px 20px; background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; backdrop-filter: blur(10px);
         }
+        .nav-home:hover { background: #3b82f6; transform: translateX(5px); }
 
-        .nav-home:hover { 
-            background: #3b82f6;
-            color: #fff; 
-            transform: translateX(5px);
-        }
-
-        /* --- OPTIMIZED GRID --- */
+        /* --- GRID --- */
         .grid-container {
             display: grid;
-            /* Reduced size so it doesn't hit the top on laptops */
             grid-template-columns: repeat(2, 250px);
             grid-template-rows: repeat(2, 250px);
-            gap: 25px;
-            z-index: 10;
-            position: relative;
+            gap: 25px; z-index: 10; position: relative;
         }
 
         .sector-card {
@@ -80,20 +54,25 @@
             align-items: center; justify-content: center;
             text-decoration: none; text-align: center; padding: 25px;
             
-            /* --- STABILIZERS --- */
-            transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
-            backface-visibility: hidden; /* Prevents the 'shiver' */
-            -webkit-font-smoothing: subpixel-antialiased;
-            transform: translateZ(0); /* Forces GPU acceleration */
-            will-change: transform, box-shadow; /* Prepares browser for the move */
+            /* --- THE SMOOTHNESS SECRET --- */
+            /* 1. Start slightly scaled down */
+            transform: scale(0.97) translateZ(0); 
+            /* 2. Slow down the transition just a hair for a 'luxury' feel */
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                        background 0.4s ease, 
+                        box-shadow 0.6s ease;
+            
+            /* 3. Force the browser to render it as an image, not text */
+            will-change: transform;
+            -webkit-font-smoothing: antialiased;
         }
 
         .sector-card:hover {
             background: rgba(30, 41, 59, 0.8);
             border-color: #3b82f6;
             
-            /* Combined transform: simplified to prevent rounding jitters */
-            transform: scale(1.04) translateY(-4px); 
+            /* 4. Scale up to 'natural' size (1.0) instead of pushing past it */
+            transform: scale(1.0) translateY(-5px) translateZ(0); 
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
@@ -102,30 +81,35 @@
             filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.4));
             transition: all 0.3s ease;
         }
-
         .sector-card:hover .icon-box { color: #fff; transform: scale(1.1); }
 
         .title-text {
             font-weight: 900; text-transform: uppercase;
             letter-spacing: 0.15em; font-size: 11px;
             color: #fff; line-height: 1.4;
+            /* Keeps the text on its own layer so it stays sharp */
+            transform: translateZ(0); 
         }
 
-        /* --- MOBILE --- */
         @media (max-width: 768px) {
-            html, body { overflow-y: auto; height: auto; padding: 100px 20px 40px; }
+            html, body { overflow-y: auto; height: auto; }
+            body { padding: 100px 20px 40px; display: block; }
             .grid-container {
                 grid-template-columns: 1fr;
                 grid-template-rows: auto;
-                width: 100%;
-                max-width: 300px;
+                width: 100%; max-width: 300px; margin: 0 auto;
             }
             .nav-home { top: 25px; left: 20px; font-size: 9px; }
-            .sector-card { height: 250px; }
+            .sector-card { height: 250px; margin-bottom: 20px; }
         }
     </style>
 </head>
 <body>
+
+    <div class="hero-bg-container"> 
+        <img src="assets/contactpromp.webp" class="hero-img" onload="this.classList.add('loaded')"> 
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black"></div>
+    </div>
 
     <a href="/#network" class="nav-home">
         <i class="fas fa-arrow-left"></i> Network Hub
