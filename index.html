@@ -59,7 +59,7 @@
             /* Wider blue spread: 40% to 60% */
             background: linear-gradient(110deg, rgba(255,255,255,0.2) 15%, rgba(255,255,255,1) 35%, #60a5fa 40%, #60a5fa 60%, rgba(255,255,255,1) 65%, rgba(255,255,255,0.2) 85%);
             background-size: 250% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: classySweep 10s linear infinite; line-height: 1.1; font-weight: 900;
+            animation: classySweep 15s linear infinite; line-height: 1.1; font-weight: 900;
         }
         @keyframes classySweep { 0% { background-position: 250% 0%; } 100% { background-position: -250% 0%; } }
         
@@ -249,6 +249,19 @@
     </div>
 
     <script>
+        // This "listens" for the #network instruction in the URL
+window.addEventListener('hashchange', checkHash);
+window.addEventListener('load', checkHash);
+
+function checkHash() {
+    if (window.location.hash === '#network') {
+        const overlay = document.getElementById('menu-overlay');
+        // Only open if it's not already open
+        if (!overlay.classList.contains('open')) {
+            toggleMenu();
+        }
+    }
+}
         function toggleMenu() { 
             const overlay = document.getElementById('menu-overlay');
             const header = document.getElementById('main-header');
