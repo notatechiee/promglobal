@@ -249,38 +249,45 @@
     </div>
 
     <script>
-        // This "listens" for the #network instruction in the URL
-window.addEventListener('hashchange', checkHash);
-window.addEventListener('load', checkHash);
-
-function checkHash() {
-    if (window.location.hash === '#network') {
+    /* 1. DEFINE FUNCTIONS FIRST */
+    function toggleMenu() { 
         const overlay = document.getElementById('menu-overlay');
-        // Only open if it's not already open
-        if (!overlay.classList.contains('open')) {
-            toggleMenu();
-        }
+        const header = document.getElementById('main-header');
+        if (!overlay || !header) return; // Safety check
+        
+        overlay.classList.toggle('open');
+        header.style.opacity = overlay.classList.contains('open') ? "0" : "1";
     }
-}
-        function toggleMenu() { 
+
+    function checkHash() {
+        if (window.location.hash === '#network') {
             const overlay = document.getElementById('menu-overlay');
-            const header = document.getElementById('main-header');
-            overlay.classList.toggle('open');
-            header.style.opacity = overlay.classList.contains('open') ? "0" : "1";
-        }
-
-        const slides = document.querySelectorAll('.rotator-text');
-        let idx = 0; 
-
-        function rotateText() {
-            if(slides.length > 0) {
-                slides[idx].classList.remove('active');
-                idx = (idx + 1) % slides.length;
-                slides[idx].classList.add('active');
+            if (overlay && !overlay.classList.contains('open')) {
+                toggleMenu();
+                // Optional: Cleans the URL after opening so the back button stays functional
+                history.replaceState(null, null, ' '); 
             }
         }
+    }
 
-        setInterval(rotateText, 8000); // 8 seconds per text line
-    </script>
+    /* 2. SET UP LISTENERS */
+    // 'DOMContentLoaded' is safer than 'load'—it triggers as soon as the HTML is ready
+    window.addEventListener('DOMContentLoaded', checkHash);
+    window.addEventListener('hashchange', checkHash);
+
+    /* 3. TEXT ROTATOR LOGIC (Unchanged) */
+    const slides = document.querySelectorAll('.rotator-text');
+    let idx = 0; 
+
+    function rotateText() {
+        if(slides.length > 0) {
+            slides[idx].classList.remove('active');
+            idx = (idx + 1) % slides.length;
+            slides[idx].classList.add('active');
+        }
+    }
+
+    setInterval(rotateText, 8000); 
+</script>
 </body>
 </html>
