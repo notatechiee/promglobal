@@ -3,92 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Prominex Global | Supply Chain Reimagined</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     
+    <title>Prominex Global | Supply Chain Reimagined</title>
+    <link rel="icon" type="image/png" href="assets/favicon-new.PNG">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
 
-        /* 1. LAYOUT RESET & VISIBILITY */
-        html, body { 
-            margin: 0; padding: 0; height: 100svh; width: 100%; overflow: hidden; 
-            background-color: #000; font-family: 'Inter', sans-serif; 
-            opacity: 1 !important; /* Forced visibility */
-        }
+        html, body { margin: 0; padding: 0; height: 100svh; width: 100%; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; }
 
-        /* 2. THE SOVEREIGN LOGO (TOP CENTER) */
+       /* --- LOGO: NO-JITTER FIX --- */
         .logo-fixed-center {
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 9999;
+            position: absolute; top: 0; left: 50%;
+            transform: translateX(-50%); 
+            z-index: 9999;
             padding-top: max(25px, env(safe-area-inset-top)); 
             display: flex; flex-direction: column; align-items: center; text-decoration: none;
         }
-        .sovereign-svg { width: 100px; height: auto; filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.4)); }
-        .logo-main { font-size: 1.8rem; font-weight: 900; text-transform: uppercase; color: white; letter-spacing: -0.05em; }
-        .logo-sub { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.55em; color: #60a5fa; margin-top: 4px; }
 
-        /* 3. TERMINAL NAV PILL (TOP RIGHT) */
-        .nav-pill {
-            position: absolute; top: max(30px, env(safe-area-inset-top)); right: 40px;
-            z-index: 100; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            padding: 10px 20px; border-radius: 50px; color: #60a5fa; font-size: 10px; 
-            font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase;
-            transition: 0.4s; cursor: pointer;
+        .sovereign-svg { 
+            width: 80px; height: auto; 
+            filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.4));
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.4s ease;
+            will-change: transform;
         }
-        .nav-pill:hover { background: #2563eb; color: white; border-color: white; }
+        
+        .logo-text-group { text-align: center; line-height: 1; margin-top: 8px; }
+        .logo-main { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.05em; color: white; }
+        
+        .logo-sub { 
+            font-size: 0.65rem; font-weight: 800; 
+            text-transform: uppercase; letter-spacing: 0.55em; 
+            color: #60a5fa; 
+            display: block; margin-top: 4px; 
+        }
 
-        /* 4. MIRROR GLOSS & ROTATOR */
+        @media (min-width: 768px) { 
+            .sovereign-svg { width: 100px; } 
+            .logo-main { font-size: 1.8rem; }
+            .logo-sub { font-size: 0.75rem; }
+        }
+
+        .logo-fixed-center:hover .sovereign-svg {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.8));
+        }
+
+        /* --- UPDATED BANNER TEXT BLUE SHADE --- */
         .mirror-gloss {
             display: inline-block; color: #ffffff;
-            background: linear-gradient(110deg, rgba(255,255,255,0.2) 20%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.2) 80%);
+            /* Added #60a5fa into the gradient for the blue shade effect */
+            background: linear-gradient(110deg, rgba(255,255,255,0.2) 20%, rgba(255,255,255,1) 48%, #60a5fa 50%, rgba(255,255,255,1) 52%, rgba(255,255,255,0.2) 80%);
             background-size: 250% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: classySweep 10s linear infinite; line-height: 1.1; font-weight: 900;
         }
         @keyframes classySweep { 0% { background-position: 250% 0%; } 100% { background-position: -250% 0%; } }
         
-        .rotator-container { position: relative; height: 35vh; width: 100%; display: flex; align-items: center; justify-content: center; }
-        .rotator-text { position: absolute; opacity: 0; transition: opacity 1.5s ease; width: 100%; text-align: center; pointer-events: none; }
-        .rotator-text.active { opacity: 1; }
+        .rotator-container { position: relative; height: 35vh; width: 100%; display: flex; align-items: center; justify-content: center; margin-top: -5vh; }
+        .rotator-text { position: absolute; opacity: 0; transition: opacity 2s ease-in-out; white-space: nowrap; pointer-events: none; width: 100%; text-align: center; }
+        .rotator-text.active { opacity: 1; pointer-events: auto; }
 
-        /* 5. ORIGINAL BUTTON PLACEMENT (BOTTOM ACTION) */
-        .action-container { position: absolute; bottom: 60px; left: 0; right: 0; z-index: 20; padding: 0 100px; }
-        .btn-industrial {
-            padding: 22px 55px; font-weight: 900; text-transform: uppercase; 
-            letter-spacing: 0.3em; font-size: 11px; transition: 0.4s;
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        /* 6. INFINITY HUB OVERLAY */
         #menu-overlay {
-            position: fixed; inset: 0; background: radial-gradient(circle at center, #0a1425 0%, #000 100%);
-            z-index: 1000; display: none; flex-direction: column; align-items: center; justify-content: center;
+            position: fixed; inset: 0;
+            background: radial-gradient(circle at center, #0a1425 0%, #000 100%);
+            backdrop-filter: blur(30px); z-index: 200;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        #menu-overlay.open { display: flex; }
+        #menu-overlay.open { opacity: 1; pointer-events: auto; }
+
         .canvas-area { position: relative; width: 800px; height: 400px; display: none; }
         @media (min-width: 1024px) { .canvas-area { display: block; } }
 
         .inf-svg { width: 100%; height: 100%; overflow: visible; }
         .path-base { fill: none; stroke: rgba(255, 255, 255, 0.1); stroke-width: 2.5; }
-        .signal { fill: none; stroke: #3b82f6; stroke-width: 4; stroke-dasharray: 140, 1500; animation: flowLoop 6s linear infinite; }
+        .signal { fill: none; stroke: #3b82f6; stroke-width: 4; stroke-dasharray: 140, 1500; filter: drop-shadow(0 0 12px #2563eb); animation: flowLoop 6s linear infinite; }
+        .sig-2 { animation-delay: -3s; stroke: #60a5fa; }
         @keyframes flowLoop { from { stroke-dashoffset: 1640; } to { stroke-dashoffset: 0; } }
 
-        .node { position: absolute; z-index: 10; display: flex; flex-direction: column; align-items: center; text-decoration: none; transform: translate(-50%, -50%); }
-        .node-icon { width: 64px; height: 64px; background: #000; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-size: 22px; transition: 0.4s; }
-        .node:hover .node-icon { background: #2563eb; color: #fff; border-color: #fff; box-shadow: 0 0 30px rgba(37, 99, 235, 0.6); }
-        .node-label { position: absolute; top: 75px; width: 180px; color: rgba(255,255,255,0.4); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; text-align: center; }
+        .node { position: absolute; z-index: 10; display: flex; flex-direction: column; align-items: center; text-decoration: none; transform: translate(-50%, -50%); transition: transform 0.4s ease; }
+        .node-icon { 
+            width: 64px; height: 64px; background: #000; border: 1px solid rgba(255,255,255,0.2); 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            color: rgba(255,255,255,0.4); font-size: 22px; transition: 0.4s; 
+        }
+        .node:hover .node-icon { background: #2563eb; color: #fff; border-color: #fff; transform: scale(1.15); box-shadow: 0 0 30px rgba(37, 99, 235, 0.6); }
+        .node-label { position: absolute; top: 75px; width: 180px; color: rgba(255,255,255,0.4); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.25em; text-align: center; transition: 0.4s; }
+        .node:hover .node-label { color: #fff; letter-spacing: 0.35em; }
 
-        /* Node Locations */
-        .p-1 { top: 100px; left: 180px; } .p-2 { top: 100px; left: 620px; }
-        .p-3 { top: 200px; left: 400px; } .p-4 { top: 300px; left: 180px; } .p-5 { top: 300px; left: 620px; }
+        .p-about .node-icon { 
+            position: relative; border-color: rgba(59, 130, 246, 0.4);
+            animation: centerFlash 6s infinite cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes centerFlash {
+            0%, 50%, 100% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8), inset 0 0 15px rgba(59, 130, 246, 0.5); border-color: #fff; color: #fff; }
+            25%, 75% { box-shadow: 0 0 0px transparent; border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.4); }
+        }
+        .p-about .node-icon::after {
+            content: ''; position: absolute; inset: -2px; border-radius: 50%; border: 1px solid #3b82f6; opacity: 0; animation: ripple 6s infinite;
+        }
+        @keyframes ripple {
+            0%, 50%, 100% { transform: scale(1); opacity: 1; }
+            10%, 60% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .mobile-node-list { display: flex; flex-direction: column; gap: 12px; width: 88%; max-width: 400px; margin-top: 50px; }
+        @media (min-width: 1024px) { .mobile-node-list { display: none; } }
+        .m-node {
+            background: rgba(0,0,0,0.7); border: 1px solid rgba(255,255,255,0.15);
+            padding: 18px; border-radius: 2px; color: #fff; text-transform: uppercase;
+            font-size: 11px; letter-spacing: 0.3em; display: flex; align-items: center; gap: 20px;
+            text-decoration: none; font-weight: 900; transition: 0.4s;
+        }
+        .m-node i { color: #3b82f6; }
+        .m-node:hover { background: #2563eb; border-color: #fff; }
+
+        .secondary-nav { margin-top: 50px; display: flex; flex-direction: column; align-items: center; gap: 35px; }
+        .nav-row { display: flex; gap: 50px; }
+        .about-link { 
+            color: rgba(255,255,255,0.5); font-size: 11px; font-weight: 900; text-transform: uppercase; 
+            letter-spacing: 0.4em; text-decoration: none; border-bottom: 2px solid transparent; 
+            padding-bottom: 8px; transition: 0.4s; 
+        }
+        .about-link:hover { color: #fff; border-color: #3b82f6; letter-spacing: 0.5em; }
+        .contact-link-nav { color: #3b82f6; border-color: rgba(59, 130, 246, 0.2); }
+
+        .close-btn { 
+            cursor: pointer; color: #fff; font-size: 11px; font-weight: 900; letter-spacing: 0.6em; 
+            opacity: 0.4; border: 1px solid rgba(255,255,255,0.2); padding: 16px 50px; transition: 0.4s; 
+            text-transform: uppercase;
+        }
+        .close-btn:hover { opacity: 1; background: rgba(255,255,255,0.05); border-color: #fff; letter-spacing: 0.8em; }
+
+        .action-container { 
+            position: absolute; bottom: max(40px, env(safe-area-inset-top)); left: 0; right: 0; 
+            padding: 0 30px; z-index: 20;
+        }
+        @media (min-width: 768px) { .action-container { bottom: 60px; padding: 0 100px; } }
+
+        .btn-industrial {
+            padding: 22px 55px; font-weight: 900; text-transform: uppercase; 
+            letter-spacing: 0.3em; font-size: 11px; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .btn-blue { background: #2563eb; color: #fff; border: 1px solid transparent; }
+        .btn-blue:hover { background: #fff; color: #2563eb; border-color: #2563eb; transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+
+        .btn-white { background: #fff; color: #000; border: 1px solid transparent; }
+        .btn-white:hover { background: #2563eb; color: #fff; border-color: #fff; transform: translateY(-4px); box-shadow: 0 15px 35px rgba(37, 99, 235, 0.5); }
+
+        .p-about { top: 200px; left: 400px; } 
+        .p-sourcing { top: 100px; left: 180px; }
+        .p-logistics { top: 100px; left: 620px; }
+        .p-distribution { top: 300px; left: 620px; }
+        .p-industries { top: 300px; left: 180px; }
     </style>
 </head>
 <body>
 
-    <div class="nav-pill" onclick="toggleMenu()">Network Terminal</div>
-
     <a href="/" class="logo-fixed-center">
-        <svg class="sovereign-svg" viewBox="0 0 100 60" fill="none">
+        <svg class="sovereign-svg" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 10C30 15 45 25 50 30C45 35 30 45 10 50C25 45 35 35 35 30C35 25 25 15 10 10Z" fill="white"/>
             <path d="M90 10C70 15 55 25 50 30C55 35 70 45 90 50C75 45 65 35 65 30C65 25 75 15 90 10Z" fill="white"/>
             <rect x="47" y="27" width="6" height="6" transform="rotate(45 50 30)" fill="#06b6d4"/>
@@ -99,48 +177,78 @@
         </div>
     </a>
 
-    <header class="relative w-full h-screen bg-black overflow-hidden">
-        <img src="assets/ship.webp" class="absolute inset-0 w-full h-full object-cover opacity-60">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black"></div>
+    <header id="main-header" class="relative w-full bg-black overflow-hidden" style="height: 100svh;">
+        <div class="absolute inset-0 z-0"> 
+            <img src="assets/ship.webp" class="w-full h-full object-cover opacity-60" onload="this.parentElement.parentElement.style.opacity='1'"> 
+            <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black"></div>
+        </div>
         
-        <div class="relative z-10 h-full flex flex-col items-center justify-center">
+        <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
             <div class="rotator-container">
-                <h1 class="rotator-text active mirror-gloss" style="font-size: clamp(2rem, 8vw, 5rem);">RESILIENT SUPPLY CHAIN <br> DELIVERED.</h1>
-                <h1 class="rotator-text mirror-gloss" style="font-size: clamp(2rem, 8vw, 5rem);">GEOPOLITICAL <br> DE-RISKING.</h1>
-                <h1 class="rotator-text mirror-gloss" style="font-size: clamp(2rem, 8vw, 5rem);">SINGLE POINT <br> ACCOUNTABILITY.</h1>
+                <h1 class="rotator-text active font-black uppercase mirror-gloss" style="font-size: clamp(1.8rem, 8vw, 5.5rem);">Integrated <br>Supply Chain</h1>
+                <h1 class="rotator-text font-black uppercase mirror-gloss" style="font-size: clamp(1.8rem, 8vw, 5.5rem);">Streamlined <br>Global Procurement</h1>
+                <h1 class="rotator-text font-black uppercase mirror-gloss" style="font-size: clamp(1.8rem, 8vw, 5.5rem);">Single Point<br>Accountability</h1>
+                <h1 class="rotator-text font-black uppercase mirror-gloss" style="font-size: clamp(1.8rem, 8vw, 5.5rem);">Geopolitical <br> De-Risking</h1>
+                <h1 class="rotator-text font-black uppercase mirror-gloss" style="font-size: clamp(1.8rem, 8vw, 5.5rem);">Data & Analytics <br> Empowered Strategy</h1>
             </div>
         </div>
 
-        <div class="action-container flex justify-center gap-8">
-            <a href="contact" class="btn-industrial bg-blue-600 text-white hover:bg-white hover:text-blue-600">Initiate Integration Audit</a>
-            <button onclick="toggleMenu()" class="btn-industrial border border-white text-white hover:bg-blue-600">Explore Network Hub</button>
+        <div class="action-container">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <a href="contact" class="btn-industrial btn-blue w-full md:w-auto">Partner With Us</a>
+                <button onclick="toggleMenu()" class="btn-industrial btn-white w-full md:w-auto gap-6">
+                    <span>Explore Network</span>
+                    <div class="flex flex-col gap-1.5"><div class="w-6 h-0.5 bg-current"></div><div class="w-6 h-0.5 bg-current opacity-50"></div></div>
+                </button>
+            </div>
         </div>
     </header>
 
-    <div id="menu-overlay">
+    <div id="menu-overlay" style="height: 100svh;">
         <div class="canvas-area">
             <svg class="inf-svg" viewBox="0 0 800 400">
                 <path class="path-base" d="M400,200 C550,60 750,60 750,200 C750,340 550,340 400,200 C250,60 50,60 50,200 C50,340 250,340 400,200" />
                 <path class="signal" d="M400,200 C550,60 750,60 750,200 C750,340 550,340 400,200 C250,60 50,60 50,200 C50,340 250,340 400,200" />
+                <path class="signal sig-2" d="M400,200 C550,60 750,60 750,200 C750,340 550,340 400,200 C250,60 50,60 50,200 C50,340 250,340 400,200" />
             </svg>
-            <a href="sourcing" class="node p-1"><div class="node-icon"><i class="fas fa-handshake"></i></div><span class="node-label">Sourcing</span></a>
-            <a href="logistics" class="node p-2"><div class="node-icon"><i class="fas fa-ship"></i></div><span class="node-label">Freight</span></a>
-            <a href="strategy" class="node p-3"><div class="node-icon"><i class="fas fa-microchip"></i></div><span class="node-label">Global Strategy</span></a>
-            <a href="production" class="node p-4"><div class="node-icon"><i class="fas fa-industry"></i></div><span class="node-label">Production</span></a>
-            <a href="distribution" class="node p-5"><div class="node-icon"><i class="fas fa-boxes"></i></div><span class="node-label">Logistics</span></a>
+            <a href="industries" class="node p-about"><div class="node-icon"><i class="fas fa-city"></i></div><span class="node-label">Industry Verticals</span></a>
+            <a href="sourcing" class="node p-sourcing"><div class="node-icon"><i class="fas fa-handshake-angle"></i></div><span class="node-label">Supplier Management</span></a>
+            <a href="logistics" class="node p-logistics"><div class="node-icon"><i class="fas fa-ship"></i></div><span class="node-label">Freight Management</span></a>
+            <a href="distribution" class="node p-distribution"><div class="node-icon"><i class="fas fa-boxes-packing"></i></div><span class="node-label">Logistics Management</span></a>
+            <a href="manufacturing" class="node p-industries"><div class="node-icon"><i class="fas fa-industry"></i></div><span class="node-label">Manufacturing Coordination</span></a>
         </div>
-        <div class="mt-20 flex flex-col items-center gap-6">
-            <div class="cursor-pointer border border-white/20 px-12 py-4 text-white font-black text-[10px] tracking-[0.5em] hover:bg-white hover:text-black transition" onclick="toggleMenu()">TERMINATE CONNECTION</div>
+
+        <div class="mobile-node-list">
+            <a href="industries" class="m-node"><i class="fas fa-city"></i> Industry Verticals</a>
+            <a href="sourcing" class="m-node"><i class="fas fa-handshake-angle"></i> Supplier Management</a>
+            <a href="logistics" class="m-node"><i class="fas fa-ship"></i> Freight Management</a>
+            <a href="distribution" class="m-node"><i class="fas fa-boxes-packing"></i> Logistics Management</a>
+            <a href="manufacturing" class="m-node"><i class="fas fa-industry"></i> Manufacturing</a>
+        </div>
+        
+        <div class="secondary-nav">
+            <div class="nav-row">
+                <a href="contact" class="about-link contact-link-nav">Contact Us</a>
+                <a href="about" class="about-link">Corporate Profile</a>
+            </div>
+            <div class="close-btn" onclick="toggleMenu()">CLOSE NETWORK HUB</div>
         </div>
     </div>
 
     <script>
-        function toggleMenu() { document.getElementById('menu-overlay').classList.toggle('open'); }
+        function toggleMenu() { 
+            const overlay = document.getElementById('menu-overlay');
+            const header = document.getElementById('main-header');
+            overlay.classList.toggle('open');
+            header.style.opacity = overlay.classList.contains('open') ? "0" : "1";
+        }
         let idx = 0; const slides = document.querySelectorAll('.rotator-text');
         setInterval(() => {
-            slides[idx].classList.remove('active');
-            idx = (idx + 1) % slides.length;
-            slides[idx].classList.add('active');
+            if(slides.length){
+                slides[idx].classList.remove('active'); 
+                idx = (idx + 1) % slides.length; 
+                slides[idx].classList.add('active'); 
+            }
         }, 5500);
     </script>
 </body>
