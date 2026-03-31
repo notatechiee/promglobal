@@ -190,29 +190,35 @@
                             <option>Others</option>
                         </select>
                     </div>
+                
                     <div class="input-group">
                         <label class="label-text">Business Entity</label>
-                        <input type="text" placeholder="Legal Name" class="input-field" required>
+                        <input type="text" name="$company" placeholder="Legal Name" class="input-field" required>
                     </div>
+                
                     <div class="input-group">
                         <label class="label-text">Representative</label>
-                        <input type="text" placeholder="Full Name" class="input-field" required>
+                        <input type="text" name="name" placeholder="Full Name" class="input-field" required>
                     </div>
+                
                     <div class="input-group">
                         <label class="label-text">Direct Email</label>
-                        <input type="email" placeholder="corporate@domain.com" class="input-field" required>
+                        <input type="email" name="email" placeholder="corporate@domain.com" class="input-field" required>
                     </div>
+                
                     <div class="input-group">
                         <label class="label-text">City</label>
-                        <input type="text" placeholder="Location" class="input-field" required>
+                        <input type="text" name="$city" placeholder="Location" class="input-field" required>
                     </div>
+                
                     <div class="input-group">
                         <label class="label-text">Country</label>
-                        <input type="text" placeholder="Nation" class="input-field" required>
+                        <input type="text" name="$country" placeholder="Nation" class="input-field" required>
                     </div>
+                
                     <div class="input-group">
                         <label class="label-text">Vertical</label>
-                        <select class="input-field">
+                        <select name="$vertical" class="input-field">
                             <option>Track & Trace</option>
                             <option>Billing</option>
                             <option>Manufacturing & White Labeling</option>
@@ -221,17 +227,20 @@
                             <option>Others</option>
                         </select>
                     </div>
+                
                     <div class="input-group">
                         <label class="label-text">Priority Status</label>
-                        <select class="input-field">
-                            <option>Standard  <24 Hrs </option>
-                            <option>Priority  <12 Hrs </option>
+                        <select name="$priority" class="input-field">
+                            <option>Standard (24 Hrs)</option>
+                            <option>Priority (12 Hrs)</option>
                         </select>
                     </div>
+                
                     <div class="col-span-2">
                         <label class="label-text">How Can We Support You</label>
-                        <textarea rows="1" placeholder="Define project parameters..." class="input-field resize-none"></textarea>
+                        <textarea name="message" rows="1" placeholder="Define project parameters..." class="input-field resize-none"></textarea>
                     </div>
+                
                     <div class="col-span-2">
                         <button type="submit" id="submitBtn" class="submit-btn">
                             <span id="btnText">SEND</span>
@@ -247,25 +256,49 @@
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
         const btnText = document.getElementById('btnText');
-
-        contactForm.addEventListener('submit', function(e) {
+    
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
+            
             btnText.innerText = "TRANSMITTING...";
             submitBtn.style.opacity = "0.7";
             submitBtn.style.pointerEvents = "none";
-
-            setTimeout(() => {
-                submitBtn.classList.add('success');
-                submitBtn.style.opacity = "1";
-                btnText.innerHTML = '<i class="fas fa-check"></i> TRANSMITTED';
-                
-                setTimeout(() => {
-                    submitBtn.classList.remove('success');
-                    btnText.innerText = "SEND";
-                    submitBtn.style.pointerEvents = "auto";
+    
+            // Convert form data to JSON for StaticForms
+            const formData = new FormData(contactForm);
+            const data = {};
+            formData.forEach((value, key) => { data[key] = value });
+    
+            try {
+                const response = await fetch('https://api.staticforms.xyz/submit', {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+    
+                const result = await response.json();
+    
+                if (result.success) {
+                    submitBtn.classList.add('success');
+                    submitBtn.style.opacity = "1";
+                    btnText.innerHTML = '<i class="fas fa-check"></i> TRANSMITTED';
                     contactForm.reset();
-                }, 3000);
-            }, 1500);
+                } else {
+                    btnText.innerText = "API ERROR";
+                    submitBtn.style.background = "#ef4444";
+                }
+            } catch (error) {
+                btnText.innerText = "CONNECTION FAILED";
+                submitBtn.style.background = "#ef4444";
+            }
+    
+            setTimeout(() => {
+                submitBtn.classList.remove('success');
+                submitBtn.style.background = "#3b82f6";
+                btnText.innerText = "SEND";
+                submitBtn.style.pointerEvents = "auto";
+                submitBtn.style.opacity = "1";
+            }, 4000);
         });
 
         const verbs = ["Engineer", "Refine", "Leverage", "Scale", "Optimize"];
