@@ -57,14 +57,14 @@
         .mirror-gloss {
             display: inline-block; color: #ffffff;
             /* Added #60a5fa into the gradient for the blue shade effect */
-            background: linear-gradient(110deg, rgba(255,255,255,0.2) 15%, rgba(255,255,255,1) 35%, #60a5fa 40%, #60a5fa 60%, rgba(255,255,255,1) 65%, rgba(255,255,255,0.2) 85%);
+            background: linear-gradient(110deg, rgba(255,255,255,0.2) 15%, rgba(255,255,255,1) 35%, #60a5fa 40%, #60a5fa 50%, rgba(255,255,255,1) 65%, rgba(255,255,255,0.2) 85%);
             background-size: 250% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: classySweep 10s linear infinite; line-height: 1.1; font-weight: 900;
         }
         @keyframes classySweep { 0% { background-position: 250% 0%; } 100% { background-position: -250% 0%; } }
         
         .rotator-container { position: relative; height: 35vh; width: 100%; display: flex; align-items: center; justify-content: center; margin-top: -5vh; }
-        .rotator-text { position: absolute; opacity: 0; transition: opacity 2s ease-in-out; white-space: nowrap; pointer-events: none; width: 100%; text-align: center; }
+        .rotator-text { position: absolute; opacity: 0; transition: opacity 3s ease-in-out; white-space: nowrap; pointer-events: none; width: 100%; text-align: center; }
         .rotator-text.active { opacity: 1; pointer-events: auto; }
 
         #menu-overlay {
@@ -185,11 +185,12 @@
         
         <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
             <div class="rotator-container">
-                <h1 class="rotator-text active font-black uppercase mirror-gloss" style="font-size: clamp(1.8rem, 8vw, 5.5rem);">Integrated <br>Supply Chain</h1>
+                <h1 class="rotator-text active font-black uppercase mirror-gloss" style="font-size: clamp(1.8rem, 8vw, 5.5rem);">Data & Analytics <br> Empowered Strategy</h1>
+                <h1 class="rotator-text font-black uppercase mirror-gloss" style="font-size: clamp(1.8rem, 8vw, 5.5rem);">Integrated <br>Supply Chain</h1>
                 <h1 class="rotator-text font-black uppercase mirror-gloss" style="font-size: clamp(1.8rem, 8vw, 5.5rem);">Streamlined <br>Global Procurement</h1>
                 <h1 class="rotator-text font-black uppercase mirror-gloss" style="font-size: clamp(1.8rem, 8vw, 5.5rem);">Single Point<br>Accountability</h1>
                 <h1 class="rotator-text font-black uppercase mirror-gloss" style="font-size: clamp(1.8rem, 8vw, 5.5rem);">Geopolitical <br> De-Risking</h1>
-                <h1 class="rotator-text font-black uppercase mirror-gloss" style="font-size: clamp(1.8rem, 8vw, 5.5rem);">Data & Analytics <br> Empowered Strategy</h1>
+                
             </div>
         </div>
 
@@ -242,14 +243,27 @@
             overlay.classList.toggle('open');
             header.style.opacity = overlay.classList.contains('open') ? "0" : "1";
         }
-        let idx = 0; const slides = document.querySelectorAll('.rotator-text');
-        setInterval(() => {
-            if(slides.length){
-                slides[idx].classList.remove('active'); 
-                idx = (idx + 1) % slides.length; 
-                slides[idx].classList.add('active'); 
-            }
-        }, 5500);
-    </script>
+        // 1. Identify all your text lines
+    const slides = document.querySelectorAll('.rotator-text');
+    let idx = 0; 
+
+    // 2. Create the function that actually moves the text
+    function rotateText() {
+        if(slides.length > 0) {
+            // Remove 'active' from the current line
+            slides[idx].classList.remove('active');
+            
+            // Move to the next index (looping back to 0 at the end)
+            idx = (idx + 1) % slides.length;
+            
+            // Add 'active' to the next line
+            slides[idx].classList.add('active');
+        }
+    }
+
+    // 3. Set the interval to exactly 8000ms (8 seconds)
+    // This ensures every transition happens on the exact same beat.
+    setInterval(rotateText, 7000);
+</script>
 </body>
 </html>
