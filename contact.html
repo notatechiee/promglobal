@@ -178,7 +178,8 @@
 
         <div class="form-container">
             <div class="glass-panel">
-                <form id="contactForm" class="grid grid-cols-2 gap-x-6 gap-y-4">
+                <form id="contactForm" action="https://api.staticforms.dev/submit" method="POST" class="grid grid-cols-2 gap-x-6 gap-y-4">
+                    <input type="hidden" name="apiKey" value="sf_929a07dd0148cafdd2c3ca89" />
                     <div class="input-group">
                         <label class="label-text">Classification</label>
                         <select class="input-field" required>
